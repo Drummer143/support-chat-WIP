@@ -11,6 +11,7 @@
     border-radius: 10px;
     background-color: var(--blue);
     color: #fff;
+    box-shadow: 0px -5px 30px 4px rgba(34, 60, 80, 0.5);
 }
 
 .heading {
@@ -41,6 +42,10 @@
     border-radius: 10px;
     font-size: 1rem;
     user-select: none;
+}
+
+.inputField:focus {
+    background-color: var(--gray);
 }
 
 .error {
