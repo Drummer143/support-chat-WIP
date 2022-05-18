@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 
-import styles from "./SignUpForm.css";
+import styles from "./SignInForm.module.css";
 
 const validate = values => {
     const errors = {};
@@ -18,7 +18,7 @@ const validate = values => {
     return errors;
 }
 
-function SignUpForm() {
+function SignInForm() {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -32,16 +32,20 @@ function SignUpForm() {
         <div className={ styles.wrapper }>
             <h1 className={styles.heading}>Sign In</h1>
             <form className={styles.form} onSubmit={formik.handleSubmit} >
-                <input name="email" type="text" onChange={formik.handleChange} value={formik.values.email} placeholder="Email" />
-                {formik.errors.email ? <div className={styles.error}>{formik.errors.email}</div> : null}
+                <div className={styles.input}>
+                    <input name="email" type="text" onChange={formik.handleChange} value={formik.values.email} placeholder="Email" className={styles.inputField} />
+                    {formik.errors.email ? <div className={styles.error}>{formik.errors.email}</div> : null}
+                </div>
 
-                <input name="password" type="password" onChange={formik.handleChange} value={formik.values.password} placeholder="Password" />
-                {formik.errors.password ? <div className={styles.error}>{formik.errors.password}</div> : null}
+                <div className={styles.input}>
+                    <input name="password" type="password" onChange={formik.handleChange} value={formik.values.password} placeholder="Password" className={styles.inputField} />
+                    {formik.errors.password ? <div className={styles.error}>{formik.errors.password}</div> : null}
+                </div>
 
-                <button type='submit'>Sign In</button>
+                <button type='submit' className={styles.button}>Sign In</button>
             </form>
         </div>
     );
 }
 
-export default SignUpForm;
+export default SignInForm;

@@ -1,0 +1,8 @@
+:root {
+    --blue: rgb(0, 49, 122);
+    --gray: #f8f9fb;
+}
+
+.wrapper {
+    background-color: var(--gray);
+}
