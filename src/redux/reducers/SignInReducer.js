@@ -1,4 +1,4 @@
-import defaultState from './../deafultState';
+import defaultState from './../defaultState';
 import { FETCH_EMAIL_FAILURE, FETCH_EMAIL_SUCCESS, FETCH_EMAIL_REQUEST } from './../actions/actions';
 
 const signInReducer = (state = defaultState, action) => {
@@ -12,7 +12,7 @@ const signInReducer = (state = defaultState, action) => {
         };
         case FETCH_EMAIL_REQUEST: {
             return {
-                requect: true,
+                request: true,
                 success: false,
                 error: ''
             };
