@@ -4,11 +4,9 @@ import { signInSuccess, signInFailure, FETCH_EMAIL_REQUEST } from './../actions/
 import { auth } from './../../firebase';
 
 function* workerSignInWithEmail(action) {
-    debugger
     try {
         yield call(signInWithEmailAndPassword, auth, action.email, action.password);
         yield put(signInSuccess);
-        console.log();
     } catch (error) {
         yield put(signInFailure(error));
     }

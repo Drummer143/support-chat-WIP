@@ -2,7 +2,6 @@ import defaultState from './../defaultState';
 import { FETCH_EMAIL_FAILURE, FETCH_EMAIL_SUCCESS, FETCH_EMAIL_REQUEST } from './../actions/actions';
 
 const signInReducer = (state = defaultState, action) => {
-    debugger
     switch(action.type) {
         case FETCH_EMAIL_FAILURE:
             return { 
