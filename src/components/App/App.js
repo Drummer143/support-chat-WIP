@@ -1,14 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import styles from './App.module.css';
 
 import SignInForm from '../SignInForm/SignInForm';
+import store from './../../redux/store';
 
 function App() {
   return (
-    <div className={styles.wrapper}>
-      <SignInForm />
-    </div>
+    <Provider store={store}>
+      <div className={styles.wrapper}>
+        <SignInForm />
+      </div>
+    </Provider>
   );
 }
 

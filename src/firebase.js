@@ -7,8 +7,8 @@ const firebaseConfig = {
   projectId: "support-chat-24b46",
   storageBucket: "support-chat-24b46.appspot.com",
   messagingSenderId: "1089625819670",
-  appId: "1:1089625819670:web:4fb12f1c5636521ea44337",
-  measurementId: "G-3D1DFXS4SD"
+  appId: "1:1089625819670:web:b725f6560b31cd60a44337",
+  measurementId: "G-8BMT884DS1"
 };
 
 const app = initializeApp(firebaseConfig);

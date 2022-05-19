@@ -2,6 +2,8 @@ import React from "react";
 import { useFormik } from "formik";
 
 import styles from "./SignInForm.module.css";
+import { useDispatch } from 'react-redux';
+import { signInRequest } from "../../redux/actions/actions";
 
 const validate = values => {
     const errors = {};
@@ -19,13 +21,15 @@ const validate = values => {
 }
 
 function SignInForm() {
+    const dispatch = useDispatch();
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
         validate,
-        onSubmit: values => { alert(JSON.stringify(values, null, 2)) }
+        onSubmit: values => { /* alert(JSON.stringify(values, null, 2)) */ dispatch(signInRequest(values)) }
     });
     
     return (

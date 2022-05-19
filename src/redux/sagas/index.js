@@ -1,6 +1,8 @@
 import {all} from 'redux-saga/effects';
+import watcherSignInWithEmail from './signInSaga';
 
-export default function* rootSaga() {
-    yield all([
-    ])
+function* rootSaga() {
+    yield all([ watcherSignInWithEmail() ]);
 }
+
+export default rootSaga;
