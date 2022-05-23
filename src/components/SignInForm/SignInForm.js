@@ -1,9 +1,10 @@
 import React from "react";
-import { Formik, Field, Form, /* useFormik */ } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 
 import styles from "./SignInForm.module.css";
 import { useDispatch } from 'react-redux';
 import { signInRequest } from "../../redux/actions/actions";
+import * as Yup from 'yup';
 
 /* const validate = values => {
     const errors = {};
@@ -38,12 +39,27 @@ function SignInForm() {
 
             <Formik 
                 initialValues={{ email: '', password: '', }}
-                //vaildationSchema={} 
+                validationSchema={Yup.object().shape({
+                    email: Yup.string().email("Invalid email address. Example: suppurt-chat@example.com").required("Required"),
+                    password: Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("Required")
+                })} 
                 onSubmit={ values => { alert(JSON.stringify(values, null, 2)); dispatch(signInRequest(values)) }}
             >
                 <Form className={styles.form}>
-                    <Field name='email' type='text' placeholder='Email' className={styles.inputField}></Field>
-                    <Field name='password' type='text' placeholder='Email' className={styles.inputField}></Field>
+                    <div className={styles.input}>
+                        <Field name='email' type='text' placeholder='email' className={styles.inputField}></Field>
+                        <div className={styles.error}>
+                            <ErrorMessage name="email" />
+                        </div>
+                    </div>
+                    <div className={styles.input}>
+                        <Field name='password' type='password' placeholder='password' className={styles.inputField}></Field>
+                        <div className={styles.error}>
+                            <ErrorMessage name="password" />
+                        </div>
+                    </div>
+
+                    <button type='submit' className={styles.button}>Sign In</button>
                 </Form>
             </Formik>
 
