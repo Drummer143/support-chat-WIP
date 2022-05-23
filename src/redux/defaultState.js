@@ -1,6 +1,8 @@
+import { auth } from './../firebase';
+
 const defaultState = {
-    request: false,
-    success: false,
+    requesting: false,
+    user: auth.currentUser ? auth : false,
     error: ''
 }
 

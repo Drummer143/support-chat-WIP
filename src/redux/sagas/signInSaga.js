@@ -6,9 +6,11 @@ import { auth } from './../../firebase';
 function* workerSignInWithEmail(action) {
     try {
         yield call(signInWithEmailAndPassword, auth, action.email, action.password);
-        yield put(signInSuccess);
+        yield put(signInSuccess());
+        yield alert('Success');
     } catch (error) {
         yield put(signInFailure(error));
+        yield alert(error);
     }
 }
 
