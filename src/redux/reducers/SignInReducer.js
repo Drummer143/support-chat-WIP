@@ -1,6 +1,7 @@
-import defaultState from './../defaultState';
 import { FETCH_EMAIL_FAILURE, FETCH_EMAIL_SUCCESS, FETCH_EMAIL_REQUEST } from './../actions/actions';
 import { auth } from './../../firebase';
+
+import defaultState from './../defaultState';
 
 const signInReducer = (state = defaultState, action) => {
     switch(action.type) {

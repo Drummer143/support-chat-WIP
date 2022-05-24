@@ -1,9 +1,3 @@
-:root {
-    --blue: rgb(0, 49, 122);
-    --gray: #f2f2f2;
-    --dark-gray: #ededed;
-}
-
 body {
     background-color: var(--dark-gray);
 }
