@@ -1,7 +1,9 @@
 import { auth } from './../firebase';
 
-export const defaultState = {
+const defaultState = {
     requesting: false,
     user: auth.currentUser ? auth : false,
     error: ''
 }
+
+export default defaultState;

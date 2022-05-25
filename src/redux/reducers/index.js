@@ -2,4 +2,6 @@ import { combineReducers } from 'redux';
 
 import signInReducer from './SignInReducer';
 
-export const rootReducer = combineReducers({ signInReducer });
+const rootReducer = combineReducers({ signInReducer });
+
+export default rootReducer;
