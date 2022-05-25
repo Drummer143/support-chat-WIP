@@ -16,7 +16,6 @@ function* workerSignInWithGoogle() {
     try {
         yield call(signInWithPopup, auth, provider);
         yield put(signInEmailSuccess());
-        yield alert('success');
     } catch (error) {
         yield put(signInEmailFailure(error));
     }
