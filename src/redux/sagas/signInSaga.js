@@ -1,5 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+
 import { signInEmailSuccess, signInEmailFailure, FETCH_LOGIN_EMAIL_REQUEST, FETCH_LOGIN_GOOGLE_REQUEST } from './../actions/actions';
 import { auth, provider } from './../../firebase';
 
