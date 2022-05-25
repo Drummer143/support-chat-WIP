@@ -64,8 +64,6 @@
     width: 90%;
     height: 45px;
 
-    background-color: #009100;
-    color: #fff;
     border-radius: 10px;
     font-size: 1rem;
     letter-spacing: 1px;
@@ -76,10 +74,34 @@
     user-select: none;
 }
 
-.button:hover {
+.submitButton {
+    background-color: #009100;
+    color: #fff;
+}
+
+.submitButton:hover {
     background-color: #00a100;
 }
 
-.button:active {
+.submitButton:active {
     background-color: #009600;
+}
+
+.googleButton {
+    background-color: #fff;
+    color: #000;
+}
+
+.googleButton:hover {
+    background-color: #dbdbdb;
+}
+
+.googleButton:active {
+    background-color: #f2f2f2;
+}
+
+.icon {
+    color: #f00;
+    font-size: 1.2rem;
+    margin-right: 5px;
 }

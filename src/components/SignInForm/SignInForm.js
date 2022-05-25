@@ -4,7 +4,9 @@ import * as Yup from 'yup';
 
 import styles from "./SignInForm.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { signInRequest } from "../../redux/actions/actions";
+import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const handleAuthError = (error) => {
     switch(error.code) {
@@ -28,7 +30,7 @@ function SignInForm() {
                     email: Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("Required"),
                     password: Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("Required")
                 })}
-                onSubmit={ values => { dispatch(signInRequest(values)) }}
+                onSubmit={ values => { dispatch(signInEmailRequest(values)) }}
             >
                 <Form className={styles.form}>
                     <div className={styles.input}>
@@ -37,6 +39,7 @@ function SignInForm() {
                             <ErrorMessage name="email" />
                         </div>
                     </div>
+                    
                     <div className={styles.input}>
                         <Field name='password' type='password' placeholder='password' className={styles.inputField}></Field>
                         <div className={styles.inputError}>
@@ -46,7 +49,15 @@ function SignInForm() {
 
                     <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
 
-                    <button type='submit' className={styles.button}>Sign In</button>
+                    <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Sign In</button>
+
+                    <h2>or</h2>
+
+                    <button 
+                        type='button' 
+                        className={`${styles.button} ${styles.googleButton}`}
+                        onClick={ () => {dispatch(signInGoogleRequest())} }
+                    ><FontAwesomeIcon icon={faGoogle} className={styles.icon}/> Login with Google</button>
                 </Form>
             </Formik>
         </div>

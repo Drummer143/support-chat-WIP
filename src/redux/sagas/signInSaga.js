@@ -1,19 +1,30 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { signInSuccess, signInFailure, FETCH_EMAIL_REQUEST } from './../actions/actions';
-import { auth } from './../../firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInEmailSuccess, signInEmailFailure, FETCH_LOGIN_EMAIL_REQUEST, FETCH_LOGIN_GOOGLE_REQUEST } from './../actions/actions';
+import { auth, provider } from './../../firebase';
 
 function* workerSignInWithEmail(action) {
     try {
         yield call(signInWithEmailAndPassword, auth, action.email, action.password);
-        yield put(signInSuccess());
+        yield put(signInEmailSuccess());
     } catch (error) {
-        yield put(signInFailure(error));
+        yield put(signInEmailFailure(error));
+    }
+}
+
+function* workerSignInWithGoogle() {
+    try {
+        yield call(signInWithPopup, auth, provider);
+        yield put(signInEmailSuccess());
+        yield alert('success');
+    } catch (error) {
+        yield put(signInEmailFailure(error));
     }
 }
 
 function* watcherSignInWithEmail() {
-    yield takeLatest(FETCH_EMAIL_REQUEST, workerSignInWithEmail);
+    yield takeLatest(FETCH_LOGIN_EMAIL_REQUEST, workerSignInWithEmail);
+    yield takeLatest(FETCH_LOGIN_GOOGLE_REQUEST, workerSignInWithGoogle);
 }
 
 export default watcherSignInWithEmail;
