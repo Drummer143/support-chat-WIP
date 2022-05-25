@@ -11,6 +11,7 @@ const handleAuthError = (error) => {
         case "auth/user-not-found": return "ERROR: User with entered email was not found";
         case "auth/wrong-password": return "ERROR: Invalid password.";
         case "auth/too-many-requests": return "ERROR: Exceeded the number of login attempts. Check your email and password and try to login later.";
+        default: return "Unexpected error. Contact support to solve the problem."
     }
 }
 
@@ -20,7 +21,7 @@ function SignInForm() {
 
     return (
         <div className={ styles.wrapper }>
-            <h1 className={styles.heading}>Sign In</h1>
+            <h1 className={styles.heading}>Welcome back!</h1>
             <Formik 
                 initialValues={{ email: '', password: '', }}
                 validationSchema={Yup.object().shape({
