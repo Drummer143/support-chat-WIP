@@ -20,7 +20,7 @@ function SignUpForm() {
                                        .min(8, 'Must be 8 characters or more')
                                        .max(20, 'Must be 20 characters or less')
                                        .minUppercase(1, "Your password must contain at least one uppercase letter")
-                                       .minUppercase(1, "Your password must contain at least one lowercase letter")
+                                       .minLowercase(1, "Your password must contain at least one lowercase letter")
                                        .minNumbers(1, "Your password must contain at least one number")
                                        .required("This field is required");
 
