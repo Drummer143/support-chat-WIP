@@ -52,7 +52,9 @@ function SignUpForm() {
 
                     <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
 
-                    <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Sign In</button>
+                    <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Submit</button>
+
+                    <p className={styles.authRedirect}>Already have an account? Login <a href="sign-in" target="_self" className={styles.link}>here</a></p>
                 </Form>
             </Formik>
         </div>

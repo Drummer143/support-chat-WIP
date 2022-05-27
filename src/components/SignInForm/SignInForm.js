@@ -53,6 +53,8 @@ function SignInForm() {
                         className={`${styles.button} ${styles.googleButton}`}
                         onClick={ () => dispatch(signInGoogleRequest()) }
                     ><FontAwesomeIcon icon={faGoogle} className={styles.icon}/> Login with Google</button>
+
+                    <p className={styles.authRedirect}>Don't have an account? Create it <a href="sign-up" target="_self" className={styles.link}>here</a></p>
                 </Form>
             </Formik>
         </div>

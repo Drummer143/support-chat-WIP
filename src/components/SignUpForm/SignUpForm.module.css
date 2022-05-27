@@ -105,3 +105,16 @@
     font-size: 1.2rem;
     margin-right: 5px;
 }
+
+.authRedirect {
+    font-size: 1.1rem;
+}
+
+.link {
+    color: #fff;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: #f2f2f2;
+}
