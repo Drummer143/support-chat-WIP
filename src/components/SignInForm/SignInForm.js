@@ -6,24 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
-import { handleAuthError } from "../../utils";
-
+import { emailSignInValSchema, passwordSignInValSchema, handleAuthError } from "../../utils";
 import styles from "./SignInForm.module.css";
 
 function SignInForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.signInReducer.error)
-    const emailValSchema = Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("Required");
-    const passwordValSchema = Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("Required");
 
     return (
-        <div className={ styles.wrapper }>
+        <div className={styles.wrapper}>
             <h1 className={styles.heading}>Welcome back!</h1>
             <Formik 
                 initialValues={{ email: '', password: '', }}
                 validationSchema={Yup.object().shape({
-                    email: emailValSchema,
-                    password: passwordValSchema
+                    email: emailSignInValSchema,
+                    password: passwordSignInValSchema
                 })}
                 onSubmit={ values => dispatch(signInEmailRequest(values)) }
             >
