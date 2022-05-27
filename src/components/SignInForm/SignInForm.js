@@ -7,23 +7,23 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
 import { handleAuthError } from "../../utils";
-
 import styles from "./SignInForm.module.css";
 
 function SignInForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.signInReducer.error)
-    const emailValSchema = Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("Required");
-    const passwordValSchema = Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("Required");
+    const error = useSelector((state) => state.authReducer.error)
+
+    const emailSignInValSchema = Yup.string().required("This field is required");
+    const passwordSignInValSchema = Yup.string().required("This field is required");
 
     return (
-        <div className={ styles.wrapper }>
+        <div className={styles.wrapper}>
             <h1 className={styles.heading}>Welcome back!</h1>
             <Formik 
                 initialValues={{ email: '', password: '', }}
                 validationSchema={Yup.object().shape({
-                    email: emailValSchema,
-                    password: passwordValSchema
+                    email: emailSignInValSchema,
+                    password: passwordSignInValSchema
                 })}
                 onSubmit={ values => dispatch(signInEmailRequest(values)) }
             >
@@ -53,6 +53,8 @@ function SignInForm() {
                         className={`${styles.button} ${styles.googleButton}`}
                         onClick={ () => dispatch(signInGoogleRequest()) }
                     ><FontAwesomeIcon icon={faGoogle} className={styles.icon}/> Login with Google</button>
+
+                    <p className={styles.authRedirect}>Don't have an account? Create it <a href="sign-up" target="_self" className={styles.link}>here</a></p>
                 </Form>
             </Formik>
         </div>
