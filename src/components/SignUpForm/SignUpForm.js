@@ -1,5 +1,6 @@
 import React from "react";
 import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,9 +12,18 @@ import styles from "./SignUpForm.module.css";
 function SignUpForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.error);
+    YupPassword(Yup);
 
     const emailSignUpValSchema = Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("This field is required");
-    const passwordSignUpValSchema = Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("This field is required");
+
+    const passwordSignUpValSchema = Yup.string()
+                                       .min(8, 'Must be 8 characters or more')
+                                       .max(20, 'Must be 20 characters or less')
+                                       .minUppercase(1, "Your password must contain at least one uppercase letter")
+                                       .minUppercase(1, "Your password must contain at least one lowercase letter")
+                                       .minNumbers(1, "Your password must contain at least one number")
+                                       .required("This field is required");
+
     const confirmPassword = Yup.string().oneOf([Yup.ref('password')], "Passwords does not match").required("This field is required");
 
     return (
