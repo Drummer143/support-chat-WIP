@@ -1,14 +1,20 @@
 import React from "react";
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { confirmPassword, emailSignUpValSchema, passwordSignUpValSchema } from "../../utils";
+import { signUpEmailRequest } from "../../redux/actions/actions";
+import { handleAuthError } from './../../utils';
 
 import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
-    /* const dispatch = useDispatch();
-    const error = useSelector((state) => state.signInReducer.error); */
+    const dispatch = useDispatch();
+    const error = useSelector((state) => state.authReducer.error);
+
+    const emailSignUpValSchema = Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("This field is required");
+    const passwordSignUpValSchema = Yup.string().min(6, 'Must be 6 characters or more').max(20, 'Must be 20 characters or less').required("This field is required");
+    const confirmPassword = Yup.string().oneOf([Yup.ref('password')], "Passwords does not match").required("This field is required");
 
     return (
         <div className={styles.wrapper}>
@@ -20,7 +26,7 @@ function SignUpForm() {
                     password: passwordSignUpValSchema,
                     confirmPassword: confirmPassword
                 })}
-                onSubmit={ values => alert(values.email + "\n" + values.password) /* dispatch(signInEmailRequest(values)) */ }
+                onSubmit={ values => dispatch(signUpEmailRequest(values)) }
             >
                 <Form className={styles.form}>
                     <div className={styles.input}>
@@ -44,7 +50,7 @@ function SignUpForm() {
                         </div>
                     </div>
 
-                    {/* <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div> */}
+                    <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
 
                     <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Sign In</button>
                 </Form>

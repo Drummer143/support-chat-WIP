@@ -11,8 +11,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className={styles.wrapper}>
-        {/* <SignInForm /> */}
-        <SignUpForm />
+        <SignUpForm /> 
       </div>
     </Provider>
   );

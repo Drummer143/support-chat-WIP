@@ -6,12 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
-import { emailSignInValSchema, passwordSignInValSchema, handleAuthError } from "../../utils";
+import { handleAuthError } from "../../utils";
 import styles from "./SignInForm.module.css";
 
 function SignInForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.signInReducer.error)
+    const error = useSelector((state) => state.authReducer.error)
+
+    const emailSignInValSchema = Yup.string().required("This field is required");
+    const passwordSignInValSchema = Yup.string().required("This field is required");
 
     return (
         <div className={styles.wrapper}>

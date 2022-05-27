@@ -1,9 +1,9 @@
 import {all} from 'redux-saga/effects';
 
-import watcherSignInWithEmail from './signInSaga';
+import watcherAuth from './authSaga';
 
 function* rootSaga() {
-    yield all([ watcherSignInWithEmail() ]);
+    yield all([ watcherAuth() ]);
 }
 
 export default rootSaga;
