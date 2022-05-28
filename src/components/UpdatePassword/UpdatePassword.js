@@ -18,7 +18,7 @@ function UpdatePassword() {
     const oobCode = searchParams.get('oobCode');
 
     return recovered ? (
-        <Navigate to="/" />
+        <Navigate to="/update-pass-redirect" />
     ) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Update password</h1>
