@@ -1,18 +1,24 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import ForgotPasswordRedirect from '../ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePassword from '../UpdatePassword/UpdatePassword';
-import { signOutRequest } from '../../redux/actions/actions';
 import UpdatePasswordRedirect from '../UpdatePasswordRedirect/UpdatePasswordRedirect';
+import { signOutRequest } from '../../redux/actions/actions';
+import { auth } from './../../firebase';
 
 function RoutingTree() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.authReducer.user);
+    const [ user, setUser ] = useState();
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+    });
 
     return user ? (
         <div>
