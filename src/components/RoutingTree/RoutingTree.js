@@ -8,6 +8,7 @@ import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import ForgotPasswordRedirect from '../ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePassword from '../UpdatePassword/UpdatePassword';
 import { signOutRequest } from '../../redux/actions/actions';
+import UpdatePasswordRedirect from '../UpdatePasswordRedirect/UpdatePasswordRedirect';
 
 function RoutingTree() {
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function RoutingTree() {
             <Route path="/recover-password" element={<ForgotPassword />} />
             <Route path="/forgot-pass-redirect" element={<ForgotPasswordRedirect />} />
             <Route path="/update-password" element={<UpdatePassword />} />
+            <Route path="/update-pass-redirect" element={<UpdatePasswordRedirect />} />
         </Routes>
     );
 }
