@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import { signOut } from '../../redux/actions/actions';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import RecoverInfo from '../RecoverInfo/RecoverInfo';
 
 function AuthRouter() {
     const dispatch = useDispatch();
@@ -22,6 +24,8 @@ function AuthRouter() {
             <Route path="/" element={<SignInForm />} />
             <Route path="/sign-in" element={<SignInForm />} />
             <Route path="/sign-up" element={<SignUpForm />} />
+            <Route path="/recover-password" element={<ForgotPassword />} />
+            <Route path="recover-info" element={<RecoverInfo />} />
         </Routes>
     );
 }

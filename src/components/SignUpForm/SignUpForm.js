@@ -11,7 +11,7 @@ import styles from "./SignUpForm.module.css";
 
 function SignUpForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.authReducer.error);
+    const error = useSelector(state => state.authReducer.error);
     YupPassword(Yup);
 
     const emailSignUpValSchema = Yup.string().email("Invalid address. Example: suppurt-chat@example.com").required("This field is required");

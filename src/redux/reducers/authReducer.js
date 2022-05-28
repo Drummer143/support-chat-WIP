@@ -1,5 +1,12 @@
 import defaultState from '../defaultState';
-import { FETCH_AUTH_FAILURE, FETCH_AUTH_SUCCESS, FETCH_LOGIN_EMAIL_REQUEST, FETCH_LOGIN_GOOGLE_REQUEST, FETCH_SIGN_OUT } from '../actions/actions';
+import { 
+    FETCH_AUTH_FAILURE, 
+    FETCH_AUTH_SUCCESS, 
+    FETCH_LOGIN_EMAIL_REQUEST, 
+    FETCH_LOGIN_GOOGLE_REQUEST, 
+    FETCH_PASSWORD_RECOVER_REQUEST, 
+    FETCH_PASSWORD_RECOVER_SUCCESS,
+     FETCH_SIGN_OUT } from '../actions/actions';
 import { auth } from '../../firebase';
 
 const AuthReducer = (state = defaultState, action) => {
@@ -26,8 +33,13 @@ const AuthReducer = (state = defaultState, action) => {
                 error: action.error
             };
 
+        case FETCH_PASSWORD_RECOVER_SUCCESS:
+            return {
+                recovered: true
+            };
+
+        case FETCH_PASSWORD_RECOVER_REQUEST:
         case FETCH_SIGN_OUT:
-            return defaultState;
 
         default: return state;
     };

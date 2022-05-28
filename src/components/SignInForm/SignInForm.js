@@ -11,7 +11,7 @@ import styles from "./SignInForm.module.css";
 
 function SignInForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.authReducer.error)
+    const error = useSelector(state => state.authReducer.error)
 
     const emailSignInValSchema = Yup.string().required("This field is required");
     const passwordSignInValSchema = Yup.string().required("This field is required");
@@ -40,6 +40,7 @@ function SignInForm() {
                         <div className={styles.inputError}>
                             <ErrorMessage name="password" />
                         </div>
+                        <p className={styles.passwordRecover}><a href="/recover-password" className={styles.link}>Forgot password?</a></p>
                     </div>
 
                     <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
