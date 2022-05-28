@@ -2,14 +2,17 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 
 import { 
-    authSuccess, authFailure,
+    authSuccess, 
+    authFailure,
+    signOutSuccess,
     FETCH_LOGIN_EMAIL_REQUEST, 
     FETCH_LOGIN_GOOGLE_REQUEST, 
     FETCH_SIGN_UP_REQUEST, 
-    FETCH_SIGN_OUT, 
+    FETCH_SIGN_OUT_REQUEST, 
     FETCH_PASSWORD_RECOVER_REQUEST
 } from '../actions/actions';
 import { auth, provider } from '../../firebase';
+import { passwordRecoverRequest } from './../actions/actions';
 
 function* workerSignInWithEmail(action) {
     try {
@@ -40,12 +43,13 @@ function* workerSignUpWithEmail(action) {
 
 function* workerSignOut() {
     yield auth.signOut();
+    yield put(signOutSuccess());
 }
 
 function* workerRecoverPassword(action) {
     try {
         yield call(sendPasswordResetEmail, auth, action.email);
-        yield put();
+        yield put(passwordRecoverRequest());
     } catch (error) {
         yield put(authFailure(error));
     }
@@ -55,7 +59,7 @@ function* watcherAuth() {
     yield takeLatest(FETCH_LOGIN_EMAIL_REQUEST, workerSignInWithEmail);
     yield takeLatest(FETCH_LOGIN_GOOGLE_REQUEST, workerSignInWithGoogle);
     yield takeLatest(FETCH_SIGN_UP_REQUEST, workerSignUpWithEmail);
-    yield takeLatest(FETCH_SIGN_OUT, workerSignOut);
+    yield takeLatest(FETCH_SIGN_OUT_REQUEST, workerSignOut);
     yield takeLatest(FETCH_PASSWORD_RECOVER_REQUEST, workerRecoverPassword);
 }
 

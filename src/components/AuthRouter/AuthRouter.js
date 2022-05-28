@@ -1,12 +1,12 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { auth } from './../../firebase';
 import { Routes, Route } from 'react-router-dom';
 
 import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
-import { signOut } from '../../redux/actions/actions';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import RecoverInfo from '../RecoverInfo/RecoverInfo';
+import { signOutRequest } from '../../redux/actions/actions';
 
 function AuthRouter() {
     const dispatch = useDispatch();
@@ -14,9 +14,8 @@ function AuthRouter() {
 
     return user ? (
         <div>
-            {console.log(user)}
             <p>{user.email}</p>
-            <button onClick={() => { dispatch(signOut()) }}>Sign Out</button>
+            <button onClick={() => { dispatch(signOutRequest()) }}>Sign Out</button>
         </div>
 
     ) : (

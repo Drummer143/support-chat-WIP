@@ -1,5 +1,6 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import React from 'react';
 import * as Yup from 'yup';
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,14 +12,15 @@ import styles from "./ForgotPassword.module.css";
 function ForgotPassword() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.authReducer.recovered);
+    const emailSignInValSchema = Yup.string().required("This field is required");
 
-    return (error ? <Navigate to="/recover-info" /> :
+    return error ? (<Navigate to="/recover-info" />) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Recover password</h1>
             <Formik 
                 initialValues={{ email: '' }}
                 validationSchema={Yup.object().shape({
-                    email: ''
+                    email: emailSignInValSchema
                 })}
                 onSubmit={ values => dispatch(passwordRecoverSuccess(values)) }
             >
@@ -32,7 +34,7 @@ function ForgotPassword() {
 
                     <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
 
-                    <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Send a link to recover password</button>
+                    <button type='submit' className={styles.button}>Send a link to recover password</button>
 
                     <div className={styles.links}>
                         <a href="sign-up" target='_self' className={styles.link}>Create account</a>
