@@ -5,6 +5,7 @@ import {
     authSuccess, 
     authFailure,
     signOutSuccess,
+    passwordRecoverSuccess,
     FETCH_LOGIN_EMAIL_REQUEST, 
     FETCH_LOGIN_GOOGLE_REQUEST, 
     FETCH_SIGN_UP_REQUEST, 
@@ -12,7 +13,6 @@ import {
     FETCH_PASSWORD_RECOVER_REQUEST
 } from '../actions/actions';
 import { auth, provider } from '../../firebase';
-import { passwordRecoverRequest } from './../actions/actions';
 
 function* workerSignInWithEmail(action) {
     try {
@@ -47,9 +47,10 @@ function* workerSignOut() {
 }
 
 function* workerRecoverPassword(action) {
+    debugger
     try {
         yield call(sendPasswordResetEmail, auth, action.email);
-        yield put(passwordRecoverRequest());
+        yield put(passwordRecoverSuccess());
     } catch (error) {
         yield put(authFailure(error));
     }

@@ -6,9 +6,10 @@ import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import RecoverInfo from '../RecoverInfo/RecoverInfo';
+import ResetPassword from './../ResetPassword/ResetPassword';
 import { signOutRequest } from '../../redux/actions/actions';
 
-function AuthRouter() {
+function RoutingTree() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.authReducer.user)
 
@@ -25,8 +26,9 @@ function AuthRouter() {
             <Route path="/sign-up" element={<SignUpForm />} />
             <Route path="/recover-password" element={<ForgotPassword />} />
             <Route path="recover-info" element={<RecoverInfo />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
     );
 }
 
-export default AuthRouter;
+export default RoutingTree;

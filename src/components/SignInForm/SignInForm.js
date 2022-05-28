@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
 import { handleAuthError } from "../../utils";
@@ -55,7 +56,7 @@ function SignInForm() {
                         onClick={ () => dispatch(signInGoogleRequest()) }
                     ><FontAwesomeIcon icon={faGoogle} className={styles.icon}/> Login with Google</button>
 
-                    <p className={styles.authRedirect}>Don't have an account? Create it <a href="sign-up" target="_self" className={styles.link}>here</a></p>
+                    <p className={styles.authRedirect}>Don't have an account? Create it <NavLink to="sign-up" className={styles.link}>here</NavLink></p>
                 </Form>
             </Formik>
         </div>

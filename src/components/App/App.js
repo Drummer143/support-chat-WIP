@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './../../redux/store';
 
 import styles from './App.module.css';
-import AuthRouter from '../AuthRouter/AuthRouter';
+import RoutingTree from './../AuthRouter/RoutingTree';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <div className={styles.wrapper}>
-          <AuthRouter />
+          <RoutingTree />
         </div>
       </Provider>
     </BrowserRouter>

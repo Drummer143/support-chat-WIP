@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 import { signUpEmailRequest } from "../../redux/actions/actions";
 import { handleAuthError } from './../../utils';
@@ -64,7 +65,7 @@ function SignUpForm() {
 
                     <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Submit</button>
 
-                    <p className={styles.authRedirect}>Already have an account? Login <a href="sign-in" target="_self" className={styles.link}>here</a></p>
+                    <p className={styles.authRedirect}>Already have an account? Login <NavLink to="sign-in" className={styles.link}>here</NavLink></p>
                 </Form>
             </Formik>
         </div>

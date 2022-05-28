@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { passwordRecoverSuccess } from "../../redux/actions/actions";
+import { passwordRecoverRequest } from "../../redux/actions/actions";
 import { handleAuthError } from './../../utils';
 
 import styles from "./ForgotPassword.module.css";
@@ -22,7 +22,7 @@ function ForgotPassword() {
                 validationSchema={Yup.object().shape({
                     email: emailSignInValSchema
                 })}
-                onSubmit={ values => dispatch(passwordRecoverSuccess(values)) }
+                onSubmit={ values => dispatch(passwordRecoverRequest(values)) }
             >
                 <Form className={styles.form}>
                     <div className={styles.input}>
@@ -37,8 +37,8 @@ function ForgotPassword() {
                     <button type='submit' className={styles.button}>Send a link to recover password</button>
 
                     <div className={styles.links}>
-                        <a href="sign-up" target='_self' className={styles.link}>Create account</a>
-                        <a href="sign-in" target="_self" className={styles.link}>Login</a>
+                        <NavLink to="sign-up" className={styles.link}>Create account</NavLink>
+                        <NavLink to="sign-in" className={styles.link}>Login</NavLink>
                     </div>
                 </Form>
             </Formik>
