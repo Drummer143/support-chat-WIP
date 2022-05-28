@@ -12,14 +12,19 @@ import UpdatePasswordRedirect from '../UpdatePasswordRedirect/UpdatePasswordRedi
 
 function RoutingTree() {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.authReducer.user)
+    const user = useSelector((state) => state.authReducer.user);
 
     return user ? (
         <div>
             <p>{user.email}</p>
-            <button onClick={() => { dispatch(signOutRequest()) }}>Sign Out</button>
+            <button
+                onClick={() => {
+                    dispatch(signOutRequest());
+                }}
+            >
+                Sign Out
+            </button>
         </div>
-
     ) : (
         <Routes>
             <Route path="/" element={<SignInForm />} />

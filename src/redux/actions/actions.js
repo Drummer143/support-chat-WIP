@@ -13,19 +13,36 @@ export const FETCH_PASSWORD_RECOVER_SUCCESS = 'FETCH_PASSWORD_RECOVER_SUCCESS';
 export const FETCH_PASSWORD_UPDATE_REQUEST = 'FETCH_PASSWORD_UPDATE_REQUEST';
 export const FETCH_PASSWORD_UPDATE_SUCCESS = 'FETCH_PASSWORD_UPDATE_SUCCESS';
 
-
-
-export const signInEmailRequest = ({email, password}) => ({ type: FETCH_LOGIN_EMAIL_REQUEST, email, password });
+export const signInEmailRequest = ({ email, password }) => ({
+    type: FETCH_LOGIN_EMAIL_REQUEST,
+    email,
+    password
+});
 export const signInGoogleRequest = () => ({ type: FETCH_LOGIN_GOOGLE_REQUEST });
-export const signUpEmailRequest = ({email, password}) => ({ type: FETCH_SIGN_UP_REQUEST, email, password });
+export const signUpEmailRequest = ({ email, password }) => ({
+    type: FETCH_SIGN_UP_REQUEST,
+    email,
+    password
+});
 export const authSuccess = () => ({ type: FETCH_AUTH_SUCCESS });
-export const authFailure = (error) => ({ type: FETCH_AUTH_FAILURE, error })
+export const authFailure = (error) => ({ type: FETCH_AUTH_FAILURE, error });
 
 export const signOutRequest = () => ({ type: FETCH_SIGN_OUT_REQUEST });
-export const signOutSuccess = () => ({ type: FETCH_SIGN_OUT_SUCCESS })
+export const signOutSuccess = () => ({ type: FETCH_SIGN_OUT_SUCCESS });
 
-export const passwordRecoverRequest = ({email}) => ({ type: FETCH_PASSWORD_RECOVER_REQUEST, email });
-export const passwordRecoverSuccess = () => ({ type: FETCH_PASSWORD_RECOVER_SUCCESS });
+export const passwordRecoverRequest = ({ email }) => ({
+    type: FETCH_PASSWORD_RECOVER_REQUEST,
+    email
+});
+export const passwordRecoverSuccess = () => ({
+    type: FETCH_PASSWORD_RECOVER_SUCCESS
+});
 
-export const passwordUpdateRequest = ({password, oobCode}) => ({ type: FETCH_PASSWORD_UPDATE_REQUEST, password, oobCode });
-export const passwordUpdateSuccess = () => ({ type: FETCH_PASSWORD_UPDATE_SUCCESS });
+export const passwordUpdateRequest = ({ password, oobCode }) => ({
+    type: FETCH_PASSWORD_UPDATE_REQUEST,
+    password,
+    oobCode
+});
+export const passwordUpdateSuccess = () => ({
+    type: FETCH_PASSWORD_UPDATE_SUCCESS
+});

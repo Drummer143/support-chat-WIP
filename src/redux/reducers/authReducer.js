@@ -23,12 +23,12 @@ const AuthReducer = (state = defaultState, action) => {
         case FETCH_PASSWORD_UPDATE_REQUEST:
         case FETCH_SIGN_OUT_REQUEST:
             return {
-                requesting: true,
+                requesting: true
             };
 
         case FETCH_AUTH_SUCCESS:
             return {
-                user: auth.currentUser,
+                user: auth.currentUser
             };
 
         case FETCH_AUTH_FAILURE:
@@ -44,8 +44,9 @@ const AuthReducer = (state = defaultState, action) => {
 
         case FETCH_SIGN_OUT_SUCCESS:
 
-        default: return state;
-    };
-}
+        default:
+            return state;
+    }
+};
 
 export default AuthReducer;

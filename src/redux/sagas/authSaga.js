@@ -1,16 +1,22 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, confirmPasswordReset } from 'firebase/auth';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    sendPasswordResetEmail,
+    confirmPasswordReset
+} from 'firebase/auth';
 
-import { 
-    authSuccess, 
+import {
+    authSuccess,
     authFailure,
     signOutSuccess,
     passwordRecoverSuccess,
     passwordUpdateSuccess,
-    FETCH_LOGIN_EMAIL_REQUEST, 
-    FETCH_LOGIN_GOOGLE_REQUEST, 
-    FETCH_SIGN_UP_REQUEST, 
-    FETCH_SIGN_OUT_REQUEST, 
+    FETCH_LOGIN_EMAIL_REQUEST,
+    FETCH_LOGIN_GOOGLE_REQUEST,
+    FETCH_SIGN_UP_REQUEST,
+    FETCH_SIGN_OUT_REQUEST,
     FETCH_PASSWORD_RECOVER_REQUEST,
     FETCH_PASSWORD_UPDATE_REQUEST
 } from '../actions/actions';
@@ -63,7 +69,7 @@ function* workerUpdatePassword(action) {
         yield put(passwordUpdateSuccess());
     } catch (error) {
         yield put(authFailure(error));
-        yield alert("Error");
+        yield alert('Error');
     }
 }
 
