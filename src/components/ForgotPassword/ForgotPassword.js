@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { Navigate, NavLink } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { passwordRecoverRequest } from "../../redux/actions/actions";
@@ -13,7 +13,7 @@ function ForgotPassword() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.authReducer.recovered);
 
-    return error ? (<Navigate to="/recover-transition" />) : (
+    return error ? <Navigate to="/forgot-pass-redirect" /> : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Recover password</h1>
             <Formik 
@@ -36,8 +36,8 @@ function ForgotPassword() {
                     <button type='submit' className={styles.button}>Send a link to recover password</button>
 
                     <div className={styles.links}>
-                        <NavLink to="sign-up" className={styles.link}>Create account</NavLink>
-                        <NavLink to="sign-in" className={styles.link}>Login</NavLink>
+                        <a href="/sign-up" className={styles.link}>Create account</a>
+                        <a href="/sign-in" className={styles.link}>Login</a>
                     </div>
                 </Form>
             </Formik>
