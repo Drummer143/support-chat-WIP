@@ -1,40 +1,34 @@
 import React from "react";
 import * as Yup from 'yup';
-import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 
-import { signUpEmailRequest } from "../../redux/actions/actions";
-import { handleAuthError, passwordSignUpValSchema, confirmPassword, emailSignUpValSchema } from './../../utils';
+import { handleAuthError, passwordSignUpValSchema, confirmPassword } from '../../utils';
+import { passwordUpdateRequest } from './../../redux/actions/actions';
 
-import styles from "./SignUpForm.module.css";
+import styles from "./UpdatePassword.module.css"
 
-function SignUpForm() {
+function UpdatePassword() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.authReducer.error);
-    YupPassword(Yup);
+    const recovered = useSelector(state => state.authReducer.recovered);
 
-    return (
+    const [ searchParams, setSearchParams ] = useSearchParams();
+    const oobCode = searchParams.get("oobCode");
+
+    return recovered ? <Navigate to="/" /> : (
         <div className={styles.wrapper}>
-            <h1 className={styles.heading}>Create an account</h1>
+            <h1 className={styles.heading}>Update password</h1>
             <Formik 
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
                 validationSchema={Yup.object().shape({
-                    email: emailSignUpValSchema,
                     password: passwordSignUpValSchema,
                     confirmPassword: confirmPassword
                 })}
-                onSubmit={ values => dispatch(signUpEmailRequest(values)) }
+                onSubmit={ (values) => dispatch(passwordUpdateRequest({ password: values.password, oobCode })) }
             >
-                <Form className={styles.form}>
-                    <div className={styles.input}>
-                        <Field name='email' type='text' placeholder='email' className={styles.inputField}></Field>
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="email" />
-                        </div>
-                    </div>
-                    
+                <Form className={styles.form}>   
                     <div className={styles.input}>
                         <Field name='password' type='password' placeholder='password' className={styles.inputField}></Field>
                         <div className={styles.inputError}>
@@ -52,12 +46,10 @@ function SignUpForm() {
                     <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
 
                     <button type='submit' className={`${styles.button} ${styles.submitButton}`}>Submit</button>
-
-                    <p className={styles.authRedirect}>Already have an account? Login <NavLink to="sign-in" className={styles.link}>here</NavLink></p>
                 </Form>
             </Formik>
         </div>
     );
 }
 
-export default SignUpForm;
+export default UpdatePassword;

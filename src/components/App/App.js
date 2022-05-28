@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './../../redux/store';
 
 import styles from './App.module.css';
-import RoutingTree from './../AuthRouter/RoutingTree';
+import RoutingTree from './../RoutingTree/RoutingTree';
 
 function App() {
 

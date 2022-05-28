@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 
-import styles from "./RecoverInfo.module.css";
+import styles from "./RecoverTransition.module.css";
 
-function RecoverInfo() {
+function RecoverTransition() {
     return (
         <div className={styles.wrapper}>
             <p>Check your email and follow the link we sent to restore your account password</p>
@@ -13,4 +13,4 @@ function RecoverInfo() {
     )
 }
 
-export default RecoverInfo;
+export default RecoverTransition;

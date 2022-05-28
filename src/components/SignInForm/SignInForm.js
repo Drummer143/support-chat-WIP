@@ -7,15 +7,12 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 import { signInEmailRequest, signInGoogleRequest } from "../../redux/actions/actions";
-import { handleAuthError } from "../../utils";
+import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from "../../utils";
 import styles from "./SignInForm.module.css";
 
 function SignInForm() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.authReducer.error)
-
-    const emailSignInValSchema = Yup.string().required("This field is required");
-    const passwordSignInValSchema = Yup.string().required("This field is required");
 
     return (
         <div className={styles.wrapper}>

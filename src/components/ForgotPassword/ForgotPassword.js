@@ -5,16 +5,15 @@ import { Navigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { passwordRecoverRequest } from "../../redux/actions/actions";
-import { handleAuthError } from './../../utils';
+import { handleAuthError, emailSignInValSchema } from './../../utils';
 
 import styles from "./ForgotPassword.module.css";
 
 function ForgotPassword() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.authReducer.recovered);
-    const emailSignInValSchema = Yup.string().required("This field is required");
 
-    return error ? (<Navigate to="/recover-info" />) : (
+    return error ? (<Navigate to="/recover-transition" />) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Recover password</h1>
             <Formik 
