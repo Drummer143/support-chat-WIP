@@ -3,6 +3,7 @@ import YupPassword from 'yup-password';
 
 export const handleAuthError = (error) => {
     switch (error.code) {
+
         case 'auth/user-not-found':
             return 'ERROR: User with entered email was not found';
         case 'auth/wrong-password':
@@ -14,16 +15,17 @@ export const handleAuthError = (error) => {
             return 'ERROR: This email is already in use. Use an another email or try to login';
 
         default:
-            return 'Unexpected error. Contact support to solve the problem.';
+            return 'Unexpected error. Contact support to solve the problem or try again later.';
     }
 };
 
 YupPassword(Yup);
 
+
+export const emailSignInValSchema = Yup.string().required('This field is required');
 export const emailSignUpValSchema = Yup.string()
     .email('Invalid address. Example: suppurt-chat@example.com')
     .required('This field is required');
-export const emailSignInValSchema = Yup.string().required('This field is required');
 
 export const passwordSignInValSchema = Yup.string().required('This field is required');
 export const passwordSignUpValSchema = Yup.string()
@@ -34,6 +36,6 @@ export const passwordSignUpValSchema = Yup.string()
     .minNumbers(1, 'Your password must contain at least one number')
     .required('This field is required');
 
-export const confirmPassword = Yup.string()
+export const confirmPasswordSchema = Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords does not match')
     .required('This field is required');

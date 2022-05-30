@@ -1,9 +1,9 @@
-import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { Fade } from 'reactstrap';
 
 import { signInEmailRequest, signInGoogleRequest } from '../../redux/actions/actions';
 import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from '../../utils';
@@ -15,6 +15,7 @@ function SignInForm() {
 
     return (
         <div className={styles.wrapper}>
+
             <h1 className={styles.heading}>Welcome back!</h1>
             <Formik
                 initialValues={{ email: '', password: '' }}
@@ -24,6 +25,7 @@ function SignInForm() {
                 })}
                 onSubmit={(values) => dispatch(signInEmailRequest(values))}
             >
+
                 <Form className={styles.form}>
                     <div className={styles.input}>
                         <Field
@@ -54,7 +56,7 @@ function SignInForm() {
                         </p>
                     </div>
 
-                    <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
+                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Sign In

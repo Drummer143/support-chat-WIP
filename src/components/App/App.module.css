@@ -1,3 +1,7 @@
 body {
-    background-color: #ededed;
+    background-color: #ededed !important;
+}
+
+.loading {
+    margin: 0 auto;
 }

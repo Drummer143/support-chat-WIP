@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Spinner } from 'reactstrap';
 
 import SignInForm from '../SignInForm/SignInForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
@@ -14,13 +14,9 @@ import { auth } from './../../firebase';
 
 function RoutingTree() {
     const dispatch = useDispatch();
-    const [ user, setUser ] = useState();
+    const [ user, loading ] = useAuthState(auth);
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-    });
-
-    return user ? (
+    return loading ? <Spinner /> : user ? (
         <div>
             <p>{user.email}</p>
             <button

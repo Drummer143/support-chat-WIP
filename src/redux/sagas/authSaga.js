@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -58,6 +59,16 @@ function* workerRecoverPassword(action) {
     try {
         yield call(sendPasswordResetEmail, auth, action.email);
         yield put(passwordRecoverSuccess());
+        yield toast.success('Check your email and follow the link we sent to restore your account password', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: 'colored'
+        });
     } catch (error) {
         yield put(authFailure(error));
     }
@@ -67,9 +78,18 @@ function* workerUpdatePassword(action) {
     try {
         yield call(confirmPasswordReset, auth, action.oobCode, action.password);
         yield put(passwordUpdateSuccess());
+        yield toast.success('Your password has been successfully changed', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: 'colored'
+        });
     } catch (error) {
         yield put(authFailure(error));
-        yield alert('Error');
     }
 }
 

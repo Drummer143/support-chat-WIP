@@ -1,8 +1,8 @@
-import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Fade } from 'reactstrap';
 
 import { passwordRecoverRequest } from '../../redux/actions/actions';
 import { handleAuthError, emailSignInValSchema } from './../../utils';
@@ -12,9 +12,8 @@ import styles from './ForgotPassword.module.css';
 function ForgotPassword() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.recovered);
-
     return error ? (
-        <Navigate to="/forgot-pass-redirect" />
+        <Navigate to="/" />
     ) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Recover password</h1>
@@ -38,7 +37,7 @@ function ForgotPassword() {
                         </div>
                     </div>
 
-                    <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
+                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
 
                     <button type="submit" className={styles.button}>
                         Send a link to recover password

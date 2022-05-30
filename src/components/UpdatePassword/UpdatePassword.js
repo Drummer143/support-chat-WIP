@@ -1,10 +1,10 @@
-import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useSearchParams } from 'react-router-dom';
+import { Fade } from 'reactstrap';
 
-import { handleAuthError, passwordSignUpValSchema, confirmPassword } from '../../utils';
+import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../utils';
 import { passwordUpdateRequest } from './../../redux/actions/actions';
 
 import styles from './UpdatePassword.module.css';
@@ -18,7 +18,7 @@ function UpdatePassword() {
     const oobCode = searchParams.get('oobCode');
 
     return recovered ? (
-        <Navigate to="/update-pass-redirect" />
+        <Navigate to="/" />
     ) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Update password</h1>
@@ -26,7 +26,7 @@ function UpdatePassword() {
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
                 validationSchema={Yup.object().shape({
                     password: passwordSignUpValSchema,
-                    confirmPassword: confirmPassword
+                    confirmPassword: confirmPasswordSchema
                 })}
                 onSubmit={(values) =>
                     dispatch(
@@ -62,7 +62,7 @@ function UpdatePassword() {
                         </div>
                     </div>
 
-                    <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
+                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Submit

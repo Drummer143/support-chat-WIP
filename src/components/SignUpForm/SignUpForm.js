@@ -1,15 +1,15 @@
-import React from 'react';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { Fade } from 'reactstrap';
 
 import { signUpEmailRequest } from '../../redux/actions/actions';
 import {
     handleAuthError,
+    emailSignUpValSchema,
     passwordSignUpValSchema,
-    confirmPassword,
-    emailSignUpValSchema
+    confirmPasswordSchema
 } from './../../utils';
 
 import styles from './SignUpForm.module.css';
@@ -27,7 +27,7 @@ function SignUpForm() {
                 validationSchema={Yup.object().shape({
                     email: emailSignUpValSchema,
                     password: passwordSignUpValSchema,
-                    confirmPassword: confirmPassword
+                    confirmPassword: confirmPasswordSchema
                 })}
                 onSubmit={(values) => dispatch(signUpEmailRequest(values))}
             >
@@ -68,7 +68,7 @@ function SignUpForm() {
                         </div>
                     </div>
 
-                    <div className={styles.authError}>{error ? handleAuthError(error) : ''}</div>
+                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Submit
