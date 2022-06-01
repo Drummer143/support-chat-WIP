@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Spinner } from 'reactstrap';
@@ -9,24 +8,16 @@ import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
-import { signOutRequest } from '../../redux/actions/actions';
+import MainComponent from '../MainComponent/MainComponent';
 import { auth } from './../../firebase';
 
 function RoutingTree() {
-    const dispatch = useDispatch();
     const [ user, loading ] = useAuthState(auth);
 
     return loading ? <Spinner /> : user ? (
-        <div>
-            <p>{user.email}</p>
-            <button
-                onClick={() => {
-                    dispatch(signOutRequest());
-                }}
-            >
-                Sign Out
-            </button>
-        </div>
+        <Routes>
+            <Route path="/" element={<MainComponent />} />
+        </Routes>
     ) : (
         <Routes>
             <Route path="/" element={<SignInForm />} />

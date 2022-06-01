@@ -4,3 +4,11 @@
     box-sizing: border-box;
     font-size: 14px;
 }
+
+:root {
+    --grey: #f2f2f2;
+    --dark-grey: #ededed;
+    --blue: #00317a;
+    --green: #009100;
+
+}
