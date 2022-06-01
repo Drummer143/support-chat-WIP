@@ -50,7 +50,7 @@ function ForgotPassword() {
                         <a href="/sign-up" className={styles.link}>
                             Create account
                         </a>
-                        <a href="/sign-in" className={styles.link}>
+                        <a href="/" className={styles.link}>
                             Login
                         </a>
                     </div>

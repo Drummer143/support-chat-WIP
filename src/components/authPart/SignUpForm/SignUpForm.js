@@ -79,7 +79,7 @@ function SignUpForm() {
 
                     <p className={styles.authRedirect}>
                         Already have an account? Login{' '}
-                        <a href="/sign-in" className={styles.link}>
+                        <a href="/" className={styles.link}>
                             here
                         </a>
                     </p>

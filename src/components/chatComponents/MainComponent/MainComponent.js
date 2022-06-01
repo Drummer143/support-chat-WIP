@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import { signOutRequest } from '../../redux/actions/actions';
+import { signOutRequest } from '../../../redux/actions/actions';
+import { auth } from './../../../firebase';
 
 import styles from './MainComponent.module.css';
 
 function MainComponent() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.authReducer.user );
+    const user = useSelector((state) => state.authReducer.user);
+    const navigate = useNavigate();
+    const [token, setToken] = useState();
+
+    useEffect(() => {
+        return auth.onAuthStateChanged(user => {
+            if (user) {
+                user.getIdToken(true)
+                    .then(latestToken => setToken(latestToken))
+            } else {
+                navigate("/error");
+            }
+        })
+    }, []);
 
     return (
         <div className={styles.wrapper}>
