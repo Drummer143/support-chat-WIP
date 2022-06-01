@@ -68,10 +68,12 @@ function SignUpForm() {
                         </div>
                     </div>
 
-                    { /* error contains object if there is an error or empty string if there is no error 
+                    {/* error contains object if there is an error or empty string if there is no error 
                         but prop "in" in Fade attribute can accepts only boolean type 
-                        so i added this condition */ }
-                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
+                        so i added this condition */}
+                    <Fade in={error ? true : false} className={styles.authError}>
+                        {error && handleAuthError(error)}
+                    </Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Submit

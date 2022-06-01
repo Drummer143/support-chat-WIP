@@ -3,7 +3,6 @@ import YupPassword from 'yup-password';
 
 export const handleAuthError = (error) => {
     switch (error.code) {
-
         case 'auth/user-not-found':
             return 'ERROR: User with entered email was not found';
         case 'auth/wrong-password':
@@ -15,7 +14,7 @@ export const handleAuthError = (error) => {
             return 'ERROR: This email is already in use. Use an another email or try to login';
 
         case 'auth/invalid-email':
-            return 'ERROR: Invalid email. Example: example@mail.com'
+            return 'ERROR: Invalid email. Example: example@mail.com';
 
         default:
             return 'Unexpected error. Contact support to solve the problem or try again later.';
@@ -23,7 +22,6 @@ export const handleAuthError = (error) => {
 };
 
 YupPassword(Yup);
-
 
 export const emailSignInValSchema = Yup.string().required('This field is required');
 export const emailSignUpValSchema = Yup.string()

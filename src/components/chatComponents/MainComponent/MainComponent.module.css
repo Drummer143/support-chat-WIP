@@ -3,12 +3,12 @@
     height: 100vh;
 
     box-sizing: border-box;
-    
+
     display: grid;
-    
-    grid-template-areas: 
-    "menu user"
-    "menu body";
+
+    grid-template-areas:
+        'menu user'
+        'menu body';
     grid-template-columns: 1fr 7fr;
     grid-template-rows: 1fr 9fr;
 }
@@ -27,7 +27,6 @@
     grid-area: menu;
 
     display: grid;
-
 
     background-color: #00317a;
     box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.2);

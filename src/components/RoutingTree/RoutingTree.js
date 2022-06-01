@@ -17,7 +17,7 @@ function RoutingTree() {
     return user ? (
         <Routes>
             <Route path="/" element={<MainComponent />} />
-            <Route path="/error" element={<ReAuthError /> } />
+            <Route path="/error" element={<ReAuthError />} />
             <Route path="/*" element={<PageNotFound />} />
         </Routes>
     ) : (

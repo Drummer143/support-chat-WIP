@@ -11,7 +11,9 @@ import styles from './ForgotPassword.module.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
-    const { isRecovered, error } = useSelector((state) => { return { isRecovered: state.authReducer.recovered, error: state.authReducer.error }});
+    const { isRecovered, error } = useSelector((state) => {
+        return { isRecovered: state.authReducer.recovered, error: state.authReducer.error };
+    });
     const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
 
     return isRecovered ? (
@@ -21,7 +23,7 @@ function ForgotPassword() {
             <h1 className={styles.heading}>Recover password</h1>
             <Formik
                 initialValues={{ email: '' }}
-                validationSchema={ validationSchema }
+                validationSchema={validationSchema}
                 onSubmit={(values) => dispatch(passwordRecoverRequest(values))}
             >
                 <Form className={styles.form}>
@@ -37,10 +39,12 @@ function ForgotPassword() {
                         </div>
                     </div>
 
-                    { /* error contains object if there is an error or empty string if there is no error 
+                    {/* error contains object if there is an error or empty string if there is no error 
                         but prop "in" in Fade attribute can accepts only boolean type 
-                        so i added this condition */ }
-                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
+                        so i added this condition */}
+                    <Fade in={error ? true : false} className={styles.authError}>
+                        {error && handleAuthError(error)}
+                    </Fade>
 
                     <button type="submit" className={styles.button}>
                         Send a link to recover password

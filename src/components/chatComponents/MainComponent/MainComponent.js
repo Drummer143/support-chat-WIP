@@ -14,14 +14,13 @@ function MainComponent() {
     const [token, setToken] = useState();
 
     useEffect(() => {
-        return auth.onAuthStateChanged(user => {
+        return auth.onAuthStateChanged((user) => {
             if (user) {
-                user.getIdToken(true)
-                    .then(latestToken => setToken(latestToken))
+                user.getIdToken(true).then((latestToken) => setToken(latestToken));
             } else {
-                navigate("/error");
+                navigate('/error');
             }
-        })
+        });
     }, []);
 
     return (
@@ -39,19 +38,23 @@ function MainComponent() {
 
             <aside className={styles.chatMenu}>
                 <div className={styles.cell}>
-                    <NavLink to='#' className={`${styles.activeChats} ${styles.link}`}>Active</NavLink>
+                    <NavLink to="#" className={`${styles.activeChats} ${styles.link}`}>
+                        Active
+                    </NavLink>
                 </div>
                 <div className={styles.cell}>
-                    <NavLink to='#' className={`${styles.completedChats} ${styles.link}`}>Completed</NavLink>
+                    <NavLink to="#" className={`${styles.completedChats} ${styles.link}`}>
+                        Completed
+                    </NavLink>
                 </div>
                 <div className={styles.cell}>
-                    <NavLink to='#' className={`${styles.savedChats} ${styles.link}`}>Saved</NavLink>
+                    <NavLink to="#" className={`${styles.savedChats} ${styles.link}`}>
+                        Saved
+                    </NavLink>
                 </div>
             </aside>
 
-            <div className={styles.chatBody}>
-                chatBody
-            </div>
+            <div className={styles.chatBody}>chatBody</div>
         </div>
     );
 }

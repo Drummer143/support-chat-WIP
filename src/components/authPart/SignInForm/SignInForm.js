@@ -19,14 +19,12 @@ function SignInForm() {
 
     return (
         <div className={styles.wrapper}>
-
             <h1 className={styles.heading}>Welcome back!</h1>
             <Formik
                 initialValues={{ email: '', password: '' }}
-                validationSchema={ validationSchema }
+                validationSchema={validationSchema}
                 onSubmit={(values) => dispatch(signInEmailRequest(values))}
             >
-
                 <Form className={styles.form}>
                     <div className={styles.input}>
                         <Field
@@ -58,10 +56,12 @@ function SignInForm() {
                         </p>
                     </div>
 
-                    { /* error contains object if there is an error or empty string if there is no error 
+                    {/* error contains object if there is an error or empty string if there is no error 
                         but prop "in" in Fade attribute can accepts only boolean type 
-                        so i added this condition */ }
-                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
+                        so i added this condition */}
+                    <Fade in={error ? true : false} className={styles.authError}>
+                        {error && handleAuthError(error)}
+                    </Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Sign In
