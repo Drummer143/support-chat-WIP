@@ -32,10 +32,10 @@ function RoutingTree() {
             <Route path="/" element={<SignInForm />} />
             <Route path="/sign-in" element={<SignInForm />} />
             <Route path="/sign-up" element={<SignUpForm />} />
-            <Route path="/recover-password" element={<ForgotPassword />} />
-            <Route path="/forgot-pass-redirect" element={<ForgotPasswordRedirect />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/forgot-password-redirect" element={<ForgotPasswordRedirect />} />
             <Route path="/update-password" element={<UpdatePassword />} />
-            <Route path="/update-pass-redirect" element={<UpdatePasswordRedirect />} />
+            <Route path="/update-password-redirect" element={<UpdatePasswordRedirect />} />
         </Routes>
     );
 }

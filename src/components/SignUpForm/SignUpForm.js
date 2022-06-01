@@ -17,18 +17,18 @@ import styles from './SignUpForm.module.css';
 function SignUpForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.error);
-    YupPassword(Yup);
+    const validationSchema = Yup.object().shape({
+        email: emailSignUpValSchema,
+        password: passwordSignUpValSchema,
+        confirmPassword: confirmPasswordSchema
+    });
 
     return (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Create an account</h1>
             <Formik
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
-                validationSchema={Yup.object().shape({
-                    email: emailSignUpValSchema,
-                    password: passwordSignUpValSchema,
-                    confirmPassword: confirmPasswordSchema
-                })}
+                validationSchema={validationSchema}
                 onSubmit={(values) => dispatch(signUpEmailRequest(values))}
             >
                 <Form className={styles.form}>
@@ -38,7 +38,7 @@ function SignUpForm() {
                             type="text"
                             placeholder="email"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="email" />
                         </div>
@@ -50,7 +50,7 @@ function SignUpForm() {
                             type="password"
                             placeholder="password"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="password" />
                         </div>
@@ -62,13 +62,16 @@ function SignUpForm() {
                             type="password"
                             placeholder="confirm password"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="confirmPassword" />
                         </div>
                     </div>
 
-                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
+                    { /* error contains object if there is an error or empty string if there is no error 
+                        but prop "in" in Fade attribute can accepts only boolean type 
+                        so i added this condition */ }
+                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Submit

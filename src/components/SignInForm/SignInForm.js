@@ -12,6 +12,10 @@ import styles from './SignInForm.module.css';
 function SignInForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.error);
+    const validationSchema = Yup.object().shape({
+        email: emailSignInValSchema,
+        password: passwordSignInValSchema
+    });
 
     return (
         <div className={styles.wrapper}>
@@ -19,10 +23,7 @@ function SignInForm() {
             <h1 className={styles.heading}>Welcome back!</h1>
             <Formik
                 initialValues={{ email: '', password: '' }}
-                validationSchema={Yup.object().shape({
-                    email: emailSignInValSchema,
-                    password: passwordSignInValSchema
-                })}
+                validationSchema={ validationSchema }
                 onSubmit={(values) => dispatch(signInEmailRequest(values))}
             >
 
@@ -33,7 +34,7 @@ function SignInForm() {
                             type="text"
                             placeholder="email"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="email" />
                         </div>
@@ -45,18 +46,22 @@ function SignInForm() {
                             type="password"
                             placeholder="password"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="password" />
                         </div>
+
                         <p className={styles.passwordRecover}>
-                            <a href="/recover-password" className={styles.link}>
+                            <a href="/forgot-password" className={styles.link}>
                                 Forgot password?
                             </a>
                         </p>
                     </div>
 
-                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
+                    { /* error contains object if there is an error or empty string if there is no error 
+                        but prop "in" in Fade attribute can accepts only boolean type 
+                        so i added this condition */ }
+                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Sign In

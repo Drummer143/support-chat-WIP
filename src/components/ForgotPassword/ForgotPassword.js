@@ -11,17 +11,17 @@ import styles from './ForgotPassword.module.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.authReducer.recovered);
-    return error ? (
-        <Navigate to="/" />
+    const { isRecovered, error } = useSelector((state) => { return { isRecovered: state.authReducer.recovered, error: state.authReducer.error }});
+    const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
+
+    return isRecovered ? (
+        <Navigate to="/forgot-password-redirect" />
     ) : (
         <div className={styles.wrapper}>
             <h1 className={styles.heading}>Recover password</h1>
             <Formik
                 initialValues={{ email: '' }}
-                validationSchema={Yup.object().shape({
-                    email: emailSignInValSchema
-                })}
+                validationSchema={ validationSchema }
                 onSubmit={(values) => dispatch(passwordRecoverRequest(values))}
             >
                 <Form className={styles.form}>
@@ -31,13 +31,16 @@ function ForgotPassword() {
                             type="text"
                             placeholder="email"
                             className={styles.inputField}
-                        ></Field>
+                        />
                         <div className={styles.inputError}>
                             <ErrorMessage name="email" />
                         </div>
                     </div>
 
-                    <Fade in={error ? true : false} className={styles.authError}>{error ? handleAuthError(error) : ''}</Fade>
+                    { /* error contains object if there is an error or empty string if there is no error 
+                        but prop "in" in Fade attribute can accepts only boolean type 
+                        so i added this condition */ }
+                    <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
 
                     <button type="submit" className={styles.button}>
                         Send a link to recover password

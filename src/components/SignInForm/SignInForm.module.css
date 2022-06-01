@@ -48,12 +48,16 @@
 }
 
 .inputError {
+    height: 10px;
+
     margin-top: 5px;
 
     color: #f00;
 }
 
 .authError {
+    height: 30px;
+    
     width: 90%;
 
     font-size: 1rem;

@@ -14,6 +14,9 @@ export const handleAuthError = (error) => {
         case 'auth/email-already-in-use':
             return 'ERROR: This email is already in use. Use an another email or try to login';
 
+        case 'auth/invalid-email':
+            return 'ERROR: Invalid email. Example: example@mail.com'
+
         default:
             return 'Unexpected error. Contact support to solve the problem or try again later.';
     }

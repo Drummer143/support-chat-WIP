@@ -6,9 +6,7 @@ import styles from './UpdatePasswordRedirect.module.css';
 function UpdatePasswordRedirect() {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setTimeout(() => navigate('/'), 10000);
-    });
+    useEffect(() => { setTimeout(() => navigate('/'), 10000) }, []);
 
     return (
         <div className={styles.wrapper}>

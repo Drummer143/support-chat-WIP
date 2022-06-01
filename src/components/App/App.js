@@ -4,17 +4,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import store from './../../redux/store';
-
 import RoutingTree from './../RoutingTree/RoutingTree';
 
-import styles from './App.module.css'
+import './App.css'
 
 function App() {
-    console.log(process.env)
     return (
         <BrowserRouter>
             <Provider store={store}>
-                <div>
                     <RoutingTree />
                     
                     <ToastContainer
@@ -28,7 +25,6 @@ function App() {
                         draggable={false}
                         pauseOnHover
                     />
-                </div>
             </Provider>
         </BrowserRouter>
     );
