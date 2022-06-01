@@ -1,15 +1,13 @@
-import { useDispatch } from 'react-redux';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { signOutRequest } from '../../redux/actions/actions';
-import { auth } from './../../firebase';
 
 import styles from './MainComponent.module.css';
 
 function MainComponent() {
     const dispatch = useDispatch();
-    const [user] = useAuthState(auth);
+    const user = useSelector((state) => state.authReducer.user );
 
     return (
         <div className={styles.wrapper}>
