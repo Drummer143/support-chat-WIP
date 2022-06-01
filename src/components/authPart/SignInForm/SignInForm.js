@@ -1,36 +1,32 @@
 import * as Yup from 'yup';
-import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Fade } from 'reactstrap';
 
-import { signUpEmailRequest } from '../../redux/actions/actions';
-import {
-    handleAuthError,
-    emailSignUpValSchema,
-    passwordSignUpValSchema,
-    confirmPasswordSchema
-} from './../../utils';
+import { signInEmailRequest, signInGoogleRequest } from '../../../redux/actions/actions';
+import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from '../../../utils';
+import styles from './SignInForm.module.css';
 
-import styles from './SignUpForm.module.css';
-
-function SignUpForm() {
+function SignInForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.error);
     const validationSchema = Yup.object().shape({
-        email: emailSignUpValSchema,
-        password: passwordSignUpValSchema,
-        confirmPassword: confirmPasswordSchema
+        email: emailSignInValSchema,
+        password: passwordSignInValSchema
     });
 
     return (
         <div className={styles.wrapper}>
-            <h1 className={styles.heading}>Create an account</h1>
+
+            <h1 className={styles.heading}>Welcome back!</h1>
             <Formik
-                initialValues={{ email: '', password: '', confirmPassword: '' }}
-                validationSchema={validationSchema}
-                onSubmit={(values) => dispatch(signUpEmailRequest(values))}
+                initialValues={{ email: '', password: '' }}
+                validationSchema={ validationSchema }
+                onSubmit={(values) => dispatch(signInEmailRequest(values))}
             >
+
                 <Form className={styles.form}>
                     <div className={styles.input}>
                         <Field
@@ -54,18 +50,12 @@ function SignUpForm() {
                         <div className={styles.inputError}>
                             <ErrorMessage name="password" />
                         </div>
-                    </div>
 
-                    <div className={styles.input}>
-                        <Field
-                            name="confirmPassword"
-                            type="password"
-                            placeholder="confirm password"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="confirmPassword" />
-                        </div>
+                        <p className={styles.passwordRecover}>
+                            <a href="/forgot-password" className={styles.link}>
+                                Forgot password?
+                            </a>
+                        </p>
                     </div>
 
                     { /* error contains object if there is an error or empty string if there is no error 
@@ -74,12 +64,23 @@ function SignUpForm() {
                     <Fade in={error ? true : false} className={styles.authError}>{error && handleAuthError(error)}</Fade>
 
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
-                        Submit
+                        Sign In
+                    </button>
+
+                    <h2>or</h2>
+
+                    <button
+                        type="button"
+                        className={`${styles.button} ${styles.googleButton}`}
+                        onClick={() => dispatch(signInGoogleRequest())}
+                    >
+                        <FontAwesomeIcon icon={faGoogle} className={styles.icon} /> Login with
+                        Google
                     </button>
 
                     <p className={styles.authRedirect}>
-                        Already have an account? Login{' '}
-                        <a href="/sign-in" className={styles.link}>
+                        Don't have an account? Create it{' '}
+                        <a href="/sign-up" className={styles.link}>
                             here
                         </a>
                     </p>
@@ -89,4 +90,4 @@ function SignUpForm() {
     );
 }
 
-export default SignUpForm;
+export default SignInForm;

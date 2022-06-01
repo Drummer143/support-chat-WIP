@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { Fade } from 'reactstrap';
 
-import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../utils';
-import { passwordUpdateRequest } from './../../redux/actions/actions';
+import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../../utils';
+import { passwordUpdateRequest } from '../../../redux/actions/actions';
 
 import styles from './UpdatePassword.module.css';
 

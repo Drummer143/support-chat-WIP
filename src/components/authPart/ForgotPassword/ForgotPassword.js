@@ -4,8 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fade } from 'reactstrap';
 
-import { passwordRecoverRequest } from '../../redux/actions/actions';
-import { handleAuthError, emailSignInValSchema } from './../../utils';
+import { passwordRecoverRequest } from '../../../redux/actions/actions';
+import { handleAuthError, emailSignInValSchema } from '../../../utils';
 
 import styles from './ForgotPassword.module.css';
 
