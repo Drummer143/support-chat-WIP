@@ -12,6 +12,8 @@ function MainPage() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
     const [searchParams, setSearchParams] = useState('');
+    const [statusKey, setStatusKey] = useState('');
+    console.log(statusKey);
 
     useEffect(() => {
         return auth.onAuthStateChanged((user) => {
@@ -30,11 +32,11 @@ function MainPage() {
             </header>
 
             <aside className={styles.navbar}>
-                <Navbar />
+                <Navbar statusKey={statusKey} setStatusKey={setStatusKey} />
             </aside>
 
             <div className={styles.Body}>
-                <Body searchParams={searchParams}/>
+                <Body searchParams={searchParams} statusKey={statusKey} />
             </div>
         </div>
     );
