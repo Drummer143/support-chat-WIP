@@ -1,0 +1,51 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+
+    padding: 30px;
+
+    display: grid;
+    grid-template-areas: 
+    "searchResults chat";
+    grid-template-columns: 300px 1fr;
+    grid-gap: 10px;
+
+    border-radius: 10px;
+}
+
+.searchResults {
+    grid-area: searchResults;
+
+    padding: 10px;
+
+    background-color: #3A5199;
+    border-radius: 10px;
+    border: solid 1px #3A5199;
+    overflow: auto;
+    box-shadow: 5px 0px 5px 0px rgba(34, 60, 80, 0.3);
+}
+
+.searchResults:hover {
+    box-shadow: 5px 0px 0px 0px rgba(34, 60, 80, 0.3);
+}
+
+.dialog {
+    width: 100%;
+    height: 60px;
+
+    margin: 0;
+    padding: 5px 10px;
+
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.dialog:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.chat {
+    height: 30px;
+    grid-area: chat;
+    border: solid 1px #2F2E33;
+}

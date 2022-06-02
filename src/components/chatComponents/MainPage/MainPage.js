@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../firebase';
 
-import { signOutRequest } from '../../../redux/actions/actions';
 import Body from '../Body/Body';
 
 import styles from './MainPage.module.css';
+import Header from './../Header/Header';
+import Navbar from '../Navbar/Navbar';
 
 function MainPage() {
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.authReducer.user);
     const navigate = useNavigate();
     const [token, setToken] = useState();
+    const [searchParams, setSearchParams] = useState('');
 
     useEffect(() => {
         return auth.onAuthStateChanged((user) => {
@@ -26,37 +25,16 @@ function MainPage() {
 
     return (
         <div className={styles.wrapper}>
-            <header className={styles.userInfo}>
-                <p>{user.email}</p>
-                <button
-                    onClick={() => {
-                        dispatch(signOutRequest());
-                    }}
-                >
-                    Sign Out
-                </button>
+            <header className={styles.header}>
+                <Header searchParams={searchParams} setSearchParams={setSearchParams} />
             </header>
 
-            <aside className={styles.chatMenu}>
-                <div className={styles.cell}>
-                    <NavLink to="#" className={`${styles.activeChats} ${styles.link}`}>
-                        Active
-                    </NavLink>
-                </div>
-                <div className={styles.cell}>
-                    <NavLink to="#" className={`${styles.completedChats} ${styles.link}`}>
-                        Completed
-                    </NavLink>
-                </div>
-                <div className={styles.cell}>
-                    <NavLink to="#" className={`${styles.savedChats} ${styles.link}`}>
-                        Saved
-                    </NavLink>
-                </div>
+            <aside className={styles.navbar}>
+                <Navbar />
             </aside>
 
             <div className={styles.Body}>
-                <Body />
+                <Body searchParams={searchParams}/>
             </div>
         </div>
     );

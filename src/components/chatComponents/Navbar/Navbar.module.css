@@ -1,0 +1,46 @@
+.wrapper {
+    min-height: 530px;
+    height: 100%;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    border-radius: 10px;
+}
+
+.cell {
+    padding: 10px;
+    
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    background-color: #3A5199;
+    color: #2F2E33;
+    border-radius: 10px;
+    box-shadow: 5px 0px 5px 0px rgba(34, 60, 80, 0.3);
+}
+
+.cell:hover {
+    color: #2F2E33;
+    text-decoration: underline;
+    box-shadow: 5px 0px 0px 0px rgba(34, 60, 80, 0.3);
+}
+
+.heading {
+    width: 80%;
+    height: 25px;
+
+    margin: 0 10%;
+
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 5px 0px 5px 0px rgba(34, 60, 80, 0.3) inset;
+}
+
+.cell:hover .heading {
+    box-shadow: 5px 0px 0px 0px rgba(34, 60, 80, 0.3) inset;
+}

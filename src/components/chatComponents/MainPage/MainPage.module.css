@@ -2,41 +2,32 @@
     width: 100vw;
     height: 100vh;
 
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 
     display: grid;
 
     grid-template-areas:
-        'menu user'
-        'menu body';
-    grid-template-columns: 1fr 7fr;
-    grid-template-rows: 1fr 9fr;
+        "navbar header"
+        "navbar body";
+    grid-template-columns: 200px 9fr;
+    grid-template-rows: 100px 1fr;
 }
 
-.link {
-    text-decoration: none;
-    outline: none;
-    color: #fff;
+.header {
+    grid-area: header;
+
+    padding: 10px 10px 0 30px;
+    position: relative;
 }
 
-.userInfo {
-    grid-area: user;
-}
+.navbar {
+    grid-area: navbar;
 
-.chatMenu {
-    grid-area: menu;
-
-    display: grid;
-
-    background-color: #00317a;
-    box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.2);
+    padding: 20vh 10px;
 }
 
 .Body {
     grid-area: body;
 
-    padding: 30px;
-
-    background-color: #fff;
-    box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.2) inset;
+    padding: 10px 10px 10px 0;
 }
