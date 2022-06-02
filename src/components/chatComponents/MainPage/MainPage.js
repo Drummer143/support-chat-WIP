@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { auth } from '../../../firebase';
 
 import { signOutRequest } from '../../../redux/actions/actions';
-import { auth } from './../../../firebase';
+import Body from '../Body/Body';
 
-import styles from './MainComponent.module.css';
+import styles from './MainPage.module.css';
 
-function MainComponent() {
+function MainPage() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authReducer.user);
     const navigate = useNavigate();
@@ -54,9 +55,11 @@ function MainComponent() {
                 </div>
             </aside>
 
-            <div className={styles.chatBody}>chatBody</div>
+            <div className={styles.Body}>
+                <Body />
+            </div>
         </div>
     );
 }
 
-export default MainComponent;
+export default MainPage;

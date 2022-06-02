@@ -7,16 +7,16 @@ import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
-import MainComponent from '../chatComponents/MainComponent/MainComponent';
 import PageNotFound from './../PageNotFound/PageNotFound';
 import ReAuthError from '../chatComponents/ReAuthError/ReAuthError';
+import MainPage from '../chatComponents/MainPage/MainPage';
 
 function RoutingTree() {
     const user = useSelector((state) => state.authReducer.user);
 
     return user ? (
         <Routes>
-            <Route path="/" element={<MainComponent />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/error" element={<ReAuthError />} />
             <Route path="/*" element={<PageNotFound />} />
         </Routes>

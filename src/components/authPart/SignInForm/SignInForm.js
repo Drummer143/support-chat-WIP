@@ -79,7 +79,7 @@ function SignInForm() {
                     </button>
 
                     <p className={styles.authRedirect}>
-                        Don't have an account? Create it{' '}
+                        Don't have an account? Create it
                         <a href="/sign-up" className={styles.link}>
                             here
                         </a>
