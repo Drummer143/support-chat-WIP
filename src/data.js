@@ -34,5 +34,77 @@ export const dialogs = [
         ],
         operatorId: 0,
         status: "active"
+    },
+    {
+        dialogId: 2,
+        userName: "User 3",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "completed"
+    },
+    {
+        dialogId: 3,
+        userName: "User 623",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "saved"
+    },
+    {
+        dialogId: 4,
+        userName: "User 342",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "completed"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
     }
 ]

@@ -9,7 +9,7 @@ function SearchBar(props) {
             <input 
                 type='text' 
                 onChange={event => props.setValue(event.target.value)} 
-                value={props.value} 
+                value={props.value}
                 placeholder='type here to search...' 
                 className={styles.input}
             ></input>
