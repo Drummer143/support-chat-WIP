@@ -10,7 +10,7 @@
     grid-template-areas:
         "navbar header"
         "navbar body";
-    grid-template-columns: 200px 9fr;
+    grid-template-columns: 200px 1fr;
     grid-template-rows: 100px 1fr;
 }
 
@@ -31,4 +31,16 @@
     grid-area: body;
 
     padding: 0 10px 10px 0;
+}
+
+@media screen and (max-height: 800px) {
+    .navbar {
+        padding: 10vh 0 10vh 10px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .navbar {
+        padding: 2vh 0 2vh 10px;
+    }
 }
