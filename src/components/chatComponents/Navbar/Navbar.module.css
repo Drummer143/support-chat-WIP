@@ -24,12 +24,18 @@
     border-radius: 10px;
     box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3);
     cursor: pointer;
+    user-select: none;
 }
 
 .cell:hover {
     color: #2F2E33;
     text-decoration: underline;
     box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3);
+}
+
+.cell:active {
+    box-shadow: -10px 0px 0px 0px rgba(34, 60, 80, 0.7) inset;
+    text-decoration: none;
 }
 
 .heading {
