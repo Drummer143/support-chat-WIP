@@ -19,6 +19,7 @@ function ReAuthError() {
                     onClick={() => {
                         dispatch(signOutRequest());
                     }}
+                    className={styles.link}
                 >
                     page
                 </NavLink>

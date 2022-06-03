@@ -8,9 +8,6 @@
     border-radius: 10px;
 }
 
-.wrapper:hover{
-}
-
 .wrapper:not(:last-child) {
     margin-bottom: 10px;
 }
@@ -29,3 +26,15 @@
 .message {
     padding: 0 10px 10px 10px;
 }
+
+/* .active {
+    background-color: #fdffed;
+}
+
+.completed {
+    background-color: #f2fff3;
+}
+
+.saved {
+    background-color: #ebebeb;
+} */

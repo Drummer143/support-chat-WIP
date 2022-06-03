@@ -54,11 +54,25 @@
 }
 
 .icon {
-    margin: 20px;
     width: 40%;
     height: 40%;
+
+    margin: 20px;
+    
     color: #2F2E33;
 }
+
+/* .cell:first-child .icon {
+    color: #fdffed;
+}
+
+.cell:nth-child(2) .icon {
+    color: #f2fff3;
+}
+
+.cell:nth-child(3) .icon {
+    color: #ebebeb;
+} */
 
 .cell:hover .icon {
     color: #000;

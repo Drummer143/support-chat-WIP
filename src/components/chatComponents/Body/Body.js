@@ -1,5 +1,9 @@
+import { ref, child, get, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
+import { database } from "../../../firebase";
+import { debounce, filter } from "lodash";
+
 import DialogListCell from '../DialogListCell/DialogListCell';
-import { dialogs } from './../../../data';
 
 import styles from './Body.module.css';
 
@@ -10,16 +14,40 @@ const findChats = (dialog, searchParams) => {
     return dialog.messages.find(message => message.content.toLowerCase().includes(searchParams.toLowerCase()));
 }
 
-function Body(props) {
-    let results = dialogs
-        .filter(dialog => findChats(dialog, props.searchParams) && props.statusKey == dialog.status)
-        .map(dialog => <DialogListCell dialog={dialog} />);
-    if (!results[0]) {
-        results = <p className={styles.empty}>The list of available chats is empty.
-            Select another folder to the left of the list and also change the search terms.
-            Or just wait for new chats to appear.
-        </p>;
+const filterDialogs = (dialogs, searchParams, statusKey) => {
+    let results;
+
+    if (dialogs) {
+        if (statusKey == "all") {
+            results = dialogs.filter(dialog => findChats(dialog, searchParams))
+        } else {
+            results = dialogs.filter(dialog => findChats(dialog, searchParams) && statusKey === dialog.status)
+        }
+        results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog}/>);
     }
+    
+    return results;
+}
+
+function Body(props) {
+    const [dialogs, setDialogs] = useState('');
+    const dbRef = ref(database);
+
+    const getData = debounce(() => {
+        get(child(dbRef, "/dialogs/")).then((snapshot) => {
+            if (snapshot.exists()) {
+                setDialogs(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }, 500)
+
+    useEffect(() => getData(), [dialogs]);
+
+    let results = filterDialogs(dialogs, props.searchParams, props.statusKey);
 
     return (
         <div className={styles.wrapper}>
