@@ -1,19 +1,8 @@
 .wrapper {
-    width: 100%;
-    max-height: 775px;
-    height: 100%;
-
-    display: grid;
-    grid-template-areas: 
-    "searchResults chat";
-    grid-template-columns: 300px 1fr;
-    grid-gap: 10px;
-
-    border-radius: 10px;
-}
-
-.searchResults {
     grid-area: searchResults;
+
+    width: 100%;
+    max-height: 85vh;
 
     padding: 10px;
 
@@ -21,73 +10,39 @@
     border-radius: 10px;
     border: solid 1px #3A5199;
     overflow: auto;
-    box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3);
+    box-shadow: 2px 2px 5px 4px rgba(34, 60, 80, 0.3);
 }
 
-.searchResults::-webkit-scrollbar {
+.wrapper::-webkit-scrollbar {
     height: 50%;
     width: 5px;
 }
 
-.searchResults::-webkit-scrollbar-track {
+.wrapper::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
-.searchResults::-webkit-scrollbar-thumb {
+.wrapper::-webkit-scrollbar-thumb {
     background-color: #FFF;
     border-radius: 20px;
 }
 
-.searchResults:hover {
-    box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3);
+.wrapper:hover {
+    box-shadow: 2px 2px 0px 4px rgba(34, 60, 80, 0.3);
 }
 
-.cell {
+.empty {
     width: 100%;
     height: 100px;
 
     margin: 0;
+    padding: 10px;
 
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3) inset;
-}
-
-.empty {
-    padding: 10px;
-    height: 100%;
     font-weight: 700;
-}
-
-.cell:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-.name {
-    margin: 5px;
-    padding: 5px 5px 0 5px;
-
-    border-bottom: solid 3px #3A5199;
-}
-
-.message {
-    padding: 0 10px 10px 10px;
 }
 
 .searchResults:hover .cell {
     box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3) inset;
-}
-
-.chat {
-    grid-area: chat;
-
-    width: 100%;
-
-    background-color: #3A5199;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 0px rgba(34, 60, 80, 0.3);
-}
-
-.chat:hover {
-    box-shadow: 5px 5px 0px 0px rgba(34, 60, 80, 0.3);
 }

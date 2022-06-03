@@ -13,7 +13,6 @@ function MainPage() {
     const [token, setToken] = useState();
     const [searchParams, setSearchParams] = useState('');
     const [statusKey, setStatusKey] = useState('');
-    console.log(statusKey);
 
     useEffect(() => {
         return auth.onAuthStateChanged((user) => {

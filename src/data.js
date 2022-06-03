@@ -106,5 +106,113 @@ export const dialogs = [
         ],
         operatorId: 0,
         status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
+    },
+    {
+        dialogId: 5,
+        userName: "user 415",
+        messages: [
+            {
+                content: "Client message",
+                timestamp: 123124123123132,
+                writtenBy: "client"
+            },
+            {
+                content: "Operator message",
+                timestamp: 123124123123432,
+                writtenBy: "operator"
+            }
+        ],
+        operatorId: 0,
+        status: "active"
     }
 ]
