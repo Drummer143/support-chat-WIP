@@ -1,49 +1,44 @@
 import * as Yup from 'yup';
-import YupPassword from 'yup-password';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useSearchParams } from 'react-router-dom';
 import { Fade } from 'reactstrap';
 
-import { signUpEmailRequest } from '../../redux/actions/actions';
-import {
-    handleAuthError,
-    emailSignUpValSchema,
-    passwordSignUpValSchema,
-    confirmPasswordSchema
-} from './../../utils';
+import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../utils';
+import { passwordUpdateRequest } from './../../redux/actions/actions';
 
-import styles from './SignUpForm.module.css';
+import styles from './UpdatePassword.module.css';
 
-function SignUpForm() {
+function UpdatePassword() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.authReducer.error);
+    const recovered = useSelector((state) => state.authReducer.recovered);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const oobCode = searchParams.get('oobCode');
     const validationSchema = Yup.object().shape({
-        email: emailSignUpValSchema,
         password: passwordSignUpValSchema,
         confirmPassword: confirmPasswordSchema
     });
 
-    return (
+    return recovered ? (
+        <Navigate to="/update-password-redirect" />
+    ) : (
         <div className={styles.wrapper}>
-            <h1 className={styles.heading}>Create an account</h1>
+            <h1 className={styles.heading}>Update password</h1>
             <Formik
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
-                validationSchema={validationSchema}
-                onSubmit={(values) => dispatch(signUpEmailRequest(values))}
+                validationSchema={ validationSchema }
+                onSubmit={(values) =>
+                    dispatch(
+                        passwordUpdateRequest({
+                            password: values.password,
+                            oobCode
+                        })
+                    )
+                }
             >
                 <Form className={styles.form}>
-                    <div className={styles.input}>
-                        <Field
-                            name="email"
-                            type="text"
-                            placeholder="email"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="email" />
-                        </div>
-                    </div>
-
                     <div className={styles.input}>
                         <Field
                             name="password"
@@ -76,17 +71,10 @@ function SignUpForm() {
                     <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
                         Submit
                     </button>
-
-                    <p className={styles.authRedirect}>
-                        Already have an account? Login{' '}
-                        <a href="/sign-in" className={styles.link}>
-                            here
-                        </a>
-                    </p>
                 </Form>
             </Formik>
         </div>
     );
 }
 
-export default SignUpForm;
+export default UpdatePassword;
