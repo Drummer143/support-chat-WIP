@@ -1,4 +1,5 @@
 
+import Moment from 'react-moment';
 import styles from './DialogListCell.module.css';
 
 function DialogListCell(props) {
@@ -6,15 +7,15 @@ function DialogListCell(props) {
     const buttons = {
         saveButton: {
             text: "Save dialog",
-            onClick:  () => props.setNewStatus(props.dialog.dialogId, "saved")
+            onClick: () => props.setNewStatus(props.dialog.dialogId, "saved")
         },
         completeButton: {
             text: "Complete dialog",
-            onClick:  () => props.setNewStatus(props.dialog.dialogId, "completed")
+            onClick: () => props.setNewStatus(props.dialog.dialogId, "completed")
         },
         deleteFromSavedButton: {
             text: "Delete from saved",
-            onClick:  () => props.setNewStatus(props.dialog.dialogId, "active")
+            onClick: () => props.setNewStatus(props.dialog.dialogId, "active")
         }
     };
 
@@ -32,11 +33,13 @@ function DialogListCell(props) {
             currButtonsSet = null;
         }
     }
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.dialogInfo} >
-                <p className={styles.name}>{props.dialog.userName}</p>
+                <div className={styles.head}>
+                    <p className={styles.text}>{props.dialog.userName}</p>
+                    <p className={styles.text}>Last message was sent <Moment fromNow className={styles.time}>{props.dialog.messages[props.dialog.messages.length - 1].timestamp}</Moment></p>
+                </div>
                 <p className={styles.message}><strong>{lastMessage.writtenBy}:</strong> {lastMessage.content}</p>
             </div>
 

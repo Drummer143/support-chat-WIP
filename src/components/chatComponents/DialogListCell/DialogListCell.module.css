@@ -28,11 +28,19 @@
     border-radius: 10px 0 0px 10px;
 }
 
-.name {
+.head {
     margin: 5px;
     padding: 5px 5px 0 5px;
 
+    display: flex;
+
+    justify-content: space-between;
+
     border-bottom: solid 3px #3A5199;
+}
+
+.text {
+    margin: 0;
 }
 
 .message {
