@@ -15,7 +15,7 @@ function Header(props) {
 
             <div className={styles.rightPart}>
                 <div className={styles.info}>
-                    <p className={styles.name}>{user.displayName}</p>
+                    <p className={styles.email}>{user.email}</p>
                 </div>
 
                 <button className={styles.button}

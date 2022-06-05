@@ -26,7 +26,7 @@
 
 .info {
     height: 100%;
-    width: 200px;
+    width: 300px;
 
     margin: 0 20px;
 
@@ -44,7 +44,7 @@
     box-shadow: 5px -5px 0px 0px rgba(34, 60, 80, 0.3) inset;
 }
 
-.name {
+.email {
     margin: 0;
 }
 

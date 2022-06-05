@@ -1,32 +1,21 @@
-import { ref, child, get, onValue } from "firebase/database";
+import { ref, child, get, onValue, update } from "firebase/database";
 import { useEffect, useState } from "react";
 import { database } from "../../../firebase";
-import { debounce, filter } from "lodash";
+import { debounce } from "lodash";
 
 import DialogListCell from '../DialogListCell/DialogListCell';
 
 import styles from './Body.module.css';
 
-const findChats = (dialog, searchParams) => {
-    if (dialog.userName.toLowerCase().includes(searchParams.toLowerCase())) {
-        return true;
+const filterChats = (dialogs, searchParams, statusKey) => {
+    const inputFilter = (dialog) => {
+        return (
+            dialog.userName.toLowerCase().includes(searchParams.toLowerCase()) ||
+            dialog.messages.find(message => message.content.toLowerCase().includes(searchParams.toLowerCase()))
+        );
     }
-    return dialog.messages.find(message => message.content.toLowerCase().includes(searchParams.toLowerCase()));
-}
 
-const filterDialogs = (dialogs, searchParams, statusKey) => {
-    let results;
-
-    if (dialogs) {
-        if (statusKey == "all") {
-            results = dialogs.filter(dialog => findChats(dialog, searchParams))
-        } else {
-            results = dialogs.filter(dialog => findChats(dialog, searchParams) && statusKey === dialog.status)
-        }
-        results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog}/>);
-    }
-    
-    return results;
+    return dialogs.filter(dialog => inputFilter(dialog) && statusKey === dialog.status);
 }
 
 function Body(props) {
@@ -47,7 +36,25 @@ function Body(props) {
 
     useEffect(() => getData(), [dialogs]);
 
-    let results = filterDialogs(dialogs, props.searchParams, props.statusKey);
+    const setNewStatus = (dialogId, newStatus) => {
+        const pos = dialogs.findIndex(dialog => dialog.dialogId == dialogId)
+        dialogs[pos].status = newStatus;
+        console.log(dialogs[pos].status);
+        let updates = {};
+        updates['/dialogs/' + pos + '/status/'] = newStatus
+        update(dbRef, updates);
+    }
+
+    let results;
+    if (dialogs) {
+        results = filterChats(dialogs, props.searchParams, props.statusKey);
+
+        if (results.length === 0) {
+            results = <p className={styles.empty}>The list is empty.</p>;
+        } else {
+            results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />);
+        }
+    }
 
     return (
         <div className={styles.wrapper}>
