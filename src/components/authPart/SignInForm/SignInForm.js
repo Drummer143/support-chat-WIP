@@ -79,7 +79,10 @@ function SignInForm() {
                     </button>
 
                     <p className={styles.authRedirect}>
-                        Don't have an account? Create it <a href="/sign-up" className={styles.link}>here</a>
+                        Don't have an account? Create it{' '}
+                        <a href="/sign-up" className={styles.link}>
+                            here
+                        </a>
                     </p>
                 </Form>
             </Formik>

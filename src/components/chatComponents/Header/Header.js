@@ -18,7 +18,8 @@ function Header(props) {
                     <p className={styles.email}>{user.email}</p>
                 </div>
 
-                <button className={styles.button}
+                <button
+                    className={styles.button}
                     onClick={() => {
                         dispatch(signOutRequest());
                     }}

@@ -12,7 +12,7 @@ function MainPage() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
     const [searchParams, setSearchParams] = useState('');
-    const [statusKey, setStatusKey] = useState("active");
+    const [statusKey, setStatusKey] = useState('active');
 
     useEffect(() => {
         return auth.onAuthStateChanged((user) => {

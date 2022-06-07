@@ -15,12 +15,12 @@
 .cell {
     height: 150px;
     padding: 10px;
-    
+
     text-decoration: none;
     text-align: center;
     outline: none;
-    background-color: #3A5199;
-    color: #2F2E33;
+    background-color: #3a5199;
+    color: #2f2e33;
     border-radius: 10px;
     box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3);
     cursor: pointer;
@@ -28,7 +28,7 @@
 }
 
 .cell:hover {
-    color: #2F2E33;
+    color: #2f2e33;
     text-decoration: underline;
     box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3);
 }
@@ -58,8 +58,8 @@
     height: 40%;
 
     margin: 20px;
-    
-    color: #2F2E33;
+
+    color: #2f2e33;
 }
 
 /* .cell:first-child .icon {

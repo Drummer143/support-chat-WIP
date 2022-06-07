@@ -80,7 +80,10 @@ function SignUpForm() {
                     </button>
 
                     <p className={styles.authRedirect}>
-                        Already have an account? Login <a href="/" className={styles.link}>here</a>
+                        Already have an account? Login{' '}
+                        <a href="/" className={styles.link}>
+                            here
+                        </a>
                     </p>
                 </Form>
             </Formik>

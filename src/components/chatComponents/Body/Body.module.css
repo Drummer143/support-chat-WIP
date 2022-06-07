@@ -6,9 +6,9 @@
 
     padding: 10px;
 
-    background-color: #3A5199;
+    background-color: #3a5199;
     border-radius: 10px;
-    border: solid 1px #3A5199;
+    border: solid 1px #3a5199;
     overflow: auto;
     box-shadow: 2px 2px 5px 4px rgba(34, 60, 80, 0.3);
 }
@@ -23,7 +23,7 @@
 }
 
 .wrapper::-webkit-scrollbar-thumb {
-    background-color: #FFF;
+    background-color: #fff;
     border-radius: 20px;
 }
 

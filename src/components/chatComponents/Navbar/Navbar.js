@@ -6,19 +6,19 @@ import styles from './Navbar.module.css';
 function Navbar(props) {
     return (
         <div className={styles.wrapper}>
-            <div className={styles.cell} onClick={() => props.setStatusKey("active")}>
+            <div className={styles.cell} onClick={() => props.setStatusKey('active')}>
                 <p className={styles.heading}>Active</p>
-                <FontAwesomeIcon icon={faHourglass} className={styles.icon}/>
+                <FontAwesomeIcon icon={faHourglass} className={styles.icon} />
             </div>
 
-            <div className={styles.cell} onClick={() => props.setStatusKey("completed")}>
+            <div className={styles.cell} onClick={() => props.setStatusKey('completed')}>
                 <p className={styles.heading}>Completed</p>
-                <FontAwesomeIcon icon={faCheck} className={styles.icon}/>
+                <FontAwesomeIcon icon={faCheck} className={styles.icon} />
             </div>
 
-            <div className={styles.cell} onClick={() => props.setStatusKey("saved")}>
+            <div className={styles.cell} onClick={() => props.setStatusKey('saved')}>
                 <p className={styles.heading}>Saved</p>
-                <FontAwesomeIcon icon={faFloppyDisk} className={styles.icon}/>
+                <FontAwesomeIcon icon={faFloppyDisk} className={styles.icon} />
             </div>
         </div>
     );
