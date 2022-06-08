@@ -5,6 +5,29 @@ import styles from './DialogListCell.module.css';
 function DialogListCell(props) {
     const lastMessage = props.dialog.messages[props.dialog.messages.length - 1];
 
+    const buttons = {
+        save: <button className={`${styles.button} ${styles.save}`} onClick={() => props.setNewStatus(props.dialog.dialogId, 'saved')}>Save dialog</button>,
+        placeholder: <div className={`${styles.button} ${styles.placeholder}`}></div>
+    }
+
+    let currButtonSet;
+    switch (props.dialog.status) {
+        case 'active': {
+            currButtonSet = {
+                first: buttons.placeholder,
+                second: buttons.save
+            };
+            break;
+        }
+
+        default: {
+            currButtonSet = {
+                first: buttons.placeholder,
+                second: buttons.placeholder
+            };
+        }
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.dialogInfo}>
@@ -24,6 +47,8 @@ function DialogListCell(props) {
             </div>
 
             <div className={styles.buttons}>
+                {currButtonSet.first}
+                {currButtonSet.second}
             </div>
         </div>
     );

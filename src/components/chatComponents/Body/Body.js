@@ -22,13 +22,13 @@ function Body(props) {
 
     const headDB = ref(database);
     const dbRef = query(
-        ref(database, 'dialogs/' + props.statusKey),
-        orderByChild('userNameInLowerCase'),
-        startAt(searchParams.toLowerCase()),
-        endAt(searchParams.toLowerCase() + '\uf8ff')
+        ref(database, 'dialogs/'),
+        orderByChild('userName'),
+        /* startAt(searchParams),
+        endAt(searchParams + '\uf8ff') */
     );
 
-    const getData = debounce(() => {
+    const getDialogs = debounce(() => {
         onValue(dbRef, (snapshot) => {
             let array;
             snapshot.forEach((child) => {
@@ -42,25 +42,36 @@ function Body(props) {
             });
             setDialogs(array);
         });
-    }, 300);
+    }, 500);
 
-    useEffect(() => getData(), [searchParams, props.statusKey]);
+    useEffect(() => getDialogs(), [searchParams, props.statusKey]);
 
-    const setNewStatus = (dialog, newStatus) => {
+    const setNewStatus = (dialogId, newStatus) => {
         let updates = {};
-        updates['/dialogs/' + props.statusKey + '/' + dialog.dialogId] = null;
-        const id = dialog.dialogId;
-        delete dialog.id;
-        updates['/dialogs/' + newStatus + '/' + id] = dialog;
+        updates['/dialogs/' + dialogId + '/status/'] = newStatus;
         update(headDB, updates);
     };
 
+    const filterDialogs = () => {
+        const inputFilter = (dialog) => {
+            return (
+                dialog.userName.toLowerCase().includes(searchParams.toLowerCase()) ||
+                dialog.messages.find(message => message.content.toLowerCase().includes(searchParams.toLowerCase()))
+            );
+        }
+
+        return dialogs.filter(dialog => inputFilter(dialog) && dialog.status === props.statusKey);
+    }
+
+    let results;
     if (dialogs) {
-        var results = dialogs.map((dialog) => (
-            <DialogListCell key={dialog.dialogId} dialog={dialog} status={props.statusKey} setNewStatus={setNewStatus} />
-        ));
-    } else {
-        results = <p className={styles.empty}>The list is empty.</p>;
+        results = filterDialogs(dialogs, props.searchParams, props.statusKey);
+
+        if (results.length === 0) {
+            results = <p className={styles.empty}>The list is empty.</p>;
+        } else {
+            results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />);
+        }
     }
 
     return (
