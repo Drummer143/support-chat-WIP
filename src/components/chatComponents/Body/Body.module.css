@@ -1,34 +1,44 @@
 .wrapper {
-    grid-area: searchResults;
-
-    width: 100%;
-    max-height: 85vh;
-
     padding: 10px;
 
-    background-color: #3a5199;
     border-radius: 10px;
-    border: solid 1px #3a5199;
-    overflow: auto;
+    background-color: #3a5199;
     box-shadow: 2px 2px 5px 4px rgba(34, 60, 80, 0.3);
-}
-
-.wrapper::-webkit-scrollbar {
-    height: 50%;
-    width: 5px;
-}
-
-.wrapper::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.wrapper::-webkit-scrollbar-thumb {
-    background-color: #fff;
-    border-radius: 20px;
 }
 
 .wrapper:hover {
     box-shadow: 2px 2px 0px 4px rgba(34, 60, 80, 0.3);
+}
+
+.searchBar {
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: row-reverse;
+}
+
+.list {
+    max-height: 80vh;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #fff;
+    overflow: auto;
+}
+
+.list::-webkit-scrollbar {
+    height: 50%;
+    width: 5px;
+}
+
+.list::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 20px;
 }
 
 .empty {

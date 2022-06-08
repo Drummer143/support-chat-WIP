@@ -12,6 +12,7 @@ import { database } from '../../../firebase';
 import { debounce } from 'lodash';
 
 import DialogListCell from '../DialogListCell/DialogListCell';
+import SearchBar from '../SearchBar/SearchBar';
 
 import styles from './Body.module.css';
 
@@ -61,7 +62,16 @@ function Body(props) {
         results = <p className={styles.empty}>The list is empty.</p>;
     }
 
-    return <div className={styles.wrapper}>{results}</div>;
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.searchBar}>
+                <SearchBar value={props.searchParams} setValue={props.setSearchParams} />
+            </div>
+
+            <div className={styles.list}>
+                {results}
+            </div>
+        </div>);
 }
 
 export default Body;

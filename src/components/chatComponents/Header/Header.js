@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import SearchBar from '../SearchBar/SearchBar';
 import { signOutRequest } from './../../../redux/actions/actions';
 
 import styles from './Header.module.css';
@@ -11,8 +10,6 @@ function Header(props) {
 
     return (
         <div className={styles.wrapper}>
-            <SearchBar value={props.searchParams} setValue={props.setSearchParams} />
-
             <div className={styles.rightPart}>
                 <div className={styles.info}>
                     <p className={styles.email}>{user.email}</p>
