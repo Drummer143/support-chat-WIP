@@ -5,11 +5,13 @@ import {
     query,
     orderByChild,
     startAt,
-    endAt
+    endAt,
+    limitToFirst
 } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { database } from '../../../firebase';
 import { debounce } from 'lodash';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import DialogListCell from '../DialogListCell/DialogListCell';
 import SearchBar from '../SearchBar/SearchBar';
@@ -19,13 +21,15 @@ import styles from './Body.module.css';
 function Body(props) {
     const [dialogs, setDialogs] = useState('');
     const [searchParams, setSearchParams] = useState('');
+    const [countOfDialogs, setCountOfDialogs] = useState(5);
 
     const headDB = ref(database);
     const dbRef = query(
         ref(database, 'dialogs/'),
-        orderByChild('userName'),
-        /* startAt(searchParams),
-        endAt(searchParams + '\uf8ff') */
+        orderByChild('status'),
+        startAt(props.statusKey),
+        endAt(props.statusKey),
+        limitToFirst(countOfDialogs)
     );
 
     const getDialogs = debounce(() => {
@@ -60,7 +64,7 @@ function Body(props) {
             );
         }
 
-        return dialogs.filter(dialog => inputFilter(dialog) && dialog.status === props.statusKey);
+        return dialogs.filter(dialog => inputFilter(dialog));
     }
 
     let results;
@@ -81,7 +85,14 @@ function Body(props) {
             </div>
 
             <div className={styles.list}>
-                {results}
+                <InfiniteScroll
+                    pageStart={0}
+                    hasMore={dialogs.length % 5 === 0}
+                    loader={<button onClick={() => setCountOfDialogs(countOfDialogs + 5)} >Click here to load more</button>}
+                    loadMore={getDialogs}
+                >
+                    {results}
+                </InfiniteScroll>
             </div>
         </div>);
 }

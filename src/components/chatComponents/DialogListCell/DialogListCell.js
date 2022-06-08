@@ -7,12 +7,19 @@ function DialogListCell(props) {
 
     const buttons = {
         save: <button className={`${styles.button} ${styles.save}`} onClick={() => props.setNewStatus(props.dialog.dialogId, 'saved')}>Save dialog</button>,
-        placeholder: <div className={`${styles.button} ${styles.placeholder}`}></div>
+        placeholder: <div className={styles.placeholder}></div>
     }
 
     let currButtonSet;
     switch (props.dialog.status) {
         case 'active': {
+            currButtonSet = {
+                first: buttons.placeholder,
+                second: buttons.save
+            };
+            break;
+        }
+        case 'completed': {
             currButtonSet = {
                 first: buttons.placeholder,
                 second: buttons.save
