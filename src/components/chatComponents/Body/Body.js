@@ -16,13 +16,15 @@ import DialogListCell from '../DialogListCell/DialogListCell';
 import SearchBar from '../SearchBar/SearchBar';
 
 import styles from './Body.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDataSuccess } from './../../../redux/actions/actions';
 
 function Body(props) {
     const status = useSelector(state => state.chatReducer.status);
     const [dialogs, setDialogs] = useState('');
     const [searchParams, setSearchParams] = useState('');
     const [countOfDialogs, setCountOfDialogs] = useState(10);
+    const dispatch = useDispatch();
 
     const headDB = ref(database);
     const dbRef = query(
@@ -45,6 +47,7 @@ function Body(props) {
                 }
             });
             setDialogs(array);
+            dispatch(getDataSuccess(array, status));
         });
     }, 500);
 

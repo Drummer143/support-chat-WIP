@@ -27,10 +27,14 @@
     padding: 20vh 0 20vh 10px;
 }
 
-.Body {
+.body {
+    max-height: 85vh;
     grid-area: body;
 
-    padding: 0 10px 10px 0;
+    margin-right: 10px;
+
+    background-color: #3a5199;
+    border-radius: 10px;
 }
 
 @media screen and (max-height: 800px) {

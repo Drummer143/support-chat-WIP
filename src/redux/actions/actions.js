@@ -51,15 +51,15 @@ export const passwordUpdateSuccess = () => ({
 
 
 
-/* export const FETCH_GET_DATA_REQUEST = 'FETCH_GET_DATA_REQUEST'
-export const FETCH_GET_DATA_SUCCESS = 'FETCH_GET_DATA_SUCCESS' */
+/* export const FETCH_GET_DATA_REQUEST = 'FETCH_GET_DATA_REQUEST' */
+export const FETCH_GET_DATA_SUCCESS = 'FETCH_GET_DATA_SUCCESS'
 
 export const CHANGE_STATUS = 'CHANGE_STATUS'
 
 /* export const getDataRequest = (status) => ({
     type: FETCH_GET_DATA_REQUEST,
     status: status
-})
+}) */
 
 export const getDataSuccess = (data, status) => {
     return ({
@@ -67,7 +67,7 @@ export const getDataSuccess = (data, status) => {
         dialogs: data,
         status: status
     })
-} */
+}
 
 export const changeStatus = (newStatus) => ({
     type: CHANGE_STATUS,

@@ -4,7 +4,7 @@ import { signOutRequest } from './../../../redux/actions/actions';
 
 import styles from './Header.module.css';
 
-function Header(props) {
+function Header() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authReducer.user);
 

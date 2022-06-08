@@ -2,14 +2,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { auth } from '../../../firebase';
 
-import styles from './Layout.module.css';
 import Header from './../Header/Header';
 import Navbar from '../Navbar/Navbar';
+
+import styles from './Layout.module.css';
 
 function Layout() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
-    const [statusKey, setStatusKey] = useState('active');
 
     useEffect(() => {
         return auth.onAuthStateChanged((user) => {
@@ -28,10 +28,10 @@ function Layout() {
             </header>
 
             <aside className={styles.navbar}>
-                <Navbar statusKey={statusKey} setStatusKey={setStatusKey} />
+                <Navbar />
             </aside>
 
-            <div className={styles.Body}>
+            <div className={styles.body}>
                 <Outlet />
             </div>
         </div>
