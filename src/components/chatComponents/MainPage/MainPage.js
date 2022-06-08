@@ -11,7 +11,6 @@ import Navbar from '../Navbar/Navbar';
 function MainPage() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
-    const [searchParams, setSearchParams] = useState('');
     const [statusKey, setStatusKey] = useState('active');
 
     useEffect(() => {
@@ -27,7 +26,7 @@ function MainPage() {
     return (
         <div className={styles.wrapper}>
             <header className={styles.header}>
-                <Header searchParams={searchParams} setSearchParams={setSearchParams} />
+                <Header />
             </header>
 
             <aside className={styles.navbar}>
@@ -35,7 +34,7 @@ function MainPage() {
             </aside>
 
             <div className={styles.Body}>
-                <Body searchParams={searchParams} statusKey={statusKey} />
+                <Body statusKey={statusKey} />
             </div>
         </div>
     );

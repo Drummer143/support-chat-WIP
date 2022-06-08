@@ -18,13 +18,14 @@ import styles from './Body.module.css';
 
 function Body(props) {
     const [dialogs, setDialogs] = useState('');
+    const [searchParams, setSearchParams] = useState('');
 
     const headDB = ref(database);
     const dbRef = query(
         ref(database, 'dialogs/' + props.statusKey),
         orderByChild('userNameInLowerCase'),
-        startAt(props.searchParams.toLowerCase()),
-        endAt(props.searchParams.toLowerCase() + '\uf8ff')
+        startAt(searchParams.toLowerCase()),
+        endAt(searchParams.toLowerCase() + '\uf8ff')
     );
 
     const getData = debounce(() => {
@@ -43,7 +44,7 @@ function Body(props) {
         });
     }, 300);
 
-    useEffect(() => getData(), [props.searchParams, props.statusKey]);
+    useEffect(() => getData(), [searchParams, props.statusKey]);
 
     const setNewStatus = (dialog, newStatus) => {
         let updates = {};
@@ -65,7 +66,7 @@ function Body(props) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.searchBar}>
-                <SearchBar value={props.searchParams} setValue={props.setSearchParams} />
+                <SearchBar value={searchParams} setValue={setSearchParams} />
             </div>
 
             <div className={styles.list}>
