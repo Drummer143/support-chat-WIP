@@ -16,13 +16,13 @@ function RoutingTree() {
 
     return user ? (
         <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/main" element={<MainPage />} />
             <Route path="/error" element={<ReAuthError />} />
             <Route path="/*" element={<PageNotFound />} />
         </Routes>
     ) : (
         <Routes>
-            <Route path="/" element={<SignInForm />} />
+            <Route path="/sign-in" element={<SignInForm />} />
             <Route path="/sign-up" element={<SignUpForm />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/forgot-password-redirect" element={<ForgotPasswordRedirect />} />

@@ -1,8 +1,15 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function PageNotFound() {
-    const navigate = useNavigate();
-    return <Navigate to="/" />;
+    let path;
+    if(useSelector(state => state.authReducer.user)) {
+        path = '/main'
+    } else {
+        path = '/sign-in'
+    }
+
+    return <Navigate to={path} />;
     /* (
         <div>
             <p>

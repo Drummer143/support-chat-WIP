@@ -10,7 +10,7 @@ import {
 } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { database } from '../../../firebase';
-import { debounce } from 'lodash';
+import { debounce, result } from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import DialogListCell from '../DialogListCell/DialogListCell';
@@ -29,7 +29,7 @@ function Body(props) {
         orderByChild('status'),
         startAt(props.statusKey),
         endAt(props.statusKey),
-        limitToFirst(countOfDialogs)
+        /* limitToFirst(countOfDialogs) */
     );
 
     const getDialogs = debounce(() => {
@@ -48,7 +48,10 @@ function Body(props) {
         });
     }, 500);
 
-    useEffect(() => getDialogs(), [searchParams, props.statusKey]);
+    useEffect(() => {
+        getDialogs();
+        setCountOfDialogs(5);
+    }, [searchParams, props.statusKey]);
 
     const setNewStatus = (dialogId, newStatus) => {
         let updates = {};
@@ -70,12 +73,7 @@ function Body(props) {
     let results;
     if (dialogs) {
         results = filterDialogs(dialogs, props.searchParams, props.statusKey);
-
-        if (results.length === 0) {
-            results = <p className={styles.empty}>The list is empty.</p>;
-        } else {
-            results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />);
-        }
+        results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />);
     }
 
     return (
@@ -85,16 +83,24 @@ function Body(props) {
             </div>
 
             <div className={styles.list}>
-                <InfiniteScroll
-                    pageStart={0}
-                    hasMore={dialogs.length % 5 === 0}
-                    loader={<button onClick={() => setCountOfDialogs(countOfDialogs + 5)} >Click here to load more</button>}
-                    loadMore={getDialogs}
-                >
-                    {results}
-                </InfiniteScroll>
+                {Array.isArray(results) ? (
+                    <InfiniteScroll
+                        pageStart={0}
+                        hasMore={countOfDialogs < results.length}
+                        loader={
+                            <div className={styles.loadMoreField}>
+                                <button onClick={() => setCountOfDialogs(countOfDialogs + 5)} className={styles.loadMore}>Click here to load more</button>
+                            </div>
+                        }
+                        loadMore={getDialogs}
+                    >
+                        {results.slice(0, countOfDialogs)}
+                    </InfiniteScroll>
+                ) : <p className={styles.empty}>The list is empty.</p>
+                }
             </div>
-        </div>);
+        </div>
+    );
 }
 
 export default Body;
