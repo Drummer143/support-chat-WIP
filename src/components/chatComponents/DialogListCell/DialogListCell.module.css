@@ -16,19 +16,22 @@
     margin-bottom: 10px;
 }
 
-.dialogInfo:hover {
-    box-shadow: 0px 0px 10px 5px rgba(34, 60, 80, 0.3) inset;
-}
-
-.dialogInfo:active {
-    box-shadow: 0px 0px 0px 5px rgba(34, 60, 80, 0.3) inset;
-}
-
 .dialogInfo {
     flex-grow: 1;
 
     background-color: #fff;
     border-radius: 10px;
+    color: #212529;
+    text-decoration: none;
+}
+
+.dialogInfo:hover {
+    box-shadow: 0px 0px 10px 5px rgba(34, 60, 80, 0.3) inset;
+    color: #212529;
+}
+
+.dialogInfo:active {
+    box-shadow: 0px 0px 0px 5px rgba(34, 60, 80, 0.3) inset;
 }
 
 .head {

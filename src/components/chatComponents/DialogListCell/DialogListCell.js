@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Moment from 'react-moment';
 import styles from './DialogListCell.module.css';
+import { NavLink } from 'react-router-dom';
 
 function DialogListCell(props) {
     const lastMessage = props.dialog.messages[props.dialog.messages.length - 1];
@@ -37,7 +38,7 @@ function DialogListCell(props) {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.dialogInfo}>
+            <NavLink to={'/main/dialog/' + props.dialog.dialogId} className={styles.dialogInfo}>
                 <div className={styles.head}>
                     <p className={styles.text}>{props.dialog.userName}</p>
                     <p className={styles.text}>
@@ -51,7 +52,7 @@ function DialogListCell(props) {
                 <p className={styles.message}>
                     <strong>{lastMessage.writtenBy}:</strong> {lastMessage.content}
                 </p>
-            </div>
+            </NavLink>
 
             <div className={styles.buttons}>
                 {currButtonSet.first}

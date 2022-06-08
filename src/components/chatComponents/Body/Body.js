@@ -6,30 +6,30 @@ import {
     orderByChild,
     startAt,
     endAt,
-    limitToFirst
 } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { database } from '../../../firebase';
-import { debounce, result } from 'lodash';
+import { debounce } from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import DialogListCell from '../DialogListCell/DialogListCell';
 import SearchBar from '../SearchBar/SearchBar';
 
 import styles from './Body.module.css';
+import { useSelector } from 'react-redux';
 
 function Body(props) {
+    const status = useSelector(state => state.chatReducer.status);
     const [dialogs, setDialogs] = useState('');
     const [searchParams, setSearchParams] = useState('');
-    const [countOfDialogs, setCountOfDialogs] = useState(5);
+    const [countOfDialogs, setCountOfDialogs] = useState(10);
 
     const headDB = ref(database);
     const dbRef = query(
         ref(database, 'dialogs/'),
         orderByChild('status'),
-        startAt(props.statusKey),
-        endAt(props.statusKey),
-        /* limitToFirst(countOfDialogs) */
+        startAt(status),
+        endAt(status),
     );
 
     const getDialogs = debounce(() => {
@@ -50,8 +50,8 @@ function Body(props) {
 
     useEffect(() => {
         getDialogs();
-        setCountOfDialogs(5);
-    }, [searchParams, props.statusKey]);
+        setCountOfDialogs(10);
+    }, [searchParams, status]);
 
     const setNewStatus = (dialogId, newStatus) => {
         let updates = {};
@@ -89,7 +89,7 @@ function Body(props) {
                         hasMore={countOfDialogs < results.length}
                         loader={
                             <div className={styles.loadMoreField}>
-                                <button onClick={() => setCountOfDialogs(countOfDialogs + 5)} className={styles.loadMore}>Click here to load more</button>
+                                <button onClick={() => setCountOfDialogs(countOfDialogs + 10)} className={styles.loadMore}>Click here to load more</button>
                             </div>
                         }
                         loadMore={getDialogs}

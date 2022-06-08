@@ -1,0 +1,46 @@
+.wrapper {
+    width: 100vw;
+    min-width: 1200px;
+    height: 100vh;
+
+    /* box-sizing: border-box; */
+
+    display: grid;
+
+    grid-template-areas:
+        'navbar header'
+        'navbar body';
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100px 1fr;
+}
+
+.header {
+    grid-area: header;
+
+    padding: 10px 10px 0 0;
+    position: relative;
+}
+
+.navbar {
+    grid-area: navbar;
+
+    padding: 20vh 0 20vh 10px;
+}
+
+.Body {
+    grid-area: body;
+
+    padding: 0 10px 10px 0;
+}
+
+@media screen and (max-height: 800px) {
+    .navbar {
+        padding: 10vh 0 10vh 10px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .navbar {
+        padding: 2vh 0 2vh 10px;
+    }
+}

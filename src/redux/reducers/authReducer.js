@@ -1,4 +1,4 @@
-import defaultState from '../defaultState';
+import { authDefaultState } from '../defaultState';
 import {
     FETCH_SIGN_UP_REQUEST,
     FETCH_LOGIN_EMAIL_REQUEST,
@@ -14,7 +14,7 @@ import {
 } from '../actions/actions';
 import { auth } from '../../firebase';
 
-const AuthReducer = (state = defaultState, action) => {
+const AuthReducer = (state = authDefaultState, action) => {
     switch (action.type) {
         case FETCH_SIGN_UP_REQUEST:
         case FETCH_LOGIN_GOOGLE_REQUEST:

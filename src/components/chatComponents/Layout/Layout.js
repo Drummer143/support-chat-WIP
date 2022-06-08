@@ -1,15 +1,12 @@
+import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import { auth } from '../../../firebase';
 
-import Body from '../Body/Body';
-
-import styles from './MainPage.module.css';
+import styles from './Layout.module.css';
 import Header from './../Header/Header';
 import Navbar from '../Navbar/Navbar';
-import Chat from '../Chat/Chat';
 
-function MainPage() {
+function Layout() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
     const [statusKey, setStatusKey] = useState('active');
@@ -35,14 +32,10 @@ function MainPage() {
             </aside>
 
             <div className={styles.Body}>
-                <Routes>
-                    <Route path='/' element={<Body statusKey={statusKey} />} />
-                    <Route path='/:id' element={<Chat />} />
-                </Routes>
-                
+                <Outlet />
             </div>
         </div>
     );
 }
 
-export default MainPage;
+export default Layout;
