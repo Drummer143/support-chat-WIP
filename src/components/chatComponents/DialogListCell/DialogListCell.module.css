@@ -3,10 +3,12 @@
     height: 125px;
 
     margin: 0;
+    padding-right: 10px;
 
-    display: flex;
+    display: grid;
+    
+    grid-template-columns: 1fr 100px;
 
-    background-color: #fff;
     border-radius: 10px;
 }
 
@@ -25,7 +27,8 @@
 .dialogInfo {
     flex-grow: 1;
 
-    border-radius: 10px 0 0px 10px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .head {
@@ -51,9 +54,12 @@
 .buttons {
     width: 100px;
 
+    margin-left: 10px;
+
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 1px;
+    grid-gap: 2px;
+    border-radius: 10px;
 }
 
 .button {
@@ -62,27 +68,45 @@
 }
 
 .button:first-child {
-    border-radius: 0 10px 0 0;
-    background-color: #00910f;
-}
-
-.button:first-child:hover {
-    background-color: #008d0f;
-}
-
-.button:first-child:active {
-    background-color: #00890f;
+    border-radius: 10px 10px 0 0;
 }
 
 .button:last-child {
-    border-radius: 0 0 10px 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.save {
     background-color: #424242;
 }
 
-.button:last-child:hover {
+.save:hover {
+    background-color: #404040;
+}
+
+.save:active {
     background-color: #383838;
 }
 
-.button:last-child:active {
-    background-color: #343434;
+.complete {
+    background-color: #00910f;
+}
+
+.complete:hover {
+    background-color: #008d0f;
+}
+
+.complete:active {
+    background-color: #00890f;
+}
+
+.delete {
+    background-color: #910000;
+}
+
+.delete:hover {
+    background-color: #8c0000;
+}
+
+.delete:active {
+    background-color: #7f0000;
 }

@@ -3,78 +3,59 @@ import {
     onValue,
     update,
     query,
-    limitToFirst,
     orderByChild,
-    orderByValue,
-    orderByKey,
     startAt,
-    endAt,
-    equalTo,
-    child,
-    get
+    endAt
 } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { database } from '../../../firebase';
 import { debounce } from 'lodash';
-import InfiniteScroll from 'react-infinite-scroller';
 
 import DialogListCell from '../DialogListCell/DialogListCell';
 
 import styles from './Body.module.css';
 
-const filterChats = (dialogs, searchParams, statusKey) => {
-    const inputFilter = (dialog) => {
-        return dialog.messages.find((message) =>
-            message.content.toLowerCase().includes(searchParams.toLowerCase())
-        );
-    };
-
-    return dialogs.filter((dialog) => inputFilter(dialog));
-};
-
 function Body(props) {
     const [dialogs, setDialogs] = useState('');
 
-    /* if (props.searchParams) { */
-        var dbRef = query(
-            ref(database, 'dialogs/' + props.statusKey),
-            /* limitToFirst(countOfDialogs),  */ orderByChild('userName'),
-            startAt(props.searchParams),
-            endAt(props.searchParams + '\uf8ff')
-        );
-    /* } else {
-        var dbRef = query(
-            ref(database, 'dialogs/' + props.statusKey),
-            /* limitToFirst(countOfDialogs),   orderByChild('userName')
-        );
-    } */
+    const headDB = ref(database);
+    const dbRef = query(
+        ref(database, 'dialogs/' + props.statusKey),
+        orderByChild('userNameInLowerCase'),
+        startAt(props.searchParams.toLowerCase()),
+        endAt(props.searchParams.toLowerCase() + '\uf8ff')
+    );
 
-    let array;
     const getData = debounce(() => {
         onValue(dbRef, (snapshot) => {
+            let array;
             snapshot.forEach((child) => {
+                let obj = child.val();
+                obj.dialogId = child.key;
                 if (array) {
-                    array.push(child.val());
+                    array.push(obj);
                 } else {
-                    array = [child.val()];
+                    array = [obj];
                 }
             });
             setDialogs(array);
         });
-    }, 1000);
+    }, 300);
 
-    useEffect(() => getData(), [dialogs, props.searchParams]);
+    useEffect(() => getData(), [props.searchParams, props.statusKey]);
 
-    const setNewStatus = (dialogId, newStatus) => {
-        const pos = dialogs.findIndex((dialog) => dialog.dialogId == dialogId);
+    const setNewStatus = (dialog, newStatus) => {
         let updates = {};
-        updates['/dialogs/' + pos + '/status/'] = newStatus;
-        update(dbRef, updates);
+        updates['/dialogs/' + props.statusKey + '/' + dialog.dialogId] = null;
+        const id = dialog.dialogId;
+        delete dialog.id;
+        updates['/dialogs/' + newStatus + '/' + id] = dialog;
+        update(headDB, updates);
     };
 
     if (dialogs) {
         var results = dialogs.map((dialog) => (
-            <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />
+            <DialogListCell key={dialog.dialogId} dialog={dialog} status={props.statusKey} setNewStatus={setNewStatus} />
         ));
     } else {
         results = <p className={styles.empty}>The list is empty.</p>;
