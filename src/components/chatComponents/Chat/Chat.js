@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import Moment from 'react-moment';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
+import Moment from 'react-moment';
 
 import styles from './Chat.module.css';
 
+
 function Chat() {
+    /* full of placeholders rn */
+
     const { id } = useParams();
     const dialog = useSelector(state => state.chatReducer.dialogs.find(dialog => dialog.dialogId == id));
     const [ input, setInput ] = useState('');
@@ -26,10 +31,14 @@ function Chat() {
         'Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet',
     ]
 
-    console.log(dialog)
+    const navigate = useNavigate();
 
     return (
         <div className={styles.wrapper}>
+            <button  type='button' onClick={() => navigate('/main/dialogs')} className={styles.back} data-title='Go to main page'>
+                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon}/>
+            </button>
+
             <div className={styles.userInfo}><h3>{dialog.userName}</h3></div>
 
             <div className={styles.mark}>

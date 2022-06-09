@@ -2,13 +2,8 @@
     padding: 10px;
 
     border-radius: 10px;
-    background-color: #3a5199;
-    box-shadow: 2px 2px 5px 4px rgba(34, 60, 80, 0.3);
 }
 
-.wrapper:hover {
-    box-shadow: 2px 2px 0px 4px rgba(34, 60, 80, 0.3);
-}
 
 .searchBar {
     padding: 10px;
