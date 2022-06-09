@@ -2,19 +2,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
 import { faFloppyDisk, faHourglass } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { changeStatus } from '../../../redux/actions/actions';
 
 import styles from './Navbar.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const Cell = props => {
-    const handleClick = newStatus => { 
-        dispatch(changeStatus(newStatus));
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        dispatch(changeStatus(props.status));
         navigate('/main/dialogs')
     }
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     
     return (
         <div className={styles.cell} onClick={() => handleClick(props.status)}>

@@ -1,13 +1,30 @@
-import { useState } from 'react';
 import Moment from 'react-moment';
 import styles from './DialogListCell.module.css';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/fontawesome-free-solid';
+import { useSelector } from 'react-redux';
 
 function DialogListCell(props) {
     const lastMessage = props.dialog.messages[props.dialog.messages.length - 1];
 
+    let rating;
+    if (props.dialog.rating) {
+        if (props.dialog.rating != -1) {
+            rating = ['goldStar', 'goldStar', 'goldStar', 'goldStar', 'goldStar'];
+            for (let i = props.dialog.rating; i < 5; i++) {
+                rating[i] = 'greyStar'
+            }
+            rating = rating.map(star => <FontAwesomeIcon icon={faStar} className={styles[star]} />)
+        } else {
+            rating = <p>User did not put a rating</p>;
+        }
+    }
+
     const buttons = {
-        save: <button className={`${styles.button} ${styles.save}`} onClick={() => props.setNewStatus(props.dialog.dialogId, 'saved')}>Save dialog</button>,
+        save: <button className={`${styles.button} ${styles.save}`} onClick={() => props.setNewStatus(props.dialog.dialogId, true, 'saved')}>Save dialog</button>,
+        deleteFromSaved: <button className={`${styles.button} ${styles.delete}`} onClick={() => props.setNewStatus(props.dialog.dialogId, false, 'saved')}>Delete from saved</button>,
+        rating: <div className={`${styles.button} ${styles.rating}`}>{rating}</div>,
         placeholder: <div className={styles.placeholder}></div>
     }
 
@@ -16,15 +33,22 @@ function DialogListCell(props) {
         case 'active': {
             currButtonSet = {
                 first: buttons.placeholder,
-                second: buttons.save
+                second: props.dialog.saved ? buttons.deleteFromSaved : buttons.save
             };
             break;
         }
         case 'completed': {
             currButtonSet = {
-                first: buttons.placeholder,
-                second: buttons.save
+                first: buttons.rating,
+                second: props.dialog.saved ? buttons.deleteFromSaved : buttons.save
             };
+            break;
+        }
+        case 'saved': {
+            currButtonSet = {
+                first: props.dialog.rating ? buttons.rating : buttons.placeholder,
+                second: buttons.deleteFromSaved
+            }
             break;
         }
 

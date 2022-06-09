@@ -7,7 +7,7 @@
 
     display: grid;
     
-    grid-template-columns: 1fr 160px;
+    grid-template-columns: 1fr 200px;
 
     border-radius: 10px;
 }
@@ -55,7 +55,7 @@
 }
 
 .buttons {
-    width: 150px;
+    width: 190px;
 
     margin-left: 10px;
 
@@ -79,14 +79,26 @@
 }
 
 .save {
-    background-color: #424242;
+    background-color: #525252;
 }
 
 .save:hover {
-    background-color: #404040;
+    background-color: #505050;
 }
 
 .save:active {
+    background-color: #484848;
+}
+
+.delete {
+    background-color: #424242;
+}
+
+.delete:hover {
+    background-color: #404040;
+}
+
+.delete:active {
     background-color: #383838;
 }
 
@@ -102,14 +114,34 @@
     background-color: #00890f;
 }
 
-.delete {
-    background-color: #910000;
+.rating {
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #212529;
 }
 
-.delete:hover {
-    background-color: #8c0000;
+.rating p {
+    margin: 0;
+
+    text-align: center;
+    font-size: 16px;
 }
 
-.delete:active {
-    background-color: #7f0000;
+.greyStar {
+    height: 30px;
+    width: 30px;
+
+    margin: 10px 4px 0 0;
+    
+    color: #0002;
+}
+
+.goldStar {
+    height: 30px;
+    width: 30px;
+
+    margin: 10px 4px 0 0;
+
+    color: #FFD700;
+    border-radius: 50%;
 }

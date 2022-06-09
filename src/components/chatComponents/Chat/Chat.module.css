@@ -6,7 +6,7 @@
     display: grid;
 
     grid-template-areas: 
-    "back user mark snippets"
+    "back user rating snippets"
     "chat chat chat snippets"
     "input input input snippets";
     grid-template-columns: 50px 5fr 3fr  3fr;
@@ -71,7 +71,6 @@
 }
 
 .userInfo {
-    max-height: 100%;
     grid-area: user;
 
     padding: 10px;
@@ -81,13 +80,34 @@
 }
 
 
-.mark {
-    grid-area: mark;
-
+.rating {
+    grid-area: rating;
+    
     padding: 10px;
 
     background-color: #eee;
     border-radius: 10px;
+}
+
+.ratingText {
+    display: inline;
+
+    vertical-align: top;
+}
+
+.greyStar {
+    height: 30px;
+    width: 30px;
+
+    color: #0002;
+}
+
+.goldStar {
+    height: 30px;
+    width: 30px;
+
+    color: #FFD700;
+    border-radius: 50%;
 }
 
 .chat {
@@ -157,7 +177,7 @@
     height: 100%;
     width: 90%;
 
-    padding: 15px;
+    padding: 10px;
 
     border: none;
     background-color: #eee;
@@ -168,8 +188,8 @@
 }
 
 .inputField:focus {
-    padding: 10px 15px 10px 10px;
-    border: 5px solid #3a5199;
+    box-shadow: 0px 0px 0px 5px rgba(58, 81, 153, 0.5) inset;
+
     border-right: none;
 }
 

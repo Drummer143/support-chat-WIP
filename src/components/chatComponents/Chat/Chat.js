@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
+import { faArrowLeft, faStar } from '@fortawesome/fontawesome-free-solid';
 import Moment from 'react-moment';
 
 import styles from './Chat.module.css';
@@ -13,7 +13,8 @@ function Chat() {
 
     const { id } = useParams();
     const dialog = useSelector(state => state.chatReducer.dialogs.find(dialog => dialog.dialogId == id));
-    const [ input, setInput ] = useState('');
+    const [input, setInput] = useState('');
+    const navigate = useNavigate();
     const addSnippet = snippet => setInput(input + snippet);
     const messages = dialog.messages.map(message => (
         <div className={`${styles.message} ${styles[message.writtenBy]}`}>
@@ -31,18 +32,37 @@ function Chat() {
         'Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet',
     ]
 
-    const navigate = useNavigate();
+    console.log(dialog);
+
+    let rating;
+    if (dialog.status === 'completed') {
+
+        if (dialog.rating != -1) {
+            rating = ['goldStar', 'goldStar', 'goldStar', 'goldStar', 'goldStar'];
+            for (let i = dialog.rating; i < 5; i++) {
+                rating[i] = 'greyStar'
+            }
+            rating = (
+                <div>
+                    <h3 className={styles.ratingText}>Your rating: </h3>
+                    {rating.map(star => <FontAwesomeIcon icon={faStar} className={styles[star]} />)}
+                </div>
+            );
+        } else {
+            rating = <h4>User did not put a rating</h4>;
+        }
+    }
 
     return (
         <div className={styles.wrapper}>
-            <button  type='button' onClick={() => navigate('/main/dialogs')} className={styles.back} data-title='Go to main page'>
-                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon}/>
+            <button type='button' onClick={() => navigate('/main/dialogs')} className={styles.back} data-title='Go to main page'>
+                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />
             </button>
 
             <div className={styles.userInfo}><h3>{dialog.userName}</h3></div>
 
-            <div className={styles.mark}>
-
+            <div className={styles.rating}>
+                {rating}
             </div>
 
             <div className={styles.chat}>

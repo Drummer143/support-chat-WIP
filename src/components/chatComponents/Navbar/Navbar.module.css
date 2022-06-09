@@ -38,6 +38,10 @@
     text-decoration: none;
 }
 
+.Active, .Saved, .Completed {
+    background-color: #000;
+}
+
 .heading {
     width: 80%;
     height: 25px;
@@ -61,18 +65,6 @@
 
     color: #2f2e33;
 }
-
-/* .cell:first-child .icon {
-    color: #fdffed;
-}
-
-.cell:nth-child(2) .icon {
-    color: #f2fff3;
-}
-
-.cell:nth-child(3) .icon {
-    color: #ebebeb;
-} */
 
 .cell:hover .icon {
     color: #000;

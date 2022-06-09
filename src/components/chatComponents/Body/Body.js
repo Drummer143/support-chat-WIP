@@ -21,20 +21,25 @@ import { getDataSuccess } from './../../../redux/actions/actions';
 
 function Body(props) {
     const status = useSelector(state => state.chatReducer.status);
+    console.log(status);
     const [dialogs, setDialogs] = useState('');
     const [searchParams, setSearchParams] = useState('');
     const [countOfDialogs, setCountOfDialogs] = useState(10);
     const dispatch = useDispatch();
 
     const headDB = ref(database);
+    const queryParams = {
+        path: status === 'saved' ? 'saved' : 'status',
+        status: status === 'saved' ? true : status
+    };
     const dbRef = query(
         ref(database, 'dialogs/'),
-        orderByChild('status'),
-        startAt(status),
-        endAt(status),
+        orderByChild(queryParams.path),
+        startAt(queryParams.status),
+        endAt(queryParams.status),
     );
 
-    const getDialogs = debounce(() => {
+    const getDialogs = () => {
         onValue(dbRef, (snapshot) => {
             let array;
             snapshot.forEach((child) => {
@@ -49,16 +54,16 @@ function Body(props) {
             setDialogs(array);
             dispatch(getDataSuccess(array, status));
         });
-    }, 500);
+    };
 
     useEffect(() => {
         getDialogs();
         setCountOfDialogs(10);
     }, [searchParams, status]);
 
-    const setNewStatus = (dialogId, newStatus) => {
+    const setNewStatus = (dialogId, newStatus, path) => {
         let updates = {};
-        updates['/dialogs/' + dialogId + '/status/'] = newStatus;
+        updates[`/dialogs/${dialogId}/${path}/`] = newStatus;
         update(headDB, updates);
     };
 
@@ -72,7 +77,7 @@ function Body(props) {
 
         return dialogs.filter(dialog => inputFilter(dialog));
     }
-
+ 
     let results;
     if (dialogs) {
         results = filterDialogs(dialogs, props.searchParams, props.statusKey);

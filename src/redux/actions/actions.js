@@ -69,7 +69,10 @@ export const getDataSuccess = (data, status) => {
     })
 }
 
-export const changeStatus = (newStatus) => ({
-    type: CHANGE_STATUS,
-    status: newStatus
-})
+export const changeStatus = (newStatus) => {
+    console.log(newStatus);
+    return ({
+        type: CHANGE_STATUS,
+        status: newStatus
+    });
+}
