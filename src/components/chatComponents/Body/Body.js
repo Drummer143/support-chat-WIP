@@ -1,27 +1,21 @@
 import InfiniteScroll from 'react-infinite-scroller';
+import { debounce } from 'lodash';
 import { database } from '../../../firebase';
-import { useCallback, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ref, onValue, query, orderByChild, startAt, endAt } from 'firebase/database';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { ref, onValue, query, orderByChild, startAt, endAt, off } from 'firebase/database';
 
 import SearchBar from '../SearchBar/SearchBar';
 import DialogListCell from '../DialogListCell/DialogListCell';
-import { getDataSuccess } from './../../../redux/actions/actions';
 
 import styles from './Body.module.css';
-import { debounce } from 'lodash';
 
-function Body() {
-    const status = useSelector((state) => state.chatReducer.status);
-    const [dialogs, setDialogs] = useState('');
-    const [searchParams, setSearchParams] = useState('');
-    const [countOfDialogs, setCountOfDialogs] = useState(10);
-    const dispatch = useDispatch();
-
+const createPath = status => {
     const queryParams = {
         path: status === 'saved' ? 'saved' : 'status',
         status: status === 'saved' ? true : status
     };
+
     const dbRef = query(
         ref(database, 'dialogs/'),
         orderByChild(queryParams.path),
@@ -29,10 +23,22 @@ function Body() {
         endAt(queryParams.status)
     );
 
-    const getDialogs = () => {
-        onValue(dbRef, (snapshot) => {
+    return dbRef;
+};
+
+function Body() {
+    const status = useSelector(state => state.chatReducer.status);
+    const [dialogs, setDialogs] = useState('');
+    const [enteredSearchParams, setEnteredSearchParams] = useState('');
+    const [activeSearchParams, setActiveSearchParams] = useState('');
+    const [countOfDialogs, setCountOfDialogs] = useState(10);
+
+    const dbRef = createPath(status);
+
+    const getDialogs = dbRef => {
+        onValue(dbRef, snapshot => {
             let array;
-            snapshot.forEach((child) => {
+            snapshot.forEach(child => {
                 let obj = child.val();
                 obj.dialogId = child.key;
                 if (array) {
@@ -42,47 +48,51 @@ function Body() {
                 }
             });
             setDialogs(array);
-            dispatch(getDataSuccess(array, status));
         });
     };
 
-    useEffect(() => console.log("Full re-render"), []);
+    useEffect(() => {
+        getDialogs(dbRef);
+    }, [status]);
 
-    useEffect(() => getDialogs(), [status]);
+    useEffect(() => setCountOfDialogs(10), [activeSearchParams, status]);
 
-    useEffect(() => setCountOfDialogs(10), [searchParams, status]);
-
-    const [searchParams2, setSearchParams2] = useState('');
-    const debSetSearchParams2 = useCallback(debounce(setSearchParams2, 500), []);
-    useEffect(() => debSetSearchParams2(searchParams), [searchParams]);
+    useEffect(
+        debounce(() => setActiveSearchParams(enteredSearchParams), 500),
+        [enteredSearchParams]
+    );
 
     const filterDialogs = () => {
-        const inputFilter = (dialog) => {
+        const inputFilter = dialog => {
             return (
-                dialog.userName.toLowerCase().includes(searchParams2.toLowerCase()) ||
-                dialog.messages.find((message) =>
-                    message.content.toLowerCase().includes(searchParams2.toLowerCase())
+                dialog.userName.toLowerCase().includes(activeSearchParams.toLowerCase()) ||
+                dialog.messages.find(message =>
+                    message.content.toLowerCase().includes(activeSearchParams.toLowerCase())
                 )
             );
         };
 
-        return dialogs.filter((dialog) => inputFilter(dialog));
+        if (activeSearchParams) {
+            return dialogs
+                .filter(dialog => inputFilter(dialog))
+                .map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
+        } else {
+            return dialogs.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
+        }
     };
 
-    let results;
     if (dialogs) {
-        results = filterDialogs();
-        results = results.map((dialog) => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
+        var results = filterDialogs();
     }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.searchBar}>
-                <SearchBar value={searchParams} setValue={setSearchParams} />
+                <SearchBar value={enteredSearchParams} setValue={setEnteredSearchParams} />
             </div>
 
             <div className={styles.list}>
-                {Array.isArray(results) ? (
+                {results ? (
                     <InfiniteScroll
                         pageStart={0}
                         hasMore={countOfDialogs < results.length}

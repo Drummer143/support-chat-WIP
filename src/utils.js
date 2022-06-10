@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 
-export const handleAuthError = (error) => {
+export const handleAuthError = error => {
     switch (error.code) {
         case 'auth/user-not-found':
             return 'ERROR: User with entered email was not found';

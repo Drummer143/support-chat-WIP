@@ -4,9 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'react-toastify/dist/ReactToastify.css';
 
-import store from './../../redux/store';
-import RoutingTree from './../RoutingTree/RoutingTree';
-import { persistor } from './../../redux/store';
+import store from '../../redux/store';
+import RoutingTree from '../RoutingTree/RoutingTree';
+import { persistor } from '../../redux/store';
 
 import './App.css';
 

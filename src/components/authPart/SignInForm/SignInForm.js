@@ -1,17 +1,18 @@
 import * as Yup from 'yup';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Fade } from 'reactstrap';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 import { signInEmailRequest, signInGoogleRequest } from '../../../redux/actions/actions';
 import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from '../../../utils';
+
 import styles from './SignInForm.module.css';
 
 function SignInForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.authReducer.error);
+    const error = useSelector(state => state.authReducer.error);
     const validationSchema = Yup.object().shape({
         email: emailSignInValSchema,
         password: passwordSignInValSchema
@@ -23,7 +24,7 @@ function SignInForm() {
             <Formik
                 initialValues={{ email: '', password: '' }}
                 validationSchema={validationSchema}
-                onSubmit={(values) => dispatch(signInEmailRequest(values))}
+                onSubmit={values => dispatch(signInEmailRequest(values))}
             >
                 <Form className={styles.form}>
                     <div className={styles.input}>

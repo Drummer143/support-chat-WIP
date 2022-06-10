@@ -4,7 +4,7 @@ import watcherAuth from './authSaga';
 /* import watcherChat from './chatSaga'; */
 
 function* rootSaga() {
-    yield all([watcherAuth() /* , watcherChat() */]);
+    yield all([watcherAuth()]);
 }
 
 export default rootSaga;

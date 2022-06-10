@@ -1,18 +1,18 @@
 import * as Yup from 'yup';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Fade } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useSearchParams } from 'react-router-dom';
-import { Fade } from 'reactstrap';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 
-import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../../utils';
 import { passwordUpdateRequest } from '../../../redux/actions/actions';
+import { handleAuthError, passwordSignUpValSchema, confirmPasswordSchema } from '../../../utils';
 
 import styles from './UpdatePassword.module.css';
 
 function UpdatePassword() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.authReducer.error);
-    const recovered = useSelector((state) => state.authReducer.recovered);
+    const error = useSelector(state => state.authReducer.error);
+    const recovered = useSelector(state => state.authReducer.recovered);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const oobCode = searchParams.get('oobCode');
@@ -29,7 +29,7 @@ function UpdatePassword() {
             <Formik
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
                 validationSchema={validationSchema}
-                onSubmit={(values) =>
+                onSubmit={values =>
                     dispatch(
                         passwordUpdateRequest({
                             password: values.password,

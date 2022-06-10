@@ -19,12 +19,12 @@ const snippets = [
 function Chat() {
     /* full of placeholders rn */
     const { id } = useParams();
-    const dialog = useSelector((state) =>
-        state.chatReducer.dialogs.find((dialog) => dialog.dialogId == id)
+    const dialog = useSelector(state =>
+        state.chatReducer.dialogs.find(dialog => dialog.dialogId === id)
     );
     const [input, setInput] = useState('');
     const navigate = useNavigate();
-    const addSnippet = (snippet) => setInput(input + snippet);
+    const addSnippet = snippet => setInput(input + snippet);
 
     const messages = dialog.messages.map((message, i) => (
         <div key={i} className={`${styles.message} ${styles[message.writtenBy]}`}>
@@ -39,7 +39,7 @@ function Chat() {
 
     let rating;
     if (dialog.status === 'completed') {
-        if (dialog.rating != -1) {
+        if (dialog.rating !== -1) {
             rating = ['goldStar', 'goldStar', 'goldStar', 'goldStar', 'goldStar'];
             for (let i = dialog.rating; i < 5; i++) {
                 rating[i] = 'greyStar';
@@ -94,7 +94,7 @@ function Chat() {
             <form className={styles.input}>
                 <textarea
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={e => setInput(e.target.value)}
                     maxLength="250"
                     className={styles.inputField}
                 ></textarea>

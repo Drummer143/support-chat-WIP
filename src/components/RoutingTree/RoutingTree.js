@@ -7,14 +7,14 @@ import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
-import PageNotFound from './../PageNotFound/PageNotFound';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import ReAuthError from '../chatComponents/ReAuthError/ReAuthError';
-import Layout from './../chatComponents/Layout/Layout';
+import Layout from '../chatComponents/Layout/Layout';
 import Body from '../chatComponents/Body/Body';
-import Chat from './../chatComponents/Chat/Chat';
+import Chat from '../chatComponents/Chat/Chat';
 
 function RoutingTree() {
-    const user = useSelector((state) => state.authReducer.user);
+    const user = useSelector(state => state.authReducer.user);
 
     return user ? (
         <Routes>

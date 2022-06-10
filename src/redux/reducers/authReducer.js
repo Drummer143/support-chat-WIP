@@ -1,3 +1,5 @@
+import { auth } from '../../firebase';
+
 import { authDefaultState } from '../defaultState';
 import {
     FETCH_SIGN_UP_REQUEST,
@@ -12,7 +14,6 @@ import {
     FETCH_SIGN_OUT_REQUEST,
     FETCH_SIGN_OUT_SUCCESS
 } from '../actions/actions';
-import { auth } from '../../firebase';
 
 const AuthReducer = (state = authDefaultState, action) => {
     switch (action.type) {

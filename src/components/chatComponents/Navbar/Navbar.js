@@ -1,6 +1,5 @@
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk, faHourglass } from '@fortawesome/free-regular-svg-icons';
 
@@ -8,13 +7,14 @@ import { changeStatus } from '../../../redux/actions/actions';
 
 import styles from './Navbar.module.css';
 
-const Cell = (props) => {
-    const navigate = useNavigate();
+const Cell = props => {
+    const status = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        dispatch(changeStatus(props.status));
-        navigate('/main/dialogs');
+        if (status !== props.status) {
+            dispatch(changeStatus(props.status));
+        }
     };
 
     return (

@@ -2,7 +2,7 @@ import { auth } from '../../../firebase';
 import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Header from './../Header/Header';
+import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 
 import styles from './Layout.module.css';
@@ -12,9 +12,9 @@ function Layout() {
     const [token, setToken] = useState();
 
     useEffect(() => {
-        return auth.onAuthStateChanged((user) => {
+        return auth.onAuthStateChanged(user => {
             if (user) {
-                user.getIdToken(true).then((latestToken) => setToken(latestToken));
+                user.getIdToken(true).then(latestToken => setToken(latestToken));
             } else {
                 navigate('/error');
             }

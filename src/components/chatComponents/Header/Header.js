@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { signOutRequest } from './../../../redux/actions/actions';
+import { signOutRequest } from '../../../redux/actions/actions';
 
 import styles from './Header.module.css';
 
 function Header() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.authReducer.user);
+    const user = useSelector(state => state.authReducer.user);
 
     return (
         <div className={styles.wrapper}>

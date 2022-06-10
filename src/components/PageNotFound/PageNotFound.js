@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function PageNotFound() {
     let path;
-    if (useSelector((state) => state.authReducer.user)) {
+    if (useSelector(state => state.authReducer.user)) {
         path = '/main/dialogs';
     } else {
         path = '/sign-in';

@@ -14,7 +14,7 @@ function DialogListCell(props) {
 
     let rating;
     if (props.dialog.rating) {
-        if (props.dialog.rating != -1) {
+        if (props.dialog.rating !== -1) {
             rating = ['goldStar', 'goldStar', 'goldStar', 'goldStar', 'goldStar'];
             for (let i = props.dialog.rating; i < 5; i++) {
                 rating[i] = 'greyStar';

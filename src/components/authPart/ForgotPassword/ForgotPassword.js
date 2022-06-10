@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Fade } from 'reactstrap';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Fade } from 'reactstrap';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 import { passwordRecoverRequest } from '../../../redux/actions/actions';
 import { handleAuthError, emailSignInValSchema } from '../../../utils';
@@ -11,7 +11,7 @@ import styles from './ForgotPassword.module.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
-    const { isRecovered, error } = useSelector((state) => {
+    const { isRecovered, error } = useSelector(state => {
         return { isRecovered: state.authReducer.recovered, error: state.authReducer.error };
     });
     const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
@@ -24,7 +24,7 @@ function ForgotPassword() {
             <Formik
                 initialValues={{ email: '' }}
                 validationSchema={validationSchema}
-                onSubmit={(values) => dispatch(passwordRecoverRequest(values))}
+                onSubmit={values => dispatch(passwordRecoverRequest(values))}
             >
                 <Form className={styles.form}>
                     <div className={styles.input}>

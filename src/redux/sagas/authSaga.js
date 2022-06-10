@@ -1,5 +1,6 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { auth, provider } from '../../firebase';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -21,7 +22,6 @@ import {
     FETCH_PASSWORD_RECOVER_REQUEST,
     FETCH_PASSWORD_UPDATE_REQUEST
 } from '../actions/actions';
-import { auth, provider } from '../../firebase';
 
 function* workerSignInWithEmail(action) {
     try {
