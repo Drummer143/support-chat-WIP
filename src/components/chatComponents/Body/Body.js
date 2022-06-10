@@ -1,33 +1,23 @@
-import {
-    ref,
-    onValue,
-    update,
-    query,
-    orderByChild,
-    startAt,
-    endAt,
-} from 'firebase/database';
-import { useEffect, useState } from 'react';
-import { database } from '../../../firebase';
-import { debounce } from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
-
-import DialogListCell from '../DialogListCell/DialogListCell';
-import SearchBar from '../SearchBar/SearchBar';
-
-import styles from './Body.module.css';
+import { database } from '../../../firebase';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ref, onValue, query, orderByChild, startAt, endAt } from 'firebase/database';
+
+import SearchBar from '../SearchBar/SearchBar';
+import DialogListCell from '../DialogListCell/DialogListCell';
 import { getDataSuccess } from './../../../redux/actions/actions';
 
-function Body(props) {
-    const status = useSelector(state => state.chatReducer.status);
-    console.log(status);
+import styles from './Body.module.css';
+import { debounce } from 'lodash';
+
+function Body() {
+    const status = useSelector((state) => state.chatReducer.status);
     const [dialogs, setDialogs] = useState('');
     const [searchParams, setSearchParams] = useState('');
     const [countOfDialogs, setCountOfDialogs] = useState(10);
     const dispatch = useDispatch();
 
-    const headDB = ref(database);
     const queryParams = {
         path: status === 'saved' ? 'saved' : 'status',
         status: status === 'saved' ? true : status
@@ -36,7 +26,7 @@ function Body(props) {
         ref(database, 'dialogs/'),
         orderByChild(queryParams.path),
         startAt(queryParams.status),
-        endAt(queryParams.status),
+        endAt(queryParams.status)
     );
 
     const getDialogs = () => {
@@ -56,32 +46,33 @@ function Body(props) {
         });
     };
 
-    useEffect(() => {
-        getDialogs();
-        setCountOfDialogs(10);
-    }, [searchParams, status]);
+    useEffect(() => console.log("Full re-render"), []);
 
-    const setNewStatus = (dialogId, newStatus, path) => {
-        let updates = {};
-        updates[`/dialogs/${dialogId}/${path}/`] = newStatus;
-        update(headDB, updates);
-    };
+    useEffect(() => getDialogs(), [status]);
+
+    useEffect(() => setCountOfDialogs(10), [searchParams, status]);
+
+    const [searchParams2, setSearchParams2] = useState('');
+    const debSetSearchParams2 = useCallback(debounce(setSearchParams2, 500), []);
+    useEffect(() => debSetSearchParams2(searchParams), [searchParams]);
 
     const filterDialogs = () => {
         const inputFilter = (dialog) => {
             return (
-                dialog.userName.toLowerCase().includes(searchParams.toLowerCase()) ||
-                dialog.messages.find(message => message.content.toLowerCase().includes(searchParams.toLowerCase()))
+                dialog.userName.toLowerCase().includes(searchParams2.toLowerCase()) ||
+                dialog.messages.find((message) =>
+                    message.content.toLowerCase().includes(searchParams2.toLowerCase())
+                )
             );
-        }
+        };
 
-        return dialogs.filter(dialog => inputFilter(dialog));
-    }
- 
+        return dialogs.filter((dialog) => inputFilter(dialog));
+    };
+
     let results;
     if (dialogs) {
-        results = filterDialogs(dialogs, props.searchParams, props.statusKey);
-        results = results.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} setNewStatus={setNewStatus} />);
+        results = filterDialogs();
+        results = results.map((dialog) => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
     }
 
     return (
@@ -97,15 +88,21 @@ function Body(props) {
                         hasMore={countOfDialogs < results.length}
                         loader={
                             <div className={styles.loadMoreField}>
-                                <button onClick={() => setCountOfDialogs(countOfDialogs + 10)} className={styles.loadMore}>Click here to load more</button>
+                                <button
+                                    onClick={() => setCountOfDialogs(countOfDialogs + 10)}
+                                    className={styles.loadMore}
+                                >
+                                    Click here to load more
+                                </button>
                             </div>
                         }
                         loadMore={getDialogs}
                     >
                         {results.slice(0, countOfDialogs)}
                     </InfiniteScroll>
-                ) : <p className={styles.empty}>The list is empty.</p>
-                }
+                ) : (
+                    <p className={styles.empty}>The list is empty.</p>
+                )}
             </div>
         </div>
     );

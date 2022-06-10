@@ -1,10 +1,10 @@
 import { all } from 'redux-saga/effects';
 
 import watcherAuth from './authSaga';
-import watcherChatSaga from './chatSaga';
+/* import watcherChat from './chatSaga'; */
 
 function* rootSaga() {
-    yield all([watcherAuth()/* , watcherChatSaga() */]);
+    yield all([watcherAuth() /* , watcherChat() */]);
 }
 
 export default rootSaga;

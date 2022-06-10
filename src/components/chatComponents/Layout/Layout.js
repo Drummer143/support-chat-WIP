@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
 import { auth } from '../../../firebase';
+import { useState, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Header from './../Header/Header';
 import Navbar from '../Navbar/Navbar';

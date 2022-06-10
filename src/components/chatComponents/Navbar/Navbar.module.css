@@ -38,7 +38,9 @@
     text-decoration: none;
 }
 
-.Active, .Saved, .Completed {
+.Active,
+.Saved,
+.Completed {
     background-color: #000;
 }
 

@@ -5,11 +5,11 @@
 
     display: grid;
 
-    grid-template-areas: 
-    "back user rating snippets"
-    "chat chat chat snippets"
-    "input input input snippets";
-    grid-template-columns: 50px 5fr 3fr  3fr;
+    grid-template-areas:
+        'back user rating snippets'
+        'chat chat chat snippets'
+        'input input input snippets';
+    grid-template-columns: 50px 5fr 3fr 3fr;
     grid-template-rows: 50px 1fr 150px;
     grid-gap: 10px;
     color: #2f2e33;
@@ -79,10 +79,9 @@
     border-radius: 10px;
 }
 
-
 .rating {
     grid-area: rating;
-    
+
     padding: 10px;
 
     background-color: #eee;
@@ -106,13 +105,13 @@
     height: 30px;
     width: 30px;
 
-    color: #FFD700;
+    color: #ffd700;
     border-radius: 50%;
 }
 
 .chat {
     grid-area: chat;
-    
+
     height: 100%;
 
     padding: 20px;
@@ -122,15 +121,18 @@
     overflow-y: auto;
 }
 
-.chat::-webkit-scrollbar, .inputField::-webkit-scrollbar {
+.chat::-webkit-scrollbar,
+.inputField::-webkit-scrollbar {
     width: 5px;
 }
 
-.chat::-webkit-scrollbar-track, .inputField::-webkit-scrollbar-track {
+.chat::-webkit-scrollbar-track,
+.inputField::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
-.chat::-webkit-scrollbar-thumb, .inputField::-webkit-scrollbar-thumb {
+.chat::-webkit-scrollbar-thumb,
+.inputField::-webkit-scrollbar-thumb {
     background-color: #0006;
     border-radius: 20px;
 }
@@ -160,11 +162,11 @@
 .operator {
     margin-left: auto;
 
-    box-shadow: 0px 0px 0px 5px #3a519950/* , 0px 0px 10px 5px #3a519975 */;
+    box-shadow: 0px 0px 0px 5px #3a519950 /* , 0px 0px 10px 5px #3a519975 */;
 }
 
 .client {
-    box-shadow: 0px 0px 0px 5px #00a10050/* , 0px 0px 10px 5px #00a10075 */;
+    box-shadow: 0px 0px 0px 5px #00a10050 /* , 0px 0px 10px 5px #00a10075 */;
 }
 
 .input {

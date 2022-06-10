@@ -47,14 +47,10 @@ export const passwordUpdateSuccess = () => ({
     type: FETCH_PASSWORD_UPDATE_SUCCESS
 });
 
-
-
-
-
 /* export const FETCH_GET_DATA_REQUEST = 'FETCH_GET_DATA_REQUEST' */
-export const FETCH_GET_DATA_SUCCESS = 'FETCH_GET_DATA_SUCCESS'
+export const FETCH_GET_DATA_SUCCESS = 'FETCH_GET_DATA_SUCCESS';
 
-export const CHANGE_STATUS = 'CHANGE_STATUS'
+export const CHANGE_STATUS = 'CHANGE_STATUS';
 
 /* export const getDataRequest = (status) => ({
     type: FETCH_GET_DATA_REQUEST,
@@ -62,17 +58,17 @@ export const CHANGE_STATUS = 'CHANGE_STATUS'
 }) */
 
 export const getDataSuccess = (data, status) => {
-    return ({
+    return {
         type: FETCH_GET_DATA_SUCCESS,
         dialogs: data,
         status: status
-    })
-}
+    };
+};
 
 export const changeStatus = (newStatus) => {
     console.log(newStatus);
-    return ({
+    return {
         type: CHANGE_STATUS,
         status: newStatus
-    });
-}
+    };
+};

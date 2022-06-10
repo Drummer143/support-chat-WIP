@@ -49,7 +49,7 @@ function* workerGetData(action) {
     }
 }
 
-function* watcherChatSaga() {
+function* watcherChat() {
     yield takeLatest(FETCH_GET_DATA_REQUEST, workerGetData);
 }
 

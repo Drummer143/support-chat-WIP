@@ -1,7 +1,7 @@
 export const authDefaultState = {
     requesting: false,
     user: false,
-    error: '',
+    error: ''
 };
 
 export const chatDefaultState = {

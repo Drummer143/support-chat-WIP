@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import styles from './SearchBar.module.css';
 
 function SearchBar(props) {
@@ -5,7 +6,7 @@ function SearchBar(props) {
         <div>
             <input
                 type="text"
-                onChange={(event) => props.setValue(event.target.value)}
+                onChange={e => props.setValue(e.target.value)}
                 value={props.value}
                 placeholder="type here to search..."
                 className={styles.input}
