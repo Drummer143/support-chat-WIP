@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 14px;
 }
 
 :root {
@@ -10,4 +9,12 @@
     --dark-grey: #ededed;
     --blue: #00317a;
     --green: #009100;
+}
+
+button {
+    border: none;
+}
+
+p {
+    margin: 0;
 }

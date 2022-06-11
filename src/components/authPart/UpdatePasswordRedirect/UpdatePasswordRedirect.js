@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './UpdatePasswordRedirect.module.css';
+import './../commonStyles.css';
 
 function UpdatePasswordRedirect() {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ function UpdatePasswordRedirect() {
     }, []);
 
     return (
-        <div className={styles.wrapper}>
+        <div className="wrapper">
             <p>Your password has been successfully changed</p>
             <p>You will be redirected to authentication page soon</p>
         </div>

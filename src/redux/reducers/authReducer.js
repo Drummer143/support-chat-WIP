@@ -12,7 +12,8 @@ import {
     FETCH_PASSWORD_UPDATE_REQUEST,
     FETCH_PASSWORD_UPDATE_SUCCESS,
     FETCH_SIGN_OUT_REQUEST,
-    FETCH_SIGN_OUT_SUCCESS
+    FETCH_SIGN_OUT_SUCCESS,
+    RESET_ERROR
 } from '../actions/actions';
 
 const AuthReducer = (state = authDefaultState, action) => {
@@ -44,6 +45,8 @@ const AuthReducer = (state = authDefaultState, action) => {
             };
 
         case FETCH_SIGN_OUT_SUCCESS:
+        case RESET_ERROR:
+            return authDefaultState;
 
         default:
             return state;

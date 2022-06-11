@@ -1,12 +1,14 @@
 import * as Yup from 'yup';
 import { Fade } from 'reactstrap';
-import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
-import { passwordRecoverRequest } from '../../../redux/actions/actions';
+import { passwordRecoverRequest, resetError } from '../../../redux/actions/actions';
 import { handleAuthError, emailSignInValSchema } from '../../../utils';
 
+import './../commonStyles.css';
 import styles from './ForgotPassword.module.css';
 
 function ForgotPassword() {
@@ -15,52 +17,57 @@ function ForgotPassword() {
         return { isRecovered: state.authReducer.recovered, error: state.authReducer.error };
     });
     const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
+    
+    useEffect(() => {
+        if (error) {
+            dispatch(resetError());
+        }
+    }, []);
 
     return isRecovered ? (
         <Navigate to="/forgot-password-redirect" />
     ) : (
-        <div className={styles.wrapper}>
-            <h1 className={styles.heading}>Recover password</h1>
-            <Formik
-                initialValues={{ email: '' }}
-                validationSchema={validationSchema}
-                onSubmit={values => dispatch(passwordRecoverRequest(values))}
-            >
-                <Form className={styles.form}>
-                    <div className={styles.input}>
-                        <Field
-                            name="email"
-                            type="text"
-                            placeholder="email"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="email" />
-                        </div>
-                    </div>
+        <Formik
+            initialValues={{ email: '' }}
+            validationSchema={validationSchema}
+            onSubmit={values => dispatch(passwordRecoverRequest(values))}
+        >
+            <Form className="wrapper">
+                <h1>Recover password</h1>
 
-                    {/* error contains object if there is an error or empty string if there is no error 
+                <div className="inputWrapper">
+                    <Field
+                        name="email"
+                        type="text"
+                        placeholder="email"
+                        className="inputField"
+                    />
+                    <div className="error">
+                        <ErrorMessage name="email" />
+                    </div>
+                </div>
+
+                {/* error contains object if there is an error or empty string if there is no error 
                         but prop "in" in Fade attribute can accepts only boolean type 
                         so i added this condition */}
-                    <Fade in={error ? true : false} className={styles.authError}>
-                        {error && handleAuthError(error)}
-                    </Fade>
+                <Fade in={error ? true : false} className="authError">
+                    {error && handleAuthError(error)}
+                </Fade>
 
-                    <button type="submit" className={styles.button}>
-                        Send a link to recover password
-                    </button>
+                <button type="submit" className={`${styles.submit} submit`}>
+                    Send a link to recover password
+                </button>
 
-                    <div className={styles.links}>
-                        <a href="/sign-up" className={styles.link}>
-                            Create account
-                        </a>
-                        <a href="/" className={styles.link}>
-                            Login
-                        </a>
-                    </div>
-                </Form>
-            </Formik>
-        </div>
+                <div className={styles.footer}>
+                    <NavLink to="/sign-up" className={styles.footerLink}>
+                        Create account
+                    </NavLink>
+                    <NavLink to="/sign-in" className={styles.footerLink}>
+                        Login
+                    </NavLink>
+                </div>
+            </Form>
+        </Formik>
     );
 }
 

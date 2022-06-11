@@ -1,9 +1,11 @@
 import * as Yup from 'yup';
 import { Fade } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
-import { signUpEmailRequest } from '../../../redux/actions/actions';
+import { resetError, signUpEmailRequest } from '../../../redux/actions/actions';
 import {
     handleAuthError,
     emailSignUpValSchema,
@@ -11,6 +13,7 @@ import {
     confirmPasswordSchema
 } from '../../../utils';
 
+import './../commonStyles.css';
 import styles from './SignUpForm.module.css';
 
 function SignUpForm() {
@@ -22,71 +25,71 @@ function SignUpForm() {
         confirmPassword: confirmPasswordSchema
     });
 
+    useEffect(() => {
+        if (error) {
+            dispatch(resetError());
+        }
+    }, []);
+
     return (
-        <div className={styles.wrapper}>
-            <h1 className={styles.heading}>Create an account</h1>
-            <Formik
-                initialValues={{ email: '', password: '', confirmPassword: '' }}
-                validationSchema={validationSchema}
-                onSubmit={values => dispatch(signUpEmailRequest(values))}
-            >
-                <Form className={styles.form}>
-                    <div className={styles.input}>
-                        <Field
-                            name="email"
-                            type="text"
-                            placeholder="email"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="email" />
-                        </div>
-                    </div>
+        <Formik
+            initialValues={{ email: '', password: '', confirmPassword: '' }}
+            validationSchema={validationSchema}
+            onSubmit={values => dispatch(signUpEmailRequest(values))}
+        >
+            <Form className="wrapper">
+                <h1>Create an account</h1>
 
-                    <div className={styles.input}>
-                        <Field
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="password" />
-                        </div>
+                <div className="inputWrapper">
+                    <Field name="email" type="text" placeholder="email" className="inputField" />
+                    <div className="error">
+                        <ErrorMessage name="email" />
                     </div>
+                </div>
 
-                    <div className={styles.input}>
-                        <Field
-                            name="confirmPassword"
-                            type="password"
-                            placeholder="confirm password"
-                            className={styles.inputField}
-                        />
-                        <div className={styles.inputError}>
-                            <ErrorMessage name="confirmPassword" />
-                        </div>
+                <div className="inputWrapper">
+                    <Field
+                        name="password"
+                        type="password"
+                        placeholder="password"
+                        className="inputField"
+                    />
+                    <div className="error">
+                        <ErrorMessage name="password" />
                     </div>
+                </div>
 
-                    {/* error contains object if there is an error or empty string if there is no error 
+                <div className="inputWrapper">
+                    <Field
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="confirm password"
+                        className="inputField"
+                    />
+                    <div className="error">
+                        <ErrorMessage name="confirmPassword" />
+                    </div>
+                </div>
+
+                {/* error contains object if there is an error or empty string if there is no error 
                         but prop "in" in Fade attribute can accepts only boolean type 
                         so i added this condition */}
-                    <Fade in={error ? true : false} className={styles.authError}>
-                        {error && handleAuthError(error)}
-                    </Fade>
+                <Fade in={error ? true : false} className="authError">
+                    {error && handleAuthError(error)}
+                </Fade>
 
-                    <button type="submit" className={`${styles.button} ${styles.submitButton}`}>
-                        Submit
-                    </button>
+                <button type="submit" className={`${styles.submit} submit`}>
+                    Submit
+                </button>
 
-                    <p className={styles.authRedirect}>
-                        Already have an account? Login{' '}
-                        <a href="/" className={styles.link}>
-                            here
-                        </a>
-                    </p>
-                </Form>
-            </Formik>
-        </div>
+                <div className={styles.footer}>
+                    Already have an account? Login{' '}
+                    <NavLink to="/sign-in" className={styles.footerLink}>
+                        here
+                    </NavLink>
+                </div>
+            </Form>
+        </Formik>
     );
 }
 

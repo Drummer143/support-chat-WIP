@@ -1,7 +1,21 @@
 @media screen and (hover: hover) {
+    .forgotPassword:hover,
     .footerLink:hover {
         text-decoration: underline;
     }
+}
+
+.submit {
+    width: 60%;
+    height: 40px;
+
+    margin: 0 auto;
+
+    border-radius: 10px;
+}
+
+.footer {
+    margin-top: 20px;
 }
 
 .footerLink {
