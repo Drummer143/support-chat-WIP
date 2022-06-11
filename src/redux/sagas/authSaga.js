@@ -1,5 +1,6 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { auth, provider } from '../../firebase';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -21,7 +22,6 @@ import {
     FETCH_PASSWORD_RECOVER_REQUEST,
     FETCH_PASSWORD_UPDATE_REQUEST
 } from '../actions/actions';
-import { auth, provider } from '../../firebase';
 
 function* workerSignInWithEmail(action) {
     try {
@@ -59,16 +59,19 @@ function* workerRecoverPassword(action) {
     try {
         yield call(sendPasswordResetEmail, auth, action.email);
         yield put(passwordRecoverSuccess());
-        yield toast.success('Check your email and follow the link we sent to restore your account password', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            progress: undefined,
-            theme: 'colored'
-        });
+        yield toast.success(
+            'Check your email and follow the link we sent to restore your account password',
+            {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: 'colored'
+            }
+        );
     } catch (error) {
         yield put(authFailure(error));
     }
@@ -79,7 +82,7 @@ function* workerUpdatePassword(action) {
         yield call(confirmPasswordReset, auth, action.oobCode, action.password);
         yield put(passwordUpdateSuccess());
         yield toast.success('Your password has been successfully changed', {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 5000,
             hideProgressBar: true,
             closeOnClick: true,

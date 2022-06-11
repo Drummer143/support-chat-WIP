@@ -13,6 +13,8 @@ export const FETCH_PASSWORD_RECOVER_SUCCESS = 'FETCH_PASSWORD_RECOVER_SUCCESS';
 export const FETCH_PASSWORD_UPDATE_REQUEST = 'FETCH_PASSWORD_UPDATE_REQUEST';
 export const FETCH_PASSWORD_UPDATE_SUCCESS = 'FETCH_PASSWORD_UPDATE_SUCCESS';
 
+export const RESET_ERROR = 'RESET_ERROR';
+
 export const signInEmailRequest = ({ email, password }) => ({
     type: FETCH_LOGIN_EMAIL_REQUEST,
     email,
@@ -25,7 +27,7 @@ export const signUpEmailRequest = ({ email, password }) => ({
     password
 });
 export const authSuccess = () => ({ type: FETCH_AUTH_SUCCESS });
-export const authFailure = (error) => ({ type: FETCH_AUTH_FAILURE, error });
+export const authFailure = error => ({ type: FETCH_AUTH_FAILURE, error });
 
 export const signOutRequest = () => ({ type: FETCH_SIGN_OUT_REQUEST });
 export const signOutSuccess = () => ({ type: FETCH_SIGN_OUT_SUCCESS });
@@ -46,3 +48,18 @@ export const passwordUpdateRequest = ({ password, oobCode }) => ({
 export const passwordUpdateSuccess = () => ({
     type: FETCH_PASSWORD_UPDATE_SUCCESS
 });
+
+export const resetError = () => {
+    return {
+        type: RESET_ERROR
+    };
+};
+
+export const CHANGE_STATUS = 'CHANGE_STATUS';
+
+export const changeStatus = status => {
+    return {
+        type: CHANGE_STATUS,
+        status: status
+    };
+};

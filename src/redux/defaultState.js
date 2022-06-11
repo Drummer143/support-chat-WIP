@@ -1,7 +1,9 @@
-const defaultState = {
+export const authDefaultState = {
     requesting: false,
     user: false,
     error: ''
 };
 
-export default defaultState;
+export const chatDefaultState = {
+    status: 'active'
+};

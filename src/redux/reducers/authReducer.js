@@ -1,4 +1,6 @@
-import defaultState from '../defaultState';
+import { auth } from '../../firebase';
+
+import { authDefaultState } from '../defaultState';
 import {
     FETCH_SIGN_UP_REQUEST,
     FETCH_LOGIN_EMAIL_REQUEST,
@@ -10,11 +12,11 @@ import {
     FETCH_PASSWORD_UPDATE_REQUEST,
     FETCH_PASSWORD_UPDATE_SUCCESS,
     FETCH_SIGN_OUT_REQUEST,
-    FETCH_SIGN_OUT_SUCCESS
+    FETCH_SIGN_OUT_SUCCESS,
+    RESET_ERROR
 } from '../actions/actions';
-import { auth } from '../../firebase';
 
-const AuthReducer = (state = defaultState, action) => {
+const AuthReducer = (state = authDefaultState, action) => {
     switch (action.type) {
         case FETCH_SIGN_UP_REQUEST:
         case FETCH_LOGIN_GOOGLE_REQUEST:
@@ -43,6 +45,8 @@ const AuthReducer = (state = defaultState, action) => {
             };
 
         case FETCH_SIGN_OUT_SUCCESS:
+        case RESET_ERROR:
+            return authDefaultState;
 
         default:
             return state;

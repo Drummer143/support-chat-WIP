@@ -1,0 +1,152 @@
+@media screen and (hover: hover) {
+    .inputField:hover {
+        outline: 2px solid #2f2e33;
+    }
+
+    .submit:hover {
+        background-color: #008d0f;
+    }
+
+    .googleAuth:hover {
+        background-color: #f2f2f2;
+    }
+
+    .forgotPassword:hover,
+    .footerLink:hover {
+        text-decoration: underline;
+    }
+}
+.wrapper {
+    width: 35vw;
+    min-width: 500px;
+    max-width: 800px;
+    display: grid;
+    grid-gap: 10px;
+    margin: 60px auto 0 auto;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #3a5199;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.3);
+}
+.wrapper h1 {
+    font-size: 2.5rem;
+}
+
+.inputWrapper {
+    width: 90%;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.inputField {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.error {
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+    color: #f30;
+    font-size: 0.9rem;
+}
+
+.forgotPassword {
+    margin-right: 10px;
+    float: right;
+    text-align: right;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #fff !important;
+}
+
+.authError {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    color: #f30;
+}
+
+.buttons button {
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+}
+.buttons div {
+    margin: 10px 0;
+}
+
+.submit {
+    color: #fff;
+    background-color: #00910f;
+}
+
+.submit:active {
+    background-color: #00890f;
+}
+
+.googleAuth {
+    background-color: #fff;
+}
+.googleAuth path {
+    color: #f30;
+}
+
+.googleAuth:active {
+    background-color: #e6e6e6;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.footerLink {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.forgotPassword:active,
+.footerLink:active {
+    outline: solid 1px #fff;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        width: initial;
+        min-width: 0px;
+        margin: 10px;
+    }
+    .wrapper h1 {
+        font-size: 2rem;
+    }
+
+    .inputWrapper {
+        width: 90%;
+    }
+
+    .inputField {
+        font-size: 0.95em;
+    }
+}
+@media screen and (max-width: 400px) {
+    .wrapper {
+        width: initial;
+        min-width: 0px;
+        margin: 2px 5px;
+        padding: 20px;
+    }
+
+    .inputWrapper {
+        width: 100%;
+    }
+}
+
+/*# sourceMappingURL=SignInForm.module.css.map */

@@ -1,0 +1,73 @@
+.wrapper {
+    min-height: 530px;
+    height: 100%;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    border-radius: 10px;
+}
+
+.cell {
+    height: 150px;
+    padding: 10px;
+
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    background-color: #3a5199;
+    color: #2f2e33;
+    border-radius: 10px;
+    box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3);
+    cursor: pointer;
+    user-select: none;
+}
+
+.cell:hover {
+    color: #2f2e33;
+    text-decoration: underline;
+    box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3);
+}
+
+.cell:active {
+    box-shadow: -10px 0px 0px 0px rgba(34, 60, 80, 0.7) inset;
+    text-decoration: none;
+}
+
+.Active,
+.Saved,
+.Completed {
+    background-color: #000;
+}
+
+.heading {
+    width: 80%;
+    height: 25px;
+
+    margin: 0 10%;
+
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: -5px 0px 5px 0px rgba(34, 60, 80, 0.3) inset;
+}
+
+.cell:hover .heading {
+    box-shadow: -5px 0px 0px 0px rgba(34, 60, 80, 0.3) inset;
+}
+
+.icon {
+    width: 40%;
+    height: 40%;
+
+    margin: 20px;
+
+    color: #2f2e33;
+}
+
+.cell:hover .icon {
+    color: #000;
+}
