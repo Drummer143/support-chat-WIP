@@ -17,7 +17,7 @@ function ForgotPassword() {
         return { isRecovered: state.authReducer.recovered, error: state.authReducer.error };
     });
     const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
-    
+
     useEffect(() => {
         if (error) {
             dispatch(resetError());
@@ -36,12 +36,7 @@ function ForgotPassword() {
                 <h1>Recover password</h1>
 
                 <div className="inputWrapper">
-                    <Field
-                        name="email"
-                        type="text"
-                        placeholder="email"
-                        className="inputField"
-                    />
+                    <Field name="email" type="text" placeholder="email" className="inputField" />
                     <div className="error">
                         <ErrorMessage name="email" />
                     </div>

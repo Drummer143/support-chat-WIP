@@ -22,7 +22,7 @@ function UpdatePassword() {
         password: passwordSignUpValSchema,
         confirmPassword: confirmPasswordSchema
     });
-    
+
     useEffect(() => {
         if (error) {
             dispatch(resetError());

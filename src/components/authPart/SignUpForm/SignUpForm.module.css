@@ -1,28 +1,28 @@
 @media screen and (hover: hover) {
-  .forgotPassword:hover,
-.footerLink:hover {
-    text-decoration: underline;
-  }
+    .forgotPassword:hover,
+    .footerLink:hover {
+        text-decoration: underline;
+    }
 }
 .submit {
-  width: 60%;
-  height: 40px;
-  margin: 0 auto;
-  border-radius: 10px;
+    width: 60%;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 10px;
 }
 
 .footer {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .footerLink {
-  color: #fff !important;
-  text-decoration: none;
+    color: #fff !important;
+    text-decoration: none;
 }
 
 .footerLink:active {
-  outline: solid 1px #fff;
-  text-decoration: none;
+    outline: solid 1px #fff;
+    text-decoration: none;
 }
 
 /*# sourceMappingURL=SignUpForm.module.css.map */
