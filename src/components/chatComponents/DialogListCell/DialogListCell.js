@@ -36,6 +36,10 @@ function DialogListCell(props) {
         update(headDB, updates);
     };
 
+    const enterDialog = () => {
+        alert('WIP rn');
+    };
+
     const buttons = {
         complete: (
             <button
@@ -61,6 +65,7 @@ function DialogListCell(props) {
                 Delete from saved
             </button>
         ),
+        enterDialog: <button className={`${styles.button} ${styles.enter}`} onClick={() => enterDialog()}>Enter dialog</button>,
         rating: <div className={`${styles.button} ${styles.rating}`}>{rating}</div>,
         placeholder: <div className={styles.placeholder}></div>
     };
@@ -85,6 +90,13 @@ function DialogListCell(props) {
             currButtonSet = {
                 first: props.dialog.rating ? buttons.rating : buttons.placeholder,
                 second: buttons.deleteFromSaved
+            };
+            break;
+        }
+        case 'queue': {
+            currButtonSet = {
+                first: buttons.placeholder,
+                second: buttons.enterDialog
             };
             break;
         }

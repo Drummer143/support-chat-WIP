@@ -7,7 +7,7 @@ import { ref, onValue, query, orderByChild, startAt, endAt, off } from 'firebase
 import SearchBar from '../SearchBar/SearchBar';
 import DialogListCell from '../DialogListCell/DialogListCell';
 import { database } from '../../../firebase';
-import { getDataSuccess } from './../../../redux/actions/actions';
+import { getDataSuccess, changeStatus } from './../../../redux/actions/actions';
 
 import styles from './DialogsList.module.css';
 
@@ -90,8 +90,20 @@ function DialogsList() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.searchBar}>
-                <SearchBar value={enteredSearchParams} setValue={setEnteredSearchParams} />
+            <div className={styles.panel}>
+                {status === 'queue' ? (
+                    <div className={styles.queue}>
+                        Dialogs in queue: {dialogs.length}
+                    </div>
+                ) : (
+                    <button onClick={() => dispatch(changeStatus('queue'))} className={styles.queueButton}>
+                        Load queue
+                    </button>
+                )}
+
+                <div>
+                    <SearchBar value={enteredSearchParams} setValue={setEnteredSearchParams} />
+                </div>
             </div>
 
             <div className={styles.list}>
@@ -117,7 +129,7 @@ function DialogsList() {
                     <p className={styles.empty}>The list is empty.</p>
                 )}
             </div>
-        </div>
+        </div >
     );
 }
 

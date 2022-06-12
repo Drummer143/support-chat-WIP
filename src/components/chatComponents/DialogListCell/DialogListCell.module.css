@@ -114,6 +114,18 @@
     background-color: #00890f;
 }
 
+.enter {
+    background-color: #8f9100;
+
+}
+.enter:hover {
+    background-color: #8f8100;
+}
+
+.enter:active {
+    background-color: #8f7100;
+}
+
 .rating {
     padding: 5px 10px;
     background-color: #fff;
