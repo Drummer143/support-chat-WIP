@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { signOutRequest } from '../../../redux/actions/actions';
 

@@ -1,17 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
+import Chat from '../chatComponents/Chat/Chat';
+import Layout from '../chatComponents/Layout/Layout';
 import SignInForm from '../authPart/SignInForm/SignInForm';
 import SignUpForm from '../authPart/SignUpForm/SignUpForm';
-import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
-import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
-import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
-import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
-import PageNotFound from '../PageNotFound/PageNotFound';
+import DialogsList from '../chatComponents/DialogsList/DialogsList';
 import ReAuthError from '../chatComponents/ReAuthError/ReAuthError';
-import Layout from '../chatComponents/Layout/Layout';
-import Body from '../chatComponents/Body/Body';
-import Chat from '../chatComponents/Chat/Chat';
+import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
+import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
+import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
+import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
 
 function RoutingTree() {
     const user = useSelector(state => state.authReducer.user);
@@ -19,12 +18,12 @@ function RoutingTree() {
     return user ? (
         <Routes>
             <Route path="/main/" element={<Layout />}>
-                <Route path="dialogs" element={<Body />} />
+                <Route path="dialogs" element={<DialogsList />} />
                 <Route path="dialog/:id" element={<Chat />} />
             </Route>
 
             <Route path="/error" element={<ReAuthError />} />
-            <Route path="/*" element={<PageNotFound />} />
+            <Route path="/*" element={<Navigate to="/main/dialogs" replace />} />
         </Routes>
     ) : (
         <Routes>
@@ -34,7 +33,7 @@ function RoutingTree() {
             <Route path="/forgot-password-redirect" element={<ForgotPasswordRedirect />} />
             <Route path="/update-password" element={<UpdatePassword />} />
             <Route path="/update-password-redirect" element={<UpdatePasswordRedirect />} />
-            <Route path="/*" element={<PageNotFound />} />
+            <Route path="/*" element={<Navigate to="/sign-in" replace />} />
         </Routes>
     );
 }

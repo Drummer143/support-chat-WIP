@@ -49,17 +49,21 @@ export const passwordUpdateSuccess = () => ({
     type: FETCH_PASSWORD_UPDATE_SUCCESS
 });
 
-export const resetError = () => {
-    return {
-        type: RESET_ERROR
-    };
-};
+export const resetError = () => ({
+    type: RESET_ERROR
+});
 
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 
-export const changeStatus = status => {
-    return {
-        type: CHANGE_STATUS,
-        status: status
-    };
-};
+export const FETCH_GET_DATA = 'FETCH_GET_DATA';
+
+export const changeStatus = status => ({
+    type: CHANGE_STATUS,
+    status
+});
+
+export const getDataSuccess = (status, dialogs) => ({
+    type: FETCH_GET_DATA,
+    status,
+    dialogs
+});

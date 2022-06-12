@@ -1,4 +1,5 @@
 import { debounce } from 'lodash';
+
 import styles from './SearchBar.module.css';
 
 function SearchBar(props) {

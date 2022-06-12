@@ -3,8 +3,9 @@ import { ref } from 'firebase/database';
 import { update } from 'firebase/database';
 import { faStar } from '@fortawesome/fontawesome-free-solid';
 import { NavLink } from 'react-router-dom';
-import { database } from '../../../firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { database } from '../../../firebase';
 
 import styles from './DialogListCell.module.css';
 

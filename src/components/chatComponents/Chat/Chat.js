@@ -26,6 +26,11 @@ function Chat() {
     const navigate = useNavigate();
     const addSnippet = snippet => setInput(input + snippet);
 
+    if(!dialog) {
+        alert('Something wrong happened. Try to open chat again');
+        navigate('/main/dialogs');
+    }
+
     const messages = dialog.messages.map((message, i) => (
         <div key={i} className={`${styles.message} ${styles[message.writtenBy]}`}>
             <p className={styles.text}>{message.content}</p>

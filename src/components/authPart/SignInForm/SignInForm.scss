@@ -3,9 +3,12 @@
         background-color: #f2f2f2;
     }
 
-    .forgotPassword:hover,
-    .footerLink:hover {
+    .forgotPassword:hover {
         text-decoration: underline;
+    }
+
+    .footerLink:hover {
+        text-decoration: none;
     }
 }
 
@@ -17,6 +20,11 @@
     text-decoration: none;
     font-size: 0.9rem;
     color: #fff !important;
+}
+
+.forgotPassword:active {
+    outline: solid 1px #fff;
+    text-decoration: none;
 }
 
 .buttons {
@@ -50,11 +58,8 @@
 
 .footerLink {
     color: #fff !important;
-    text-decoration: none;
 }
 
-.forgotPassword:active,
 .footerLink:active {
     outline: solid 1px #fff;
-    text-decoration: none;
 }

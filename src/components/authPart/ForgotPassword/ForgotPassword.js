@@ -50,7 +50,7 @@ function ForgotPassword() {
                 </Fade>
 
                 <button type="submit" className={`${styles.submit} submit`}>
-                    Send a link to recover password
+                    Submit
                 </button>
 
                 <div className={styles.footer}>

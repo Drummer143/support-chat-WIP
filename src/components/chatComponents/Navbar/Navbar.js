@@ -1,6 +1,6 @@
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
-import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDispatch, useSelector } from 'react-redux';
 import { faFloppyDisk, faHourglass } from '@fortawesome/free-regular-svg-icons';
 
 import { changeStatus } from '../../../redux/actions/actions';

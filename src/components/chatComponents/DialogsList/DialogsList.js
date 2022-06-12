@@ -1,14 +1,15 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import { debounce } from 'lodash';
-import { database } from '../../../firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { ref, onValue, query, orderByChild, startAt, endAt, off } from 'firebase/database';
 
 import SearchBar from '../SearchBar/SearchBar';
 import DialogListCell from '../DialogListCell/DialogListCell';
+import { database } from '../../../firebase';
+import { getDataSuccess } from './../../../redux/actions/actions';
 
-import styles from './Body.module.css';
+import styles from './DialogsList.module.css';
 
 const createPath = status => {
     const queryParams = {
@@ -26,8 +27,9 @@ const createPath = status => {
     return dbRef;
 };
 
-function Body() {
+function DialogsList() {
     const status = useSelector(state => state.chatReducer.status);
+    const dispatch = useDispatch();
     const [dialogs, setDialogs] = useState('');
     const [enteredSearchParams, setEnteredSearchParams] = useState('');
     const [activeSearchParams, setActiveSearchParams] = useState('');
@@ -48,6 +50,7 @@ function Body() {
                 }
             });
             setDialogs(array);
+            dispatch(getDataSuccess(status, array));
         });
     };
 
@@ -118,4 +121,4 @@ function Body() {
     );
 }
 
-export default Body;
+export default DialogsList;
