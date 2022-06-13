@@ -11,22 +11,6 @@ import { getDataSuccess, changeStatus } from './../../../redux/actions/actions';
 
 import styles from './DialogsList.module.css';
 
-const createPath = status => {
-    const queryParams = {
-        path: status === 'saved' ? 'saved' : 'status',
-        status: status === 'saved' ? true : status
-    };
-
-    const dbRef = query(
-        ref(database, 'dialogs/'),
-        orderByChild(queryParams.path),
-        startAt(queryParams.status),
-        endAt(queryParams.status)
-    );
-
-    return dbRef;
-};
-
 function DialogsList() {
     const status = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
@@ -35,9 +19,9 @@ function DialogsList() {
     const [activeSearchParams, setActiveSearchParams] = useState('');
     const [countOfDialogs, setCountOfDialogs] = useState(10);
 
-    const dbRef = createPath(status);
+    const dbRef = ref(database, 'dialogs/');
 
-    const getDialogs = dbRef => {
+    const getDialogs = () => {
         onValue(dbRef, snapshot => {
             let array;
             snapshot.forEach(child => {
@@ -54,17 +38,6 @@ function DialogsList() {
         });
     };
 
-    useEffect(() => {
-        getDialogs(dbRef);
-    }, [status]);
-
-    useEffect(() => setCountOfDialogs(10), [activeSearchParams, status]);
-
-    useEffect(
-        debounce(() => setActiveSearchParams(enteredSearchParams), 500),
-        [enteredSearchParams]
-    );
-
     const filterDialogs = () => {
         const inputFilter = dialog => {
             return (
@@ -75,18 +48,33 @@ function DialogsList() {
             );
         };
 
-        if (activeSearchParams) {
-            return dialogs
-                .filter(dialog => inputFilter(dialog))
-                .map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
-        } else {
-            return dialogs.map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
-        }
+        const statusFilter = dialog => {
+            if(status === 'saved') {
+                return dialog.saved;
+            } else {
+                return dialog.status === status;
+            }
+        };
+        
+        return dialogs
+            .filter(dialog => inputFilter(dialog) && statusFilter(dialog))
+            .map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />);
     };
 
     if (dialogs) {
         var results = filterDialogs();
     }
+
+    useEffect(() => {
+        getDialogs(dbRef);
+    }, [status]);
+
+    useEffect(() => setCountOfDialogs(10), [activeSearchParams, status]);
+
+    useEffect(
+        debounce(() => setActiveSearchParams(enteredSearchParams), 500),
+        [enteredSearchParams]
+    );
 
     return (
         <div className={styles.wrapper}>

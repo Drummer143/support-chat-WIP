@@ -62,12 +62,6 @@ function Chat() {
         }
     }
 
-    /* let isInputActive = true;
-    if(dialog.status === 'completed') {
-        isInputActive = false;
-        setInput("Dialog finished. You can't write here");
-    } */
-
     return (
         <div className={styles.wrapper}>
             <button

@@ -65,7 +65,7 @@ function DialogListCell(props) {
                 Delete from saved
             </button>
         ),
-        enterDialog: <button className={`${styles.button} ${styles.enter}`} onClick={() => enterDialog()}>Enter dialog</button>,
+        enterDialog: <button className={`${styles.button} ${styles.enter}`} onClick={() => enterDialog()}>Accept dialog</button>,
         rating: <div className={`${styles.button} ${styles.rating}`}>{rating}</div>,
         placeholder: <div className={styles.placeholder}></div>
     };
