@@ -9,6 +9,7 @@ import { changeStatus } from './../../../redux/actions/actions';
 
 import styles from './DialogsList.module.css';
 import useGetData from './useGetData';
+import useLoadDialogs from './useLoadDialogs';
 
 
 function DialogsList() {

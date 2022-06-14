@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 const useGetData = (searchParams) => {
     const status = useSelector(state => state.chatReducer.status);
-    const dialogs = useLoadDialogs();
+    useLoadDialogs();
+    const dialogs = useSelector(state=> state.chatReducer.dialogs);
 
     const inputFilter = dialog => {
         return (

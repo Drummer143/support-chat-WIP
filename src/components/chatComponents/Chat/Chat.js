@@ -20,16 +20,11 @@ function Chat() {
     /* full of placeholders rn */
     const { id } = useParams();
     const dialog = useSelector(state =>
-        state.chatReducer.dialogs.find(dialog => dialog.dialogId === id)
+        state.chatReducer.dialogs.find(dialog => dialog.dialogId == id)
     );
     const [input, setInput] = useState('');
     const navigate = useNavigate();
     const addSnippet = snippet => setInput(input + snippet);
-
-    if(!dialog) {
-        alert('Something wrong happened. Try to open chat again');
-        navigate('/main/dialogs');
-    }
 
     const messages = dialog.messages.map((message, i) => (
         <div key={i} className={`${styles.message} ${styles[message.writtenBy]}`}>
