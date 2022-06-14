@@ -62,7 +62,7 @@ export const changeStatus = status => ({
     status
 });
 
-export const getDataSuccess = (status, dialogs) => ({
+export const getDataSuccess = (dialogs, status) => ({
     type: FETCH_GET_DATA,
     status,
     dialogs
