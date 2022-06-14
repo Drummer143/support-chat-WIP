@@ -1,10 +1,10 @@
 import useLoadDialogs from './useLoadDialogs';
 import { useSelector } from 'react-redux';
 
-const useGetData = (searchParams) => {
+const useGetData = searchParams => {
     const status = useSelector(state => state.chatReducer.status);
     useLoadDialogs();
-    const dialogs = useSelector(state=> state.chatReducer.dialogs);
+    const dialogs = useSelector(state => state.chatReducer.dialogs);
 
     const inputFilter = dialog => {
         return (
@@ -24,8 +24,7 @@ const useGetData = (searchParams) => {
     };
 
     if (dialogs) {
-        return dialogs
-            .filter(dialog => inputFilter(dialog) && statusFilter(dialog))
+        return dialogs.filter(dialog => inputFilter(dialog) && statusFilter(dialog));
     } else {
         return null;
     }

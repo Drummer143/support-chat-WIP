@@ -4,13 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import SearchBar from '../SearchBar/SearchBar';
+import useGetData from './useGetData';
 import DialogListCell from '../DialogListCell/DialogListCell';
 import { changeStatus } from './../../../redux/actions/actions';
 
 import styles from './DialogsList.module.css';
-import useGetData from './useGetData';
-import useLoadDialogs from './useLoadDialogs';
-
 
 function DialogsList() {
     const status = useSelector(state => state.chatReducer.status);
@@ -31,11 +29,12 @@ function DialogsList() {
         <div className={styles.wrapper}>
             <div className={styles.panel}>
                 {status === 'queue' ? (
-                    <div className={styles.queue}>
-                        Dialogs in queue: {dialogs.length}
-                    </div>
+                    <div className={styles.queue}>Dialogs in queue: {dialogs.length}</div>
                 ) : (
-                    <button onClick={() => dispatch(changeStatus('queue'))} className={styles.queueButton}>
+                    <button
+                        onClick={() => dispatch(changeStatus('queue'))}
+                        className={styles.queueButton}
+                    >
                         Load queue
                     </button>
                 )}
@@ -61,13 +60,15 @@ function DialogsList() {
                             </div>
                         }
                     >
-                        {dialogs.slice(0, countOfDialogs).map(dialog => <DialogListCell key={dialog.dialogId} dialog={dialog} />)}
+                        {dialogs.slice(0, countOfDialogs).map(dialog => (
+                            <DialogListCell key={dialog.dialogId} dialog={dialog} />
+                        ))}
                     </InfiniteScroll>
                 ) : (
                     <p className={styles.empty}>The list is empty.</p>
                 )}
             </div>
-        </div >
+        </div>
     );
 }
 
