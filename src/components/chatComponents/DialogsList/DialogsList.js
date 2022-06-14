@@ -45,7 +45,7 @@ function DialogsList() {
             </div>
 
             <div className={styles.list}>
-                {dialogs ? (
+                {dialogs.length ? (
                     <InfiniteScroll
                         pageStart={0}
                         hasMore={countOfDialogs < dialogs.length}

@@ -25,8 +25,6 @@ const useGetData = searchParams => {
 
     if (dialogs) {
         return dialogs.filter(dialog => inputFilter(dialog) && statusFilter(dialog));
-    } else {
-        return null;
     }
 };
 
