@@ -14,9 +14,10 @@
     align-items: center;
 }
 
-.queue, .queueButton {
+.queue,
+.queueButton {
     padding: 10px;
-    
+
     background-color: #fff;
     border-radius: 10px;
     box-shadow: -5px -5px 5px 0px rgba(34, 60, 80, 0.3) inset;
