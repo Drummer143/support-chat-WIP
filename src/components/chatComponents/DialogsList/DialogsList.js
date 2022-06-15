@@ -39,9 +39,7 @@ function DialogsList() {
                     </button>
                 )}
 
-                <div>
-                    <SearchBar value={enteredSearchParams} setValue={setEnteredSearchParams} />
-                </div>
+                <SearchBar value={enteredSearchParams} setValue={setEnteredSearchParams} />
             </div>
 
             <div className={styles.list}>

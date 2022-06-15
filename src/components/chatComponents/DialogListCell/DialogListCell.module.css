@@ -47,11 +47,13 @@
 
 .text {
     margin: 0;
+    font-size: 1.15em;
 }
 
 .message {
     margin: 0;
     padding: 0 10px 10px 10px;
+    font-size: 1.15em;
 }
 
 .buttons {

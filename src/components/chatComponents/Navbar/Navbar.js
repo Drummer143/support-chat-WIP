@@ -11,6 +11,11 @@ const Cell = props => {
     const status = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
 
+    let style = styles.cell;
+    if (status === props.status) {
+        style = `${style} ${styles.active}`;
+    }
+
     const handleClick = () => {
         if (status !== props.status) {
             dispatch(changeStatus(props.status));
@@ -18,9 +23,9 @@ const Cell = props => {
     };
 
     return (
-        <div className={styles.cell} onClick={() => handleClick(props.status)}>
+        <div className={style} onClick={() => handleClick(props.status)}>
             <p className={styles.heading}>{props.text}</p>
-            <FontAwesomeIcon icon={props.icon} className={styles.icon} />
+            <FontAwesomeIcon icon={props.icon} />
         </div>
     );
 };

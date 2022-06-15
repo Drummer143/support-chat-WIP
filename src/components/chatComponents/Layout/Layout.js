@@ -12,7 +12,9 @@ function Layout() {
     const navigate = useNavigate();
     const [token, setToken] = useState();
     const url = useLocation();
+
     useLoadDialogs();
+
     useEffect(() => {
         return auth.onAuthStateChanged(user => {
             if (user) {
@@ -21,9 +23,9 @@ function Layout() {
                 navigate('/error');
             }
 
-            if (url.pathname === '/main' || url.pathname === '/main/') {
+            /* if (url.pathname === '/main' || url.pathname === '/main/') {
                 navigate('/main/dialogs');
-            }
+            } */
         });
     }, []);
 
