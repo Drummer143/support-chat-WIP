@@ -5,15 +5,15 @@ import useButtons from './useButtons';
 
 import styles from './DialogListCell.module.css';
 
-function DialogListCell(props) {
-    const lastMessage = props.dialog.messages[props.dialog.messages.length - 1];
-    const currButtonSet = useButtons(props.dialog);
+function DialogListCell({dialog}) {
+    const lastMessage = dialog.messages[dialog.messages.length - 1];
+    const currButtonSet = useButtons(dialog);
 
     return (
         <div className={styles.wrapper}>
-            <NavLink to={'/main/dialog/' + props.dialog.dialogId} className={styles.dialogInfo}>
+            <NavLink to={'/main/dialog/' + dialog.dialogId} className={styles.dialogInfo}>
                 <div className={styles.head}>
-                    <p className={styles.text}>{props.dialog.userName}</p>
+                    <p className={styles.text}>{dialog.userName}</p>
                     <p className={styles.text}>
                         Last message was sent{' '}
                         <Moment fromNow className={styles.time}>

@@ -7,25 +7,25 @@ import { changeStatus } from '../../../redux/actions/actions';
 
 import styles from './Navbar.module.css';
 
-const Cell = props => {
-    const status = useSelector(state => state.chatReducer.status);
+const Cell = ({status, icon, text}) => {
+    const currStatus = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
 
     let style = styles.cell;
-    if (status === props.status) {
+    if (currStatus === status) {
         style = `${style} ${styles.active}`;
     }
 
     const handleClick = () => {
-        if (status !== props.status) {
-            dispatch(changeStatus(props.status));
+        if (currStatus !== status) {
+            dispatch(changeStatus(status));
         }
     };
 
     return (
-        <div className={style} onClick={() => handleClick(props.status)}>
-            <p className={styles.heading}>{props.text}</p>
-            <FontAwesomeIcon icon={props.icon} />
+        <div className={style} onClick={() => handleClick(status)}>
+            <p className={styles.heading}>{text}</p>
+            <FontAwesomeIcon icon={icon} />
         </div>
     );
 };
