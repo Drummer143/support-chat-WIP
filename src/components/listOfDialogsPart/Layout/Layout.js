@@ -2,8 +2,8 @@ import { auth } from '../../../firebase';
 import { useState, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
+import Header from './../../Header/Header';
+import Navbar from './../../Navbar/Navbar';
 import useLoadDialogs from './useLoadDialogs';
 
 import styles from './Layout.module.css';
