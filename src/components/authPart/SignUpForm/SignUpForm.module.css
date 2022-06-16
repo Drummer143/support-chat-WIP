@@ -1,7 +1,6 @@
 @media screen and (hover: hover) {
-    .forgotPassword:hover,
     .footerLink:hover {
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
 .submit {
@@ -17,12 +16,10 @@
 
 .footerLink {
     color: #fff !important;
-    text-decoration: none;
 }
 
 .footerLink:active {
     outline: solid 1px #fff;
-    text-decoration: none;
 }
 
 /*# sourceMappingURL=SignUpForm.module.css.map */

@@ -1,27 +1,51 @@
 .wrapper {
-    max-height: 600px;
     padding: 10px;
 
-    border-radius: 10px;
+    display: grid;
+
+    grid-template-areas:
+        'panel'
+        'list';
+    grid-template-rows: 50px 1fr;
 }
 
-.searchBar {
-    padding: 10px;
+.panel {
+    grid-area: panel;
+
+    padding-bottom: 10px;
 
     display: flex;
+    justify-content: space-between;
 
-    flex-direction: row-reverse;
+    border-bottom: 1px solid #fff;
+}
+
+.queue,
+.queueButton {
+    padding: 10px;
+
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: -5px -5px 5px 0px rgba(34, 60, 80, 0.3) inset;
+}
+
+.queueButton:hover {
+    box-shadow: -5px -5px 0px 0px rgba(34, 60, 80, 0.3) inset;
+}
+
+.queueButton:active {
+    box-shadow: -2px -2px 0px 5px rgba(34, 60, 80, 0.3) inset;
 }
 
 .list {
-    max-height: 745px;
+    grid-area: list;
+
+    max-height: calc(100vh - 80px - 60px - 20px - 10px);
 
     padding-top: 10px;
 
-    border-top: 1px solid #fff;
     overflow-y: auto;
-    overflow-x: hidden;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
 }
 
 .list::-webkit-scrollbar {

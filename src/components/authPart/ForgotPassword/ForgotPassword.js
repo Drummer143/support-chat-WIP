@@ -13,9 +13,7 @@ import styles from './ForgotPassword.module.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
-    const { isRecovered, error } = useSelector(state => {
-        return { isRecovered: state.authReducer.recovered, error: state.authReducer.error };
-    });
+    const { isRecovered, error } = useSelector(state => state.authReducer);
     const validationSchema = Yup.object().shape({ email: emailSignInValSchema });
 
     useEffect(() => {
@@ -50,7 +48,7 @@ function ForgotPassword() {
                 </Fade>
 
                 <button type="submit" className={`${styles.submit} submit`}>
-                    Send a link to recover password
+                    Submit
                 </button>
 
                 <div className={styles.footer}>

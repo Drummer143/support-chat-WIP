@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
+import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from '../../../utils';
 import {
     resetError,
     signInEmailRequest,
     signInGoogleRequest
 } from '../../../redux/actions/actions';
-import { handleAuthError, emailSignInValSchema, passwordSignInValSchema } from '../../../utils';
 
 import './../commonStyles.css';
 import styles from './SignInForm.module.css';

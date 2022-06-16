@@ -1,26 +1,31 @@
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
-import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDispatch, useSelector } from 'react-redux';
 import { faFloppyDisk, faHourglass } from '@fortawesome/free-regular-svg-icons';
 
 import { changeStatus } from '../../../redux/actions/actions';
 
 import styles from './Navbar.module.css';
 
-const Cell = props => {
-    const status = useSelector(state => state.chatReducer.status);
+const Cell = ({status, icon, text}) => {
+    const currStatus = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
 
+    let style = styles.cell;
+    if (currStatus === status) {
+        style = `${style} ${styles.active}`;
+    }
+
     const handleClick = () => {
-        if (status !== props.status) {
-            dispatch(changeStatus(props.status));
+        if (currStatus !== status) {
+            dispatch(changeStatus(status));
         }
     };
 
     return (
-        <div className={styles.cell} onClick={() => handleClick(props.status)}>
-            <p className={styles.heading}>{props.text}</p>
-            <FontAwesomeIcon icon={props.icon} className={styles.icon} />
+        <div className={style} onClick={() => handleClick(status)}>
+            <p className={styles.heading}>{text}</p>
+            <FontAwesomeIcon icon={icon} />
         </div>
     );
 };

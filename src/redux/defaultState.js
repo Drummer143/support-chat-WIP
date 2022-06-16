@@ -5,5 +5,6 @@ export const authDefaultState = {
 };
 
 export const chatDefaultState = {
-    status: 'active'
+    status: 'active',
+    dialogs: []
 };

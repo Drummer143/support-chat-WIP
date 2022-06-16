@@ -47,11 +47,13 @@
 
 .text {
     margin: 0;
+    font-size: 1.15em;
 }
 
 .message {
     margin: 0;
     padding: 0 10px 10px 10px;
+    font-size: 1.15em;
 }
 
 .buttons {
@@ -65,57 +67,10 @@
     border-radius: 10px;
 }
 
-.button {
-    border: none;
-    color: #fff;
-}
-
-.button:first-child {
-    border-radius: 10px 10px 0 0;
-}
-
-.button:last-child {
-    border-radius: 0 0 10px 10px;
-}
-
-.save {
-    background-color: #525252;
-}
-
-.save:hover {
-    background-color: #505050;
-}
-
-.save:active {
-    background-color: #484848;
-}
-
-.delete {
-    background-color: #424242;
-}
-
-.delete:hover {
-    background-color: #404040;
-}
-
-.delete:active {
-    background-color: #383838;
-}
-
-.complete {
-    background-color: #00910f;
-}
-
-.complete:hover {
-    background-color: #008d0f;
-}
-
-.complete:active {
-    background-color: #00890f;
-}
-
 .rating {
     padding: 5px 10px;
+
+    border-radius: 10px 10px 0 0;
     background-color: #fff;
     color: #212529;
 }

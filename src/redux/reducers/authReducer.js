@@ -1,5 +1,4 @@
 import { auth } from '../../firebase';
-
 import { authDefaultState } from '../defaultState';
 import {
     FETCH_SIGN_UP_REQUEST,
@@ -45,6 +44,8 @@ const AuthReducer = (state = authDefaultState, action) => {
             };
 
         case FETCH_SIGN_OUT_SUCCESS:
+            localStorage.clear();
+
         case RESET_ERROR:
             return authDefaultState;
 

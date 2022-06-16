@@ -10,20 +10,18 @@ function Header() {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.rightPart}>
-                <div className={styles.info}>
-                    <p className={styles.email}>{user.email}</p>
-                </div>
+            <button className={styles.info}>
+                <p>{user.email}</p>
+            </button>
 
-                <button
-                    className={styles.button}
-                    onClick={() => {
-                        dispatch(signOutRequest());
-                    }}
-                >
-                    Sign Out
-                </button>
-            </div>
+            <button
+                className={styles.button}
+                onClick={() => {
+                    dispatch(signOutRequest());
+                }}
+            >
+                Sign Out
+            </button>
         </div>
     );
 }

@@ -20,7 +20,7 @@ function Chat() {
     /* full of placeholders rn */
     const { id } = useParams();
     const dialog = useSelector(state =>
-        state.chatReducer.dialogs.find(dialog => dialog.dialogId === id)
+        state.chatReducer.dialogs.find(dialog => dialog.dialogId == id)
     );
     const [input, setInput] = useState('');
     const navigate = useNavigate();
@@ -56,12 +56,6 @@ function Chat() {
             rating = <h4>User did not put a rating</h4>;
         }
     }
-
-    /* let isInputActive = true;
-    if(dialog.status === 'completed') {
-        isInputActive = false;
-        setInput("Dialog finished. You can't write here");
-    } */
 
     return (
         <div className={styles.wrapper}>
