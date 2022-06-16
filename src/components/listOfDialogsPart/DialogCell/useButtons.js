@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from './../Button/Button';
 
-import styles from './DialogListCell.module.css';
+import styles from './DialogCell.module.css';
 
 const mapRating = dialogRating => {
     let rating;
