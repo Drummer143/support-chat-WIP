@@ -1,24 +1,28 @@
-import { useFormik } from "formik";
-
 import styles from './InputForm.module.css';
+import { useState, useEffect } from 'react';
 
+function InputForm({ input, setInput }) {
+    const [localInput, setLocalInput] = useState(input);
 
-function InputForm() {
-    const formik = useFormik({
-        initialValues: { text: '' },
-        onSubmit: ({text}) => text ? alert(text) : null
-    });
+    useEffect(() => setLocalInput(input), [input]);
 
     return (
         <form
-            onSubmit={formik.handleSubmit}
-            onReset={formik.resetForm}
+            onSubmit={
+                e => {
+                    e.preventDefault();
+                    alert(input);
+                }
+            }
+            onReset={() => setInput('')}
             className={styles.wrapper}
         >
 
             <textarea
-                name='text' type='text'
-                onChange={formik.handleChange}
+                name='input' type='text'
+                /* onChange={formik.handleChange} */
+                onChange={e => setInput(e.target.value)}
+                value={localInput}
                 className={styles.inputField}
             />
 

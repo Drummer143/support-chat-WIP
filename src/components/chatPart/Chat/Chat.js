@@ -63,7 +63,7 @@ function Chat() {
                 {messages}
             </div>
 
-            <InputForm />
+            <InputForm input={input} setInput={setInput} />
 
             <div className={styles.snippets}>
                 <h4>Your snippets</h4>
