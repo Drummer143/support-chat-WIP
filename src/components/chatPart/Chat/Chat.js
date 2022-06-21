@@ -8,6 +8,7 @@ import styles from './Chat.module.css';
 import mapRating from './../../listOfDialogsPart/DialogCell/mapRating';
 import Message from '../Message/Message';
 import InputForm from '../InputForm/InputForm';
+import SnippetPanel from '../SnippetPanel/SnippetPanel';
 
 function Chat() {
     /* full of placeholders rn */
@@ -15,18 +16,10 @@ function Chat() {
     const dialog = useSelector(state =>
         state.chatReducer.dialogs.find(dialog => dialog.dialogId == id)
     );
-    const [input, setInput] = useState('');
     const navigate = useNavigate();
-    const addSnippet = snippet => setInput(input + snippet);
+    const [input, setInput] = useState('');
 
-    const snippets = [
-        'Snippet 1',
-        'Sentence',
-        'BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEG word',
-        'Snippet Snippet Snippet Snippet',
-        'Snippet Snippet Snippet Snippet Snippet',
-        'Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet Snippet'
-    ];
+    const addSnippet = snippet => setInput(input + snippet);
 
     const messages = dialog.messages.map((message, i) => <Message message={message} />);
 
@@ -65,10 +58,7 @@ function Chat() {
 
             <InputForm input={input} setInput={setInput} />
 
-            <div className={styles.snippets}>
-                <h4>Your snippets</h4>
-                {snippets.map(snippet => <button onClick={() => addSnippet(snippet)} className={styles.snippet}>{snippet}</button>)}
-            </div>
+            <SnippetPanel addSnippet={addSnippet} />
         </div>
     );
 }
