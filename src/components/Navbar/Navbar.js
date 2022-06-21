@@ -6,21 +6,13 @@ import { faFloppyDisk, faHourglass } from '@fortawesome/free-regular-svg-icons';
 import { changeStatus } from './../../redux/actions/actions';
 
 import styles from './Navbar.module.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const Cell = ({status, icon, text}) => {
-    const currStatus = useSelector(state => state.chatReducer.status);
-    const dispatch = useDispatch();
-
+const Cell = ({ status, currStatus, icon, text, handleClick }) => {
     let style = styles.cell;
     if (currStatus === status) {
         style = `${style} ${styles.active}`;
     }
-
-    const handleClick = () => {
-        if (currStatus !== status) {
-            dispatch(changeStatus(status));
-        }
-    };
 
     return (
         <div className={style} onClick={() => handleClick(status)}>
@@ -31,11 +23,25 @@ const Cell = ({status, icon, text}) => {
 };
 
 function Navbar() {
+    const currStatus = useSelector(state => state.chatReducer.status);
+    const dispatch = useDispatch();
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    const handleClick = status => {
+        if (currStatus !== status) {
+            dispatch(changeStatus(status));
+        }
+        if (pathname !== '/main/dialogs') {
+            navigate('/main/dialogs');
+        }
+    };
+
     return (
         <div className={styles.wrapper}>
-            <Cell status="active" icon={faHourglass} text="Active" />
-            <Cell status="completed" icon={faCheck} text="Completed" />
-            <Cell status="saved" icon={faFloppyDisk} text="Saved" />
+            <Cell status="active" currStatus={currStatus} icon={faHourglass} text="Active" handleClick={handleClick} />
+            <Cell status="completed" currStatus={currStatus} icon={faCheck} text="Completed" handleClick={handleClick} />
+            <Cell status="saved" currStatus={currStatus} icon={faFloppyDisk} text="Saved" handleClick={handleClick} />
         </div>
     );
 }
