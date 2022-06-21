@@ -141,43 +141,7 @@
     border-radius: 20px;
 }
 
-.message {
-    width: fit-content;
-    max-width: 400px;
-
-    padding: 10px 20px 0px 20px;
-
-    border-radius: 15px;
-    background-color: #f2f2f2;
-    font-size: 1.2rem;
-}
-
-.message:not(:last-child) {
-    margin-bottom: 20px;
-}
-
-.operator {
-    margin-left: auto;
-
-    box-shadow: 0px 0px 0px 5px #3a519950;
-}
-
-.client {
-    box-shadow: 0px 0px 0px 5px #00a10050;
-}
-
-.text {
-    font-size: 17px;
-}
-
-.time {
-    display: block;
-
-    font-style: italic;
-    text-align: right;
-}
-
-.input {
+/* .input {
     grid-area: input;
 
     display: flex;
@@ -239,7 +203,7 @@
 
 .submit:active {
     background-color: #00890f;
-}
+} */
 
 .snippets {
     grid-area: snippets;
