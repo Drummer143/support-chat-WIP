@@ -1,9 +1,6 @@
-
-
 import styles from './SnippetPanel.module.css';
 
-function SnippetPanel({addSnippet}) {
-
+function SnippetPanel({ addSnippet }) {
     const snippets = [
         'Snippet 1',
         'Sentence',
@@ -16,7 +13,11 @@ function SnippetPanel({addSnippet}) {
     return (
         <div className={styles.snippets}>
             <h4>Your snippets</h4>
-            {snippets.map(snippet => <button onClick={() => addSnippet(snippet)} className={styles.snippet}>{snippet}</button>)}
+            {snippets.map(snippet => (
+                <button onClick={() => addSnippet(snippet)} className={styles.snippet}>
+                    {snippet}
+                </button>
+            ))}
         </div>
     );
 }

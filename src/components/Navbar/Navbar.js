@@ -39,9 +39,27 @@ function Navbar() {
 
     return (
         <div className={styles.wrapper}>
-            <Cell status="active" currStatus={currStatus} icon={faHourglass} text="Active" handleClick={handleClick} />
-            <Cell status="completed" currStatus={currStatus} icon={faCheck} text="Completed" handleClick={handleClick} />
-            <Cell status="saved" currStatus={currStatus} icon={faFloppyDisk} text="Saved" handleClick={handleClick} />
+            <Cell
+                status="active"
+                currStatus={currStatus}
+                icon={faHourglass}
+                text="Active"
+                handleClick={handleClick}
+            />
+            <Cell
+                status="completed"
+                currStatus={currStatus}
+                icon={faCheck}
+                text="Completed"
+                handleClick={handleClick}
+            />
+            <Cell
+                status="saved"
+                currStatus={currStatus}
+                icon={faFloppyDisk}
+                text="Saved"
+                handleClick={handleClick}
+            />
         </div>
     );
 }

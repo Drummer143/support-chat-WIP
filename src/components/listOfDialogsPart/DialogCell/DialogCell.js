@@ -5,7 +5,7 @@ import useButtons from './useButtons';
 
 import styles from './DialogCell.module.css';
 
-function DialogCell({dialog}) {
+function DialogCell({ dialog }) {
     const lastMessage = dialog.messages[dialog.messages.length - 1];
     const currButtonSet = useButtons(dialog);
 

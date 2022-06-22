@@ -1,6 +1,6 @@
 import styles from './SearchBar.module.css';
 
-function SearchBar({value, setValue}) {
+function SearchBar({ value, setValue }) {
     return (
         <div>
             <input

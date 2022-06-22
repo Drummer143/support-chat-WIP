@@ -2,7 +2,7 @@ import Moment from 'react-moment';
 
 import styles from './Message.module.css';
 
-function Message({message}) {
+function Message({ message }) {
     return (
         <div className={`${styles.message} ${styles[message.writtenBy]}`}>
             <p className={styles.text}>{message.content}</p>
