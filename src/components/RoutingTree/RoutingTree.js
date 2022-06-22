@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Chat from '../chatPart/Chat/Chat';
-import Layout from '../listOfDialogsPart/Layout/Layout';
+import Layout from '../Layout/Layout';
 import SignInForm from '../authPart/SignInForm/SignInForm';
 import SignUpForm from '../authPart/SignUpForm/SignUpForm';
 import ReAuthError from '../listOfDialogsPart/ReAuthError/ReAuthError';

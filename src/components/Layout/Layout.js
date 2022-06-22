@@ -1,17 +1,17 @@
-import { auth } from '../../../firebase';
 import { useState, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import Header from './../../Header/Header';
-import Navbar from './../../Navbar/Navbar';
+import Header from './../Header/Header';
+import Navbar from './../Navbar/Navbar';
 import useLoadDialogs from './useLoadDialogs';
+import { auth } from '../../firebase';
 
 import styles from './Layout.module.css';
 
 function Layout() {
     const navigate = useNavigate();
     /* const [token, setToken] = useState(); */
-    const url = useLocation();
+    const { pathname } = useLocation();
 
     useLoadDialogs();
 
@@ -23,7 +23,7 @@ function Layout() {
                 navigate('/error');
             }
 
-            if (url.pathname === '/main' || url.pathname === '/main/') {
+            if (pathname === '/main' || pathname === '/main/') {
                 navigate('/main/dialogs');
             }
         });
