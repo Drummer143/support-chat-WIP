@@ -47,16 +47,9 @@ function Chat() {
 
             <div className={styles.chat}>
                 {messages}
-                {messages}
-                {messages}
-                {messages}
-                {messages}
-                {messages}
-                {messages}
-                {messages}
             </div>
 
-            <InputForm input={input} setInput={setInput} />
+            <InputForm input={input} setInput={setInput} id={messages.length} dialogId={dialog.dialogId}/>
 
             <SnippetPanel addSnippet={addSnippet} />
         </div>
