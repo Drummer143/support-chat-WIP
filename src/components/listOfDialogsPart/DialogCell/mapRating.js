@@ -14,7 +14,7 @@ const mapRating = dialogRating => {
             <FontAwesomeIcon key={i} icon={faStar} className={styles[star]} />
         ));
     } else {
-        rating = <p>User did not put a rating</p>;
+        rating = <p className={styles.ratingText}>User did not put a rating</p>;
     }
 
     return rating;
