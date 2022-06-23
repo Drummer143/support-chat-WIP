@@ -45,7 +45,7 @@ function Chat() {
 
             <div className={styles.rating}>{rating}</div>
 
-            <div className={styles.chat}>
+            <div className={styles.chat} id='chat'>
                 {messages}
             </div>
 

@@ -4,13 +4,13 @@ import { signOutRequest } from './../../redux/actions/actions';
 
 import styles from './Header.module.css';
 
-function Header() {
+function Header({ setVisibility }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.authReducer.user);
 
     return (
         <div className={styles.wrapper}>
-            <button className={styles.info}>
+            <button className={styles.info} onClick={() => setVisibility('initial')}>
                 <p>{user.email}</p>
             </button>
 

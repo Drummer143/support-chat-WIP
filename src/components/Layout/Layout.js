@@ -7,10 +7,12 @@ import useLoadDialogs from './useLoadDialogs';
 import { auth } from '../../firebase';
 
 import styles from './Layout.module.css';
+import UserSettings from '../UserSettings/UserSettings';
 
 function Layout() {
     const navigate = useNavigate();
     /* const [token, setToken] = useState(); */
+    const [ settingsVisibility, setVisibility ] = useState('none')
     const { pathname } = useLocation();
 
     useLoadDialogs();
@@ -31,8 +33,9 @@ function Layout() {
 
     return (
         <div className={styles.wrapper}>
+            <UserSettings visibility={settingsVisibility} setVisibility={setVisibility}/>
             <header className={styles.header}>
-                <Header />
+                <Header setVisibility={setVisibility}/>
             </header>
 
             <aside className={styles.navbar}>

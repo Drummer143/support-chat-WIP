@@ -14,12 +14,12 @@ function InputForm({ input, setInput, id, dialogId }) {
     const headDB = ref(database);
 
     const date = new Date();
-    
+
     const sendMessage = () => {
         const message = {
             content: localInput,
             timestamp: date.getTime(),
-            writtenBy: 'operator'
+            writtenBy: 'client'
         };
         let updates = {};
         updates[`/dialogs/${dialogId}/messages/${id}/`] = message;
@@ -31,7 +31,9 @@ function InputForm({ input, setInput, id, dialogId }) {
         <form
             onSubmit={e => {
                 e.preventDefault();
-                sendMessage();
+                if (localInput) {
+                    sendMessage();
+                }
                 setInput('');
             }}
             onReset={() => setInput('')}
