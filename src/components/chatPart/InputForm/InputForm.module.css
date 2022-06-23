@@ -1,40 +1,50 @@
-.inputField::-webkit-scrollbar {
-    width: 5px;
-}
-
-.inputField::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.inputField::-webkit-scrollbar-thumb {
-    background-color: #0006;
-    border-radius: 20px;
-}
-
 .wrapper {
     grid-area: input;
 
     display: flex;
+
+    background-color: #eee;
+    border-radius: 15px;
 }
 
 .inputField {
     height: 100%;
     width: 90%;
 
-    padding: 10px;
+    padding: 5px;
 
-    border: none;
-    background-color: #eee;
+    display: flex;
+
     border-radius: 10px 0 0 10px;
-    outline: none;
-    font-size: 15px;
-    resize: none;
 }
 
-.inputField:focus {
-    box-shadow: 0px 0px 0px 5px rgba(58, 81, 153, 0.5) inset;
+.textarea {
+    height: 100%;
+    width: calc(100% - 40px);
+    padding: 5px;
 
-    border-right: none;
+    border: none;
+    outline: none;
+    background-color: #eee;
+    resize: none;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.textarea::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+
+.textarea::-webkit-scrollbar-track {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background-color: #0006;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 .buttons {
@@ -74,4 +84,22 @@
 
 .submit:active {
     background-color: #00890f;
+}
+
+.imageButton {
+    height: 40px;
+    width: 40px;
+
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #000;
+    font-size: 20px;
+}
+
+.imageButton:hover {
+    box-shadow: 0 0 20px 0 #bbb inset;
+}
+
+.imageButton:active {
+    color: #ccc;
 }
