@@ -13,25 +13,23 @@ const InputFileButton = ({ setImageInput, isDisabled }) => {
     return (
         <div className={styles.imageInput}>
             <input
-                type='file'
-                id='fileInput'
+                type="file"
+                id="fileInput"
                 multiple={true}
-                onChange={e => {
-                    console.log(e.target.files[0]);
-                    setImageInput(e.target.files[0]);
-                }
-                }
+                onChange={e => setImageInput(e.target.files[0])}
                 style={{ display: 'none' }}
             />
             <button
-                type='button'
+                type="button"
                 onClick={() => document.getElementById('fileInput').click()}
                 disabled={isDisabled}
                 className={styles.imageButton}
-            ><FontAwesomeIcon icon={faPaperclip} /></button>
+            >
+                <FontAwesomeIcon icon={faPaperclip} />
+            </button>
         </div>
     );
-}
+};
 
 function InputForm({ input, setInput, id, dialogId, status }) {
     const [localInput, setLocalInput] = useState(input);
@@ -43,8 +41,7 @@ function InputForm({ input, setInput, id, dialogId, status }) {
 
     const uploadImage = () => {
         const imageRef = sRef(storage, `d${dialogId}/m${id}/${imageInput.name}_${v4()}`);
-        uploadBytes(imageRef, imageInput)
-            .then(res => console.log(res));
+        uploadBytes(imageRef, imageInput);
     };
 
     const date = new Date();
@@ -79,7 +76,7 @@ function InputForm({ input, setInput, id, dialogId, status }) {
             }}
             onReset={() => setInput('')}
             className={styles.wrapper}
-            style={{ cursor: isDisabled ? 'not-allowed' : 'auto'}}
+            style={{ cursor: isDisabled ? 'not-allowed' : 'auto' }}
         >
             <div className={styles.inputField}>
                 <textarea
@@ -90,18 +87,26 @@ function InputForm({ input, setInput, id, dialogId, status }) {
                     value={localInput}
                     className={styles.textarea}
                     maxLength={1000}
-                    placeholder='Write a message...'
+                    placeholder="Write a message..."
                     disabled={isDisabled}
                 />
 
-                <InputFileButton setImageInput={setImageInput} isDisabled={isDisabled}/>
+                <InputFileButton setImageInput={setImageInput} isDisabled={isDisabled} />
             </div>
             <div className={styles.buttons}>
-                <button type="reset" className={`${styles.button} ${styles.clear}`} disabled={isDisabled}>
+                <button
+                    type="reset"
+                    className={`${styles.button} ${styles.clear}`}
+                    disabled={isDisabled}
+                >
                     Clear
                 </button>
 
-                <button type="submit" className={`${styles.button} ${styles.submit}`} disabled={isDisabled}>
+                <button
+                    type="submit"
+                    className={`${styles.button} ${styles.submit}`}
+                    disabled={isDisabled}
+                >
                     Send
                 </button>
             </div>

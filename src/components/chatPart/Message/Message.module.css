@@ -1,0 +1,40 @@
+.message {
+    width: fit-content;
+    max-width: 55%;
+
+    padding: 5px 15px 0px;
+
+    border-radius: 15px;
+    background-color: #f2f2f2;
+    font-size: 1.2rem;
+}
+
+.message:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.operator {
+    margin-left: auto;
+
+    border: solid 5px #3a519950;
+}
+
+.client {
+    border: solid 5px #00a10050;
+}
+
+.text {
+    font-size: 17px;
+    word-wrap: break-word;
+}
+
+.time {
+    display: block;
+
+    margin-top: 5px;
+
+    font-style: italic;
+    text-align: right;
+    font-size: 0.8rem;
+    border-top: solid 1px #ddd;
+}

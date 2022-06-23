@@ -12,7 +12,7 @@ import UserSettings from '../UserSettings/UserSettings';
 function Layout() {
     const navigate = useNavigate();
     /* const [token, setToken] = useState(); */
-    const [ settingsVisibility, setVisibility ] = useState('none')
+    const [settingsVisibility, setVisibility] = useState('none');
     const { pathname } = useLocation();
 
     useLoadDialogs();
@@ -33,9 +33,9 @@ function Layout() {
 
     return (
         <div className={styles.wrapper}>
-            <UserSettings visibility={settingsVisibility} setVisibility={setVisibility}/>
+            <UserSettings visibility={settingsVisibility} setVisibility={setVisibility} />
             <header className={styles.header}>
-                <Header setVisibility={setVisibility}/>
+                <Header setVisibility={setVisibility} />
             </header>
 
             <aside className={styles.navbar}>

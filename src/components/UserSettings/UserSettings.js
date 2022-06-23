@@ -8,7 +8,12 @@ function UserSettings({ visibility, setVisibility }) {
     };
 
     return (
-        <div style={{ display: visibility }} onClick={e => closeSettings(e.target)} className={styles.wrapper} id='settings'>
+        <div
+            style={{ display: visibility }}
+            onClick={e => closeSettings(e.target)}
+            className={styles.wrapper}
+            id="settings"
+        >
             <div className={styles.body}>
                 sadsada
                 <button onClick={() => setVisibility('none')}>X</button>

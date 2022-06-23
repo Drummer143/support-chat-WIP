@@ -104,6 +104,9 @@
     color: #ccc;
 }
 
-.submit:disabled, .clear:disabled, .textarea:disabled, .imageButton:disabled {
+.submit:disabled,
+.clear:disabled,
+.textarea:disabled,
+.imageButton:disabled {
     cursor: not-allowed;
 }

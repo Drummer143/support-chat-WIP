@@ -45,16 +45,22 @@ function Chat() {
 
             <div className={styles.rating}>{rating}</div>
 
-            <div className={styles.chat} id='chat'>
+            <div className={styles.chat} id="chat">
                 {messages}
-                {dialog.status === 'completed' ?
-                    <div className={styles.lastMessage}>Dialog is closed. You can only read the messages.</div> : null
-                }
+                {dialog.status === 'completed' ? (
+                    <div className={styles.lastMessage}>
+                        Dialog is closed. You can only read the messages.
+                    </div>
+                ) : null}
             </div>
 
-
-
-            <InputForm input={input} setInput={setInput} id={messages.length} dialogId={dialog.dialogId} status={dialog.status} />
+            <InputForm
+                input={input}
+                setInput={setInput}
+                id={messages.length}
+                dialogId={dialog.dialogId}
+                status={dialog.status}
+            />
 
             <SnippetPanel addSnippet={addSnippet} />
         </div>
