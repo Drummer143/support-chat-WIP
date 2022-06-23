@@ -21,7 +21,7 @@ function Chat() {
 
     const addSnippet = snippet => setInput(input + snippet);
 
-    const messages = dialog.messages.map((message, i) => <Message message={message} />);
+    const messages = dialog.messages.map(message => <Message message={message} />);
 
     let rating;
     if (dialog.status === 'completed') {
@@ -32,7 +32,6 @@ function Chat() {
         const block = document.getElementById('chat');
         block.scrollTop = block.scrollHeight;
     });
-
     return (
         <div className={styles.wrapper}>
             <button

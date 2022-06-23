@@ -7,27 +7,32 @@ import { useEffect, useState } from 'react';
 
 function Message({ message }) {
     const [image, setImage] = useState('');
-    const [imageWidth, setImageWidth] = useState('250');
-    const [maxMessageWidth, setMaxMessageWidth] = useState('55%');
+    const [imageStyle, setImageStyle] = useState('image');
 
     const changeImageWidth = () => {
-        if(imageWidth === '250') {
-            setImageWidth('1000px');
-            setMaxMessageWidth('none');
+        if (imageStyle === 'image') {
+            setImageStyle('imageOverlay');
         } else {
-            setImageWidth('250');
-            setMaxMessageWidth('55%');
+            setImageStyle('image');
         }
     };
 
     useEffect(() => {
         if (message.image) {
-            setImage(<button type='button' onClick={changeImageWidth}><img src={message.image} width={imageWidth} alt="something wrong with image" className={styles.image} /></button>);
+            if (imageStyle === 'image') {
+                setImage(<img src={message.image} width='250' alt="something wrong" onClick={changeImageWidth} className={styles[imageStyle]} />);
+            } else {
+                setImage(
+                    <div className={styles.overlay} onClick={changeImageWidth}>
+                        <img src={message.image} alt="something wrong" className={styles[imageStyle]} />
+                    </div>
+                );
+            }
         }
-    }, [message.image, imageWidth]);
+    }, [message.image, imageStyle]);
 
     return (
-        <div className={`${styles.message} ${styles[message.writtenBy]}`} style={{ maxWidth: maxMessageWidth }}>
+        <div className={`${styles.message} ${styles[message.writtenBy]}`}>
             {message.content ? <p className={styles.text}>{message.content}</p> : null}
             {image/*  ? (
                 <img
