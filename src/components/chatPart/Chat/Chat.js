@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
@@ -27,6 +27,11 @@ function Chat() {
     if (dialog.status === 'completed') {
         rating = mapRating(dialog.rating);
     }
+
+    useEffect(() => {
+        const block = document.getElementById('chat');
+        block.scrollTop = block.scrollHeight;
+    });
 
     return (
         <div className={styles.wrapper}>

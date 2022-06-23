@@ -7,15 +7,27 @@ import { useEffect, useState } from 'react';
 
 function Message({ message }) {
     const [image, setImage] = useState('');
+    const [imageWidth, setImageWidth] = useState('250');
+    const [maxMessageWidth, setMaxMessageWidth] = useState('55%');
+
+    const changeImageWidth = () => {
+        if(imageWidth === '250') {
+            setImageWidth('1000px');
+            setMaxMessageWidth('none');
+        } else {
+            setImageWidth('250');
+            setMaxMessageWidth('55%');
+        }
+    };
 
     useEffect(() => {
         if (message.image) {
-            setImage(<img src={message.image} width="250" alt="something wrong with image" className={styles.image} />);
+            setImage(<button type='button' onClick={changeImageWidth}><img src={message.image} width={imageWidth} alt="something wrong with image" className={styles.image} /></button>);
         }
-    }, [message.image]);
+    }, [message.image, imageWidth]);
 
     return (
-        <div className={`${styles.message} ${styles[message.writtenBy]}`}>
+        <div className={`${styles.message} ${styles[message.writtenBy]}`} style={{ maxWidth: maxMessageWidth }}>
             {message.content ? <p className={styles.text}>{message.content}</p> : null}
             {image/*  ? (
                 <img

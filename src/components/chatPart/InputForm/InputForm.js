@@ -86,8 +86,8 @@ function InputForm({ input, setInput, id, dialogId, status }) {
                     setImageInput(null);
                 } else if (localInput) {
                     sendMessage();
-                    setInput('');
                 }
+                setInput('');
             }}
             onReset={() => setInput('')}
             className={styles.wrapper}
