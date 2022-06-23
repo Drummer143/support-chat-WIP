@@ -137,3 +137,16 @@
     background-color: #0006;
     border-radius: 20px;
 }
+
+.lastMessage {
+    width: 50%;
+
+    margin: 0 auto;
+    padding: 10px;
+
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    text-align: center;
+    user-select: none;
+}

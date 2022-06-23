@@ -13,10 +13,10 @@ import SnippetPanel from '../SnippetPanel/SnippetPanel';
 function Chat() {
     /* full of placeholders rn */
     const { id } = useParams();
+    const navigate = useNavigate();
     const dialog = useSelector(state =>
         state.chatReducer.dialogs.find(dialog => dialog.dialogId == id)
     );
-    const navigate = useNavigate();
     const [input, setInput] = useState('');
 
     const addSnippet = snippet => setInput(input + snippet);
@@ -47,9 +47,14 @@ function Chat() {
 
             <div className={styles.chat} id='chat'>
                 {messages}
+                {dialog.status === 'completed' ?
+                    <div className={styles.lastMessage}>Dialog is closed. You can only read the messages.</div> : null
+                }
             </div>
 
-            <InputForm input={input} setInput={setInput} id={messages.length} dialogId={dialog.dialogId}/>
+
+
+            <InputForm input={input} setInput={setInput} id={messages.length} dialogId={dialog.dialogId} status={dialog.status} />
 
             <SnippetPanel addSnippet={addSnippet} />
         </div>

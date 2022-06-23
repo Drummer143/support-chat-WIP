@@ -65,11 +65,11 @@
     border-radius: 0 10px 0 0;
 }
 
-.clear:hover {
+.clear:hover:not(:disabled) {
     background-color: #404040;
 }
 
-.clear:active {
+.clear:active:not(:disabled) {
     background-color: #383838;
 }
 
@@ -78,11 +78,11 @@
     border-radius: 0 0 10px 0;
 }
 
-.submit:hover {
+.submit:hover:not(:disabled) {
     background-color: #008d0f;
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
     background-color: #00890f;
 }
 
@@ -96,10 +96,14 @@
     font-size: 20px;
 }
 
-.imageButton:hover {
+.imageButton:hover:not(:disabled) {
     box-shadow: 0 0 20px 0 #bbb inset;
 }
 
-.imageButton:active {
+.imageButton:active:not(:disabled) {
     color: #ccc;
+}
+
+.submit:disabled, .clear:disabled, .textarea:disabled, .imageButton:disabled {
+    cursor: not-allowed;
 }
