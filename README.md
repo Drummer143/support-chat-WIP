@@ -32,4 +32,5 @@ This is a chat application for the support service.
     * Login using Google account
 2. Сhanging the dialog status
 3. Ability to send pictures in chat
+
 *Some features are not ready yet, i will add them in this list after i make them*
