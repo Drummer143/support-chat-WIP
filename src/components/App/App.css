@@ -5,3 +5,8 @@ body {
 p {
     font-size: 1.15rem;
 }
+
+input {
+    border: none;
+    outline: none;
+}

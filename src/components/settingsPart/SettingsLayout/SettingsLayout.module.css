@@ -1,7 +1,7 @@
 .wrapper {
   width: 100vw;
   height: 100vh;
-  padding: 30px;
+  padding: 10px;
 }
 
 .header {
@@ -14,6 +14,7 @@
   padding: 10px;
   background-color: #3a5199;
   border-radius: 10px;
+  box-shadow: -10px -10px 10px 0px rgba(34, 60, 80, 0.4);
 }
 
 .link {
@@ -53,10 +54,7 @@
 
 .body {
   width: 100%;
-  height: calc(100vh - 60px - 70px - 20px);
-  padding: 10px;
-  background-color: #3a5199;
-  border-radius: 10px;
+  height: calc(100vh - 20px - 70px - 20px);
 }
 
 /*# sourceMappingURL=SettingsLayout.module.css.map */

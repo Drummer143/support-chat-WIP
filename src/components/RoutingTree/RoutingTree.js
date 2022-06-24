@@ -6,14 +6,14 @@ import Layout from '../Layout/Layout';
 import SignInForm from '../authPart/SignInForm/SignInForm';
 import SignUpForm from '../authPart/SignUpForm/SignUpForm';
 import ReAuthError from '../listOfDialogsPart/ReAuthError/ReAuthError';
-import SettingsLayout from '../settingsPart/SettingsLayout/SettingsLayout';
+import ListOfDialogs from '../listOfDialogsPart/ListOfDialogs/ListOfDialogs';
 import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
-import ListOfDialogs from '../listOfDialogsPart/ListOfDialogs/ListOfDialogs';
+import SettingsLayout from '../settingsPart/SettingsLayout/SettingsLayout';
+import DialogSettings from '../settingsPart/DialogSettings/DialogSettings';
+import ProfileSettings from '../settingsPart/ProfileSettings/ProfileSettings';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
-import UserSettings from '../settingsPart/UserSettings/UserSettings';
-import DialogSettings from '../settingsPart/DialogSettings/DialogSettings';
 
 function RoutingTree() {
     const user = useSelector(state => state.authReducer.user);
@@ -25,7 +25,7 @@ function RoutingTree() {
                 <Route path="dialog/:id" element={<Chat />} />
             </Route>
             <Route path="settings/" element={<SettingsLayout />}>
-                <Route path='profile' element={<UserSettings />} />
+                <Route path='profile' element={<ProfileSettings />} />
                 <Route path='dialog' element={<DialogSettings />} />
             </Route>
 

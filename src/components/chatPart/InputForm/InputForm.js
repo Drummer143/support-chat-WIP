@@ -1,35 +1,12 @@
 import { v4 } from 'uuid';
-import { faPaperclip } from '@fortawesome/fontawesome-free-solid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect } from 'react';
 import { ref as dRef, update } from 'firebase/database';
 import { ref as sRef, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
+import InputFileButton from './../../InputFileButton/InputFileButton';
 import { database, storage } from '../../../firebase';
 
 import styles from './InputForm.module.css';
-
-const InputFileButton = ({ setImageInput, isDisabled }) => {
-    return (
-        <div className={styles.imageInput}>
-            <input
-                type="file"
-                id="fileInput"
-                multiple={true}
-                onChange={e => setImageInput(e.target.files[0])}
-                style={{ display: 'none' }}
-            />
-            <button
-                type="button"
-                onClick={() => document.getElementById('fileInput').click()}
-                disabled={isDisabled}
-                className={styles.imageButton}
-            >
-                <FontAwesomeIcon icon={faPaperclip} />
-            </button>
-        </div>
-    );
-};
 
 function InputForm({ input, setInput, id, dialogId, status }) {
     const [localInput, setLocalInput] = useState(input);
@@ -105,7 +82,7 @@ function InputForm({ input, setInput, id, dialogId, status }) {
                     disabled={isDisabled}
                 />
 
-                <InputFileButton setImageInput={setImageInput} isDisabled={isDisabled} />
+                <InputFileButton returnImage={setImageInput} isDisabled={isDisabled} />
             </div>
             <div className={styles.buttons}>
                 <button

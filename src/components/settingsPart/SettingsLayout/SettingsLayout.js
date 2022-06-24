@@ -1,7 +1,8 @@
-import styles from './SettingsLayout.module.css';
 import { Outlet, NavLink } from 'react-router-dom';
 
 import ButtonHome from '../../ButtonHome/ButtonHome';
+
+import styles from './SettingsLayout.module.css';
 
 function SettingsLayout() {
     const setStyles = isActive => {

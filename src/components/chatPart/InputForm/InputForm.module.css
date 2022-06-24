@@ -86,27 +86,8 @@
     background-color: #00890f;
 }
 
-.imageButton {
-    height: 40px;
-    width: 40px;
-
-    border-radius: 50%;
-    background-color: #ccc;
-    color: #000;
-    font-size: 20px;
-}
-
-.imageButton:hover:not(:disabled) {
-    box-shadow: 0 0 20px 0 #bbb inset;
-}
-
-.imageButton:active:not(:disabled) {
-    color: #ccc;
-}
-
 .submit:disabled,
 .clear:disabled,
-.textarea:disabled,
-.imageButton:disabled {
+.textarea:disabled {
     cursor: not-allowed;
 }
