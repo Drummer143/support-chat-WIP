@@ -1,4 +1,9 @@
-# Documentation
+# Contents
+1. [Documentation](#documentation)
+3. [Description in english](#description)
+2. [Описание на русском](#описание)
+
+## Documentation
 
 It's still under development, but most of the project has already been done
 
@@ -19,7 +24,7 @@ Project is written using **React v18**
 6. Formik
 7. Font awesome
 
-### Describtion
+### Description
 
 This app is intended for *support staff only*. I want to write another application for clients.
 
