@@ -20,9 +20,8 @@ Project is written using **React v18**
 7. Font awesome
 
 ### Describtion
-This app is intended for *support staff only*. I want to write another application for clients.
 
-This is a chat application for the support service.
+This app is intended for *support staff only*. I want to write another application for clients.
 
 ##### What I implemented in the app: 
 1. Authentification:
@@ -37,6 +36,9 @@ This is a chat application for the support service.
 *Some features are not ready yet, i will add them in this list after i make them*
 
 ### Описание
+
+Это приложение предназначено только для сотрудников чата. Я хочу сделать ещё одно приложение для клиентов, после того, как сделаю это. 
+
 1. Аутентификация:
     * Вход с использованием почты и пароля
     * Вход и ипользованием аккаунта Google
