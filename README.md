@@ -10,7 +10,7 @@ Project is written using **React v18**
 2. SCSS
 3. Redux:
     * Redux-saga for asynchronous actions
-    * Redux-persist for keeping redux state afterrefreshing page
+    * Redux-persist for keeping redux state after refreshing page
 4. Firebase:
     * Auth for authentification
     * Realtime database for keeping data
