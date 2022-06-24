@@ -1,6 +1,6 @@
 # Documentation
 
-**It's still under development, but most of the project has already been done**
+**Project is still under development, but most of the features are already done**
 
 ## Contents
 
