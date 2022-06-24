@@ -2,9 +2,11 @@
 
 It's still under development, but most of the project has already been done
 
+**Link** to the site: https://support-chat-24b46.web.app/
+
 Project is written using **React v18**
 
-### Packages i used in project
+## Packages i used in project
 2. SCSS
 3. Redux:
     * Redux-saga for asynchronous actions
@@ -17,14 +19,12 @@ Project is written using **React v18**
 6. Formik
 7. Font awesome
 
-**Link** to the website: https://support-chat-24b46.web.app/
-
-### Describtion
+## Describtion
 This app is intended for *support staff only*. I want to write another application for clients.
 
 This is a chat application for the support service.
 
-##### What I implemented in the app: 
+### What I implemented in the app: 
 1. Authentification:
     * Sign In
     * Sign Up
