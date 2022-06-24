@@ -12,17 +12,19 @@ It's still under development, but most of the project has already been done
 Project is written using **React v18**
 
 ### Packages i used in project
-2. SCSS
-3. Redux:
+1. SCSS
+2. Redux:
     * Redux-saga for asynchronous actions
     * Redux-persist for keeping redux state after refreshing page
-4. Firebase:
+3. Firebase:
     * Auth for authentification
     * Realtime database for keeping data
     * Storage for keeping
-5. React router
-6. Formik
-7. Font awesome
+4. React router
+5. Formik
+6. Font awesome
+
+Others aren't that big or I haven't used them very often, so I won't mention them here.
 
 ### Description
 
