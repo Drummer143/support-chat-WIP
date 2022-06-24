@@ -6,7 +6,7 @@ It's still under development, but most of the project has already been done
 
 Project is written using **React v18**
 
-## Packages i used in project
+### Packages i used in project
 2. SCSS
 3. Redux:
     * Redux-saga for asynchronous actions
@@ -19,18 +19,31 @@ Project is written using **React v18**
 6. Formik
 7. Font awesome
 
-## Describtion
+### Describtion
 This app is intended for *support staff only*. I want to write another application for clients.
 
 This is a chat application for the support service.
 
-### What I implemented in the app: 
+##### What I implemented in the app: 
 1. Authentification:
-    * Sign In
+    * Sign In using email and password
+    * Login using Google account
     * Sign Up
     * Password recovery
-    * Login using Google account
-2. Сhanging the dialog status
-3. Ability to send pictures in chat
+2. Real-time chats update
+3. Сhanging the dialog status
+4. Ability to send pictures in chat
 
 *Some features are not ready yet, i will add them in this list after i make them*
+
+### Описание
+1. Аутентификация:
+    * Вход с использованием почты и пароля
+    * Вход и ипользованием аккаунта Google
+    * Регистрация
+    * Восстановление
+2. Обновление чатов в режиме реального времени
+3. Изменение статуса диалога
+4. Возможность отправлять картинки
+
+*Часть возможностей ещё не реализована, так что список будет пополняться в будущем*
