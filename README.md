@@ -1,18 +1,18 @@
-# Contents
-1. [Documentation](#documentation)
+# Documentation
+
+**It's still under development, but most of the project has already been done**
+
+## Contents
+
+1. [Technology stack](#technology-stack)
 3. [Description in english](#description)
 2. [Описание на русском](#описание)
 
-## Documentation
-
-It's still under development, but most of the project has already been done
-
 **Link** to the site: https://support-chat-24b46.web.app/
 
-Project is written using **React v18**
+### Technology stack
 
-### Packages i used in project
-1. SCSS
+1. React v18
 2. Redux:
     * Redux-saga for asynchronous actions
     * Redux-persist for keeping redux state after refreshing page
@@ -21,8 +21,9 @@ Project is written using **React v18**
     * Realtime database for keeping data
     * Storage for keeping
 4. React router
-5. Formik
-6. Font awesome
+5. SCSS
+6. Formik
+7. Font awesome
 
 Others aren't that big or I haven't used them very often, so I won't mention them here.
 
