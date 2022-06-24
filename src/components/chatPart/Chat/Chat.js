@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
-import { useParams, useNavigate } from 'react-router-dom';
 
-import styles from './Chat.module.css';
-import mapRating from './../../listOfDialogsPart/DialogCell/mapRating';
 import Message from '../Message/Message';
 import InputForm from '../InputForm/InputForm';
+import mapRating from './../../listOfDialogsPart/DialogCell/mapRating';
+import ButtonHome from './../../ButtonHome/ButtonHome';
 import SnippetPanel from '../SnippetPanel/SnippetPanel';
 
+import styles from './Chat.module.css';
+
 function Chat() {
-    /* full of placeholders rn */
     const { id } = useParams();
-    const navigate = useNavigate();
     const dialog = useSelector(state =>
         state.chatReducer.dialogs.find(dialog => dialog.dialogId == id)
     );
@@ -34,14 +32,7 @@ function Chat() {
     });
     return (
         <div className={styles.wrapper}>
-            <button
-                type="button"
-                onClick={() => navigate('/main/dialogs')}
-                className={styles.back}
-                data-title="Go to main page"
-            >
-                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />
-            </button>
+            <ButtonHome />
 
             <div className={styles.userInfo}>
                 <h3>{dialog.userName}</h3>

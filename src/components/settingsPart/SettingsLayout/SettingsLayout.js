@@ -1,16 +1,29 @@
 import styles from './SettingsLayout.module.css';
 import { Outlet, NavLink } from 'react-router-dom';
 
+import ButtonHome from '../../ButtonHome/ButtonHome';
+
 function SettingsLayout() {
+    const setStyles = isActive => {
+        if (isActive) {
+            return `${styles.link} ${styles.active}`;
+        } else {
+            return `${styles.link}`;
+        }
+    };
+
     return (
         <div className={styles.wrapper}>
+            <div className={styles.header}>
+                <ButtonHome />
+                <NavLink to='/settings/profile' className={({ isActive }) => setStyles(isActive)}><p>profile</p></NavLink>
+                <NavLink to='/settings/dialog' className={({ isActive }) => setStyles(isActive)}><p>dialogs</p></NavLink>
+            </div>
+
             <div className={styles.body}>
-                <NavLink to='/settings/profile'>user</NavLink> <br />
-                <NavLink to='/settings/dialog'>dialogs</NavLink> <br />
-                <NavLink to='/main/dialogs'>xxxxxx</NavLink>
                 <Outlet />
             </div>
-        </div>
+        </div >
     );
 }
 
