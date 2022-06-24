@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import useButtons from './useButtons';
 
-import styles from './DialogListCell.module.css';
+import styles from './DialogCell.module.css';
 
-function DialogListCell({dialog}) {
+function DialogCell({ dialog }) {
     const lastMessage = dialog.messages[dialog.messages.length - 1];
     const currButtonSet = useButtons(dialog);
 
@@ -35,4 +35,4 @@ function DialogListCell({dialog}) {
     );
 }
 
-export default DialogListCell;
+export default DialogCell;

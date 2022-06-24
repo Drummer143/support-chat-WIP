@@ -1,14 +1,17 @@
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import Chat from '../chatComponents/Chat/Chat';
-import Layout from '../chatComponents/Layout/Layout';
+import Chat from '../chatPart/Chat/Chat';
+import Layout from '../Layout/Layout';
 import SignInForm from '../authPart/SignInForm/SignInForm';
 import SignUpForm from '../authPart/SignUpForm/SignUpForm';
-import DialogsList from '../chatComponents/DialogsList/DialogsList';
-import ReAuthError from '../chatComponents/ReAuthError/ReAuthError';
+import ReAuthError from '../listOfDialogsPart/ReAuthError/ReAuthError';
+import ListOfDialogs from '../listOfDialogsPart/ListOfDialogs/ListOfDialogs';
 import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
+import SettingsLayout from '../settingsPart/SettingsLayout/SettingsLayout';
+import DialogSettings from '../settingsPart/DialogSettings/DialogSettings';
+import ProfileSettings from '../settingsPart/ProfileSettings/ProfileSettings';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
 
@@ -18,8 +21,12 @@ function RoutingTree() {
     return user ? (
         <Routes>
             <Route path="/main/" element={<Layout />}>
-                <Route path="dialogs" element={<DialogsList />} />
+                <Route path="dialogs" element={<ListOfDialogs />} />
                 <Route path="dialog/:id" element={<Chat />} />
+            </Route>
+            <Route path="settings/" element={<SettingsLayout />}>
+                <Route path='profile' element={<ProfileSettings />} />
+                <Route path='dialog' element={<DialogSettings />} />
             </Route>
 
             <Route path="/error" element={<ReAuthError />} />

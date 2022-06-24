@@ -1,16 +1,16 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import { debounce } from 'lodash';
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import SearchBar from '../SearchBar/SearchBar';
 import useGetData from './useGetData';
-import DialogListCell from '../DialogListCell/DialogListCell';
-import { changeStatus } from './../../../redux/actions/actions';
+import DialogCell from '../DialogCell/DialogCell';
+import { changeStatus } from '../../../redux/actions/actions';
 
-import styles from './DialogsList.module.css';
+import styles from './ListOfDialogs.module.css';
 
-function DialogsList() {
+function ListOfDialogs() {
     const status = useSelector(state => state.chatReducer.status);
     const dispatch = useDispatch();
     const [enteredSearchParams, setEnteredSearchParams] = useState('');
@@ -59,7 +59,7 @@ function DialogsList() {
                         }
                     >
                         {dialogs.slice(0, countOfDialogs).map(dialog => (
-                            <DialogListCell key={dialog.dialogId} dialog={dialog} />
+                            <DialogCell key={dialog.dialogId} dialog={dialog} />
                         ))}
                     </InfiniteScroll>
                 ) : (
@@ -70,4 +70,4 @@ function DialogsList() {
     );
 }
 
-export default DialogsList;
+export default ListOfDialogs;
