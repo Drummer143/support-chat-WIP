@@ -1,24 +1,52 @@
-import styles from './ProfileSettings.module.css';
+import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+import styles from './ProfileSettings.module.css'
+import { emailSchema, passwordSchema, confirmPasswordSchema } from './../../../utils';
 
 function ProfileSettings() {
+    const user = useSelector(state => state.authReducer.user);
+    const validationSchema = Yup.object().shape({
+        name: '',
+        email: emailSchema,
+        password: passwordSchema,
+        confirmPassword: confirmPasswordSchema
+    });
+
     return (
-        <div>
-            <form className={styles.wrapper}>
-                <h4>Update name</h4>
-                <input className={styles.inputField}></input>
-            </form>
+        <div className={styles.wrapper}>
+            <h2>Profile</h2>
 
-            <form className={styles.wrapper}>
-                <h4>Update email</h4>
-                <input className={styles.inputField}></input>
-            </form>
+            <Formik
+                initialValues={{
+                    name: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                }}
+                validationSchema={validationSchema}
+                onSubmit={values => alert(JSON.stringify(values, '', 2))}
+            >
+                <Form className={styles.form}>
+                    <h3>Update Name</h3>
+                    <Field type='text' name='name' />
 
-            <form className={styles.wrapper}>
-                <h4>Update password</h4>
-                <input className={styles.inputField}></input>
-                <input className={styles.inputField}></input>
-            </form>
-        </div>
+                    <h3>Update Email</h3>
+                    <Field type='email' name='email' />
+                    <ErrorMessage name='email' />
+
+                    <h3>Update </h3>
+                    <Field type='password' name='password' />
+                    <ErrorMessage name='password' />
+
+                    <Field type='password' name='confirmPassword' />
+                    <ErrorMessage name='confirmPassword' />
+
+                    <button type='submit'>Confirm Changes</button>
+                </Form>
+            </Formik>
+        </div >
     );
 }
 

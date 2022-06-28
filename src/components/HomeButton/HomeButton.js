@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './HomeButton.module.css';
 
-function HomeButton() {
+function HomeButton({ width, height }) {
     const navigate = useNavigate();
 
     return (
@@ -13,6 +13,10 @@ function HomeButton() {
             onClick={() => navigate('/main/dialogs')}
             className={styles.back}
             data-title="Go to main page"
+            style={{
+                width: width || '50px',
+                height: height || '50px'
+            }}
         >
             <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} />
         </button>

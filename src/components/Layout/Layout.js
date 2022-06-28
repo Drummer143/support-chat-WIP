@@ -7,7 +7,6 @@ import useLoadDialogs from './useLoadDialogs';
 import { auth } from '../../firebase';
 
 import styles from './Layout.module.css';
-import UserSettings from '../settingsPart/SettingsLayout/SettingsLayout';
 
 function Layout() {
     const navigate = useNavigate();
