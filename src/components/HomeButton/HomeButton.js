@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './ButtonHome.module.css';
+import styles from './HomeButton.module.css';
 
-function ButtonHome() {
+function HomeButton() {
     const navigate = useNavigate();
 
     return (
@@ -19,4 +19,4 @@ function ButtonHome() {
     );
 }
 
-export default ButtonHome;
+export default HomeButton;

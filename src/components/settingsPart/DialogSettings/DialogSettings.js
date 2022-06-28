@@ -1,4 +1,3 @@
-
 import styles from './DialogSettings.module.css';
 import { useState, useEffect } from 'react';
 
@@ -21,7 +20,7 @@ function DialogSettings() {
 
     const fields = snippets.map((snippet, i) => (
         <div id={i}>
-            <input type='text' value={snippet} disabled={true} />
+            <input type="text" value={snippet} disabled={true} />
             <button onClick={() => changeInput(i)}>Update</button>
             <button>Delete</button>
         </div>

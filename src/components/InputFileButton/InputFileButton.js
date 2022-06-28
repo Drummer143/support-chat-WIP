@@ -26,6 +26,6 @@ function InputFileButton({ returnImage, isDisabled = false, text = '', btnStyle 
             </button>
         </div>
     );
-};
+}
 
 export default InputFileButton;

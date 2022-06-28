@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Message from '../Message/Message';
 import InputForm from '../InputForm/InputForm';
 import mapRating from './../../listOfDialogsPart/DialogCell/mapRating';
-import ButtonHome from './../../ButtonHome/ButtonHome';
+import HomeButton from './../../HomeButton/HomeButton';
 import SnippetPanel from '../SnippetPanel/SnippetPanel';
 
 import styles from './Chat.module.css';
@@ -32,7 +32,7 @@ function Chat() {
     });
     return (
         <div className={styles.wrapper}>
-            <ButtonHome />
+            <HomeButton />
 
             <div className={styles.userInfo}>
                 <h3>{dialog.userName}</h3>

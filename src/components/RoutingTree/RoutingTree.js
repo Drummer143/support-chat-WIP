@@ -25,8 +25,8 @@ function RoutingTree() {
                 <Route path="dialog/:id" element={<Chat />} />
             </Route>
             <Route path="settings/" element={<SettingsLayout />}>
-                <Route path='profile' element={<ProfileSettings />} />
-                <Route path='dialog' element={<DialogSettings />} />
+                <Route path="profile" element={<ProfileSettings />} />
+                <Route path="dialog" element={<DialogSettings />} />
             </Route>
 
             <Route path="/error" element={<ReAuthError />} />

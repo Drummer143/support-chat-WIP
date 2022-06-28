@@ -1,7 +1,6 @@
 import styles from './ProfileSettings.module.css';
 
 function ProfileSettings() {
-
     return (
         <div>
             <form className={styles.wrapper}>
