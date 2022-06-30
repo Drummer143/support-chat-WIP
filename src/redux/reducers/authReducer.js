@@ -1,6 +1,7 @@
 import { auth } from '../../firebase';
 import { authDefaultState } from '../defaultState';
 import {
+    UPDATE_PROFILE,
     FETCH_SIGN_UP_REQUEST,
     FETCH_LOGIN_EMAIL_REQUEST,
     FETCH_LOGIN_GOOGLE_REQUEST,
@@ -27,6 +28,7 @@ const AuthReducer = (state = authDefaultState, action) => {
                 requesting: true
             };
 
+        case UPDATE_PROFILE:
         case FETCH_AUTH_SUCCESS:
             return {
                 user: auth.currentUser

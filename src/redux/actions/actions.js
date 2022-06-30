@@ -53,6 +53,8 @@ export const resetError = () => ({
     type: RESET_ERROR
 });
 
+
+
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 
 export const FETCH_GET_DATA = 'FETCH_GET_DATA';
@@ -66,4 +68,13 @@ export const getDataSuccess = (dialogs, status) => ({
     type: FETCH_GET_DATA,
     status,
     dialogs
+});
+
+
+
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+
+export const updateUser = (user) => ({
+    type: UPDATE_PROFILE,
+    user
 });

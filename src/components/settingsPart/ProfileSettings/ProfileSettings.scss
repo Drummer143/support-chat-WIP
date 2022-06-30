@@ -2,7 +2,54 @@
     width: 50%;
     height: 100%;
 
-    h2 {        
+    h2 {
         margin: 5px 0 0 5%;
+    }
+}
+
+.form {
+    margin-top: 25px;
+
+    button {
+        width: 40%;
+        height: 40px;
+
+        margin-left: 100px;
+
+        border-radius: 10px;
+        color: #fff;
+        background-color: green;
+    }
+}
+
+.input {
+    width: 100%;
+
+    margin-bottom: 10px;
+
+    h3 {
+        margin-left: 20px;
+    }
+
+    input {
+        width: 60%;
+        min-width: 350px;
+        height: 40px;
+
+        margin-bottom: 5px;
+        margin-left: 15px;
+        padding: 5px 10px;
+
+        border-radius: 10px;
+    }
+
+    p {
+        margin-left: 25px;
+        min-height: 25px;
+        max-height: 50px;
+
+        color: red;
+        font-size: 1rem;
+        margin-bottom: 15px;
     }
 }
