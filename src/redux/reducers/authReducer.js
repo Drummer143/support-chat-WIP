@@ -1,7 +1,7 @@
 import { auth } from '../../firebase';
 import { authDefaultState } from '../defaultState';
 import {
-    UPDATE_PROFILE,
+    UPDATE_PROFILE_SUCCESS,
     FETCH_SIGN_UP_REQUEST,
     FETCH_LOGIN_EMAIL_REQUEST,
     FETCH_LOGIN_GOOGLE_REQUEST,
@@ -13,7 +13,10 @@ import {
     FETCH_PASSWORD_UPDATE_SUCCESS,
     FETCH_SIGN_OUT_REQUEST,
     FETCH_SIGN_OUT_SUCCESS,
-    RESET_ERROR
+    RESET_ERROR,
+    UPDATE_EMAIL_REQUEST,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_NAME_REQUEST
 } from '../actions/actions';
 
 const AuthReducer = (state = authDefaultState, action) => {
@@ -28,7 +31,7 @@ const AuthReducer = (state = authDefaultState, action) => {
                 requesting: true
             };
 
-        case UPDATE_PROFILE:
+        case UPDATE_PROFILE_SUCCESS:
         case FETCH_AUTH_SUCCESS:
             return {
                 user: auth.currentUser
@@ -51,6 +54,9 @@ const AuthReducer = (state = authDefaultState, action) => {
         case RESET_ERROR:
             return authDefaultState;
 
+        case UPDATE_NAME_REQUEST:
+        case UPDATE_EMAIL_REQUEST:
+        case UPDATE_PASSWORD_REQUEST:
         default:
             return state;
     }
