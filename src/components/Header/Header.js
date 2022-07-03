@@ -13,7 +13,7 @@ function Header() {
     return (
         <div className={styles.wrapper}>
             <button className={styles.info} onClick={() => navigate('/settings')}>
-                <p>{user.email}</p>
+                <p>{user.displayName || user.email}</p>
             </button>
 
             <button

@@ -31,13 +31,13 @@ function Layout() {
 
     return (
         <div className={styles.wrapper}>
-            <header className={styles.header}>
+            <div className={styles.header}>
                 <Header />
-            </header>
+            </div>
 
-            <aside className={styles.navbar}>
+            <div className={styles.navbar}>
                 <Navbar />
-            </aside>
+            </div>
 
             <div className={styles.body}>
                 <Outlet />
