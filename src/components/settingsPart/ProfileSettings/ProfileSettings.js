@@ -7,6 +7,19 @@ import { emailSchema, passwordSchema, confirmPasswordSchema } from './../../../u
 import { updateNameRequest, updatePasswordRequest, updateEmailRequest } from './../../../redux/actions/actions';
 import { EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 import { auth } from './../../../firebase';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+
+const toastParams = {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: 'colored'
+}
 
 function ProfileSettings() {
     const dispatch = useDispatch();
@@ -17,11 +30,16 @@ function ProfileSettings() {
         password: passwordSchema,
         confirmPassword: confirmPasswordSchema
     });
+    const [reAuthFormDisplay, setReAuthFormDisplay] = useState('none');
+    const [updatingFunction, setUpdatingFunction] = useState({});
+    const [password, setPassword] = useState('');
 
-    const reAuthentication = (updateDataFunction) => {
-        const credential = EmailAuthProvider.credential(user.email, 'Q1w2e3r4');
+    const reAuthentication = (e) => {
+        e.preventDefault();
+        const credential = EmailAuthProvider.credential(user.email, password);
         reauthenticateWithCredential(auth.currentUser, credential)
-            .then(updateDataFunction)
+            .then(() => setReAuthFormDisplay('none'))
+            .then(() => updatingFunction.update())
             .catch(error => alert(error));
     };
 
@@ -39,14 +57,16 @@ function ProfileSettings() {
 
                 case 'email':
                     if (user.email !== value) {
-                        reAuthentication(() => dispatch(updateEmailRequest(value)));
+                        setReAuthFormDisplay('flex');
+                        setUpdatingFunction({ update: () => dispatch(updateEmailRequest(value)) });
                     } else {
-                        alert('This email is already in use');
+                        toast.error('This email is already in use', toastParams);
                     }
                     break;
 
                 case 'password':
-                    reAuthentication(() => dispatch(updatePasswordRequest(value)));
+                    setReAuthFormDisplay('flex');
+                    setUpdatingFunction({ update: () => dispatch(updatePasswordRequest(value)) });
                     break;
 
                 default: alert('Something wrong with site. Contact technical support.');
@@ -83,7 +103,7 @@ function ProfileSettings() {
                             <p><ErrorMessage name='email' /></p>
                         </Form>
 
-                        <Form className={styles.form} onSubmit={e => handleSubmit(e, 'password', formik.values.password)}>
+                        <Form className={styles.form} onKeyDown={e => e.keyCode === 13 ? handleSubmit(e, 'password', formik.values.password) : null}>
                             <h3>Update Password</h3>
                             <Field type='password' name='password' />
                             <p><ErrorMessage name='password' /></p>
@@ -95,63 +115,18 @@ function ProfileSettings() {
                 )}
             </Formik>
 
-            {/* <form onSubmit={e => handleSubmit2(e)} className={styles.form}>
-                <h3>Update Name</h3>
-                <input type='text' name='name' onChange={formik.handleChange} value={formik.values.name} />
-                <p>{formik.errors.name}</p>
-            </form>
+            <div className={styles.reAuthForm} style={{ display: reAuthFormDisplay }}>
+                <form onSubmit={e => reAuthentication(e)}>
+                    <h3>Type your password to confirm changes</h3>
+                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
-            <form onSubmit={e => handleSubmit2(e)} className={styles.form}>
-                <h3>Update Email</h3>
-                <input type='email' name='email' onChange={formik.handleChange} value={formik.values.email} />
-                <p>{formik.errors.email}</p>
-            </form>
-
-            <form onSubmit={e => handleSubmit2(e)} className={styles.form}>
-                <h3>Update Password</h3>
-                <input type='password' name='password' onChange={formik.handleChange} value={formik.values.password} />
-                <p>{formik.touched.password ? formik.errors.password : null}</p>
-
-                <input type='confirmPassword' name='confirmPassword' onChange={formik.handleChange} value={formik.values.confirmPassword} />
-                <p>{formik.touched.confirmPassword ? formik.errors.confirmPassword : null}</p>
-            </form> */}
-
-            {/* <Formik
-                initialValues={{
-                    name: user.displayName || '',
-                    email: user.email || '',
-                    password: '',
-                    confirmPassword: ''
-                }}
-                validationSchema={validationSchema}
-                onSubmit={values => handleSubmit(values)}
-            >
-                <Form className={styles.form}>
-                    <div className={styles.input}>
-                        <h3>Update Name</h3>
-                        <Field type='text' name='name' />
-                        <p><ErrorMessage name='name' /></p>
+                    <div className={styles.buttons}>
+                        <button type='button' onClick={() => setReAuthFormDisplay('none')}>Cancel</button>
+                        <button type='submit'>Submit</button>
                     </div>
-
-                    <div className={styles.input}>
-                        <h3>Update Email</h3>
-                        <Field type='email' name='email' />
-                        <p><ErrorMessage name='email' /></p>
-                    </div>
-
-                    <div className={styles.input}>
-                        <h3>Update Password</h3>
-                        <Field type='password' name='password' />
-                        <p><ErrorMessage name='password' /></p>
-
-                        <Field type='password' name='confirmPassword' />
-                        <p><ErrorMessage name='confirmPassword' /></p>
-                    </div>
-
-                    <button type='submit'>Confirm Changes</button>
-                </Form>
-            </Formik> */}
-        </div >
+                </form>
+            </div>
+        </div>
     );
 }
 

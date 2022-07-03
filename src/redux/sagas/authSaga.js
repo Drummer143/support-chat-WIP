@@ -124,7 +124,6 @@ function* workerChangeEmail(action) {
 }
 
 function* workerChangePassword(action) {
-    debugger;
     try {
         yield call(updatePassword, auth.currentUser, action.password);
         yield put(updateProfileSuccess(auth.currentUser));
