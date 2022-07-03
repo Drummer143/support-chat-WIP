@@ -1,11 +1,33 @@
 .wrapper {
-    width: 100vw;
-    height: 100vh;
-
-    padding: 10px;
+  width: calc(100vw - 20px);
+  min-width: 1200px;
+  height: calc(100vh - 20px);
+  margin: 10px;
+  padding: 10px;
+  background-color: #3a5199;
+  border-radius: 10px;
+}
+.wrapper header {
+  height: 60px;
+  width: 100%;
+  padding-bottom: 10px;
+  display: flex;
+  border-bottom: solid 1px #eee;
+}
+.wrapper header h1 {
+  height: 50px;
+  margin-left: 10px;
+  padding: 0 10px;
+  background-color: #eee;
+  color: #3a5199;
+  border-radius: 10px;
+  line-height: 43px;
+}
+.wrapper main {
+  display: flex;
 }
 
-.header {
+/* .header {
     width: fit-content;
     display: grid;
 
@@ -64,3 +86,6 @@
     width: 100%;
     height: calc(100vh - 20px - 70px - 20px);
 }
+ */
+
+/*# sourceMappingURL=SettingsPage.module.css.map */

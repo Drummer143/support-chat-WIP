@@ -20,11 +20,23 @@ function Message({ message }) {
     useEffect(() => {
         if (message.image) {
             if (imageStyle === 'image') {
-                setImage(<img src={message.image} width='250' alt="something wrong" onClick={changeImageWidth} className={styles[imageStyle]} />);
+                setImage(
+                    <img
+                        src={message.image}
+                        width="250"
+                        alt="something wrong"
+                        onClick={changeImageWidth}
+                        className={styles[imageStyle]}
+                    />
+                );
             } else {
                 setImage(
                     <div className={styles.overlay} onClick={changeImageWidth}>
-                        <img src={message.image} alt="something wrong" className={styles[imageStyle]} />
+                        <img
+                            src={message.image}
+                            alt="something wrong"
+                            className={styles[imageStyle]}
+                        />
                     </div>
                 );
             }
@@ -34,14 +46,16 @@ function Message({ message }) {
     return (
         <div className={`${styles.message} ${styles[message.writtenBy]}`}>
             {message.content ? <p className={styles.text}>{message.content}</p> : null}
-            {image/*  ? (
+            {
+                image /*  ? (
                 <img
                     src={image}
                     width="250"
                     alt="something wrong with image"
                     style={{ 'border-radius': '5px' }}
                 />
-            ) : null */}
+            ) : null */
+            }
             <p>
                 <Moment fromNow className={styles.time}>
                     {message.timestamp}

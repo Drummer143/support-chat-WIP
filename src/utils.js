@@ -37,6 +37,22 @@ export const passwordSignUpValSchema = Yup.string()
     .minNumbers(1, 'Your password must contain at least one number')
     .required('Required');
 
-export const confirmPasswordSchema = Yup.string()
+export const confirmPasswordValSchema = Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords does not match')
     .required('Required');
+
+// schemas for settings
+
+export const emailSchema = Yup.string()
+    .email('Invalid address. Example: suppurt-chat@example.com');
+
+export const passwordSchema = Yup.string()
+    .min(8, 'Must be 8 characters or more')
+    .max(20, 'Must be 20 characters or less')
+    .minUppercase(1, 'Your password must contain at least one uppercase letter')
+    .minLowercase(1, 'Your password must contain at least one lowercase letter')
+    .minNumbers(1, 'Your password must contain at least one number')
+    .oneOf([Yup.ref('confirmPassword')], 'Passwords does not match');
+
+export const confirmPasswordSchema = Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords does not match');

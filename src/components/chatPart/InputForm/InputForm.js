@@ -18,25 +18,22 @@ function InputForm({ input, setInput, id, dialogId, status }) {
 
     const uploadImage = () => {
         const imageRef = sRef(storage, `d${dialogId}/m${id}/${imageInput.name}_${v4()}`);
-        uploadBytes(imageRef, imageInput)
-            .then(() => {
-                const imageRef = sRef(storage, `d${dialogId}/m${id}`);
-                listAll(imageRef)
-                    .then(res => {
-                        getDownloadURL(res.items[0])
-                            .then(url => {
-                                const message = {
-                                    content: localInput,
-                                    timestamp: date.getTime(),
-                                    image: url,
-                                    writtenBy: 'client'
-                                };
-                                let updates = {};
-                                updates[`/dialogs/${dialogId}/messages/${id}/`] = message;
-                                update(dbRef, updates);
-                            });
-                    });
+        uploadBytes(imageRef, imageInput).then(() => {
+            const imageRef = sRef(storage, `d${dialogId}/m${id}`);
+            listAll(imageRef).then(res => {
+                getDownloadURL(res.items[0]).then(url => {
+                    const message = {
+                        content: localInput,
+                        timestamp: date.getTime(),
+                        image: url,
+                        writtenBy: 'client'
+                    };
+                    let updates = {};
+                    updates[`/dialogs/${dialogId}/messages/${id}/`] = message;
+                    update(dbRef, updates);
+                });
             });
+        });
     };
 
     const date = new Date();

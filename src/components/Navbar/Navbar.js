@@ -38,7 +38,7 @@ function Navbar() {
     };
 
     return (
-        <div className={styles.wrapper}>
+        <nav className={styles.wrapper}>
             <Cell
                 status="active"
                 currStatus={currStatus}
@@ -60,7 +60,7 @@ function Navbar() {
                 text="Saved"
                 handleClick={handleClick}
             />
-        </div>
+        </nav>
     );
 }
 

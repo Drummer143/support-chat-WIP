@@ -9,9 +9,7 @@ import ReAuthError from '../listOfDialogsPart/ReAuthError/ReAuthError';
 import ListOfDialogs from '../listOfDialogsPart/ListOfDialogs/ListOfDialogs';
 import ForgotPassword from '../authPart/ForgotPassword/ForgotPassword';
 import UpdatePassword from '../authPart/UpdatePassword/UpdatePassword';
-import SettingsLayout from '../settingsPart/SettingsLayout/SettingsLayout';
-import DialogSettings from '../settingsPart/DialogSettings/DialogSettings';
-import ProfileSettings from '../settingsPart/ProfileSettings/ProfileSettings';
+import SettingsPage from '../settingsPart/SettingsPage/SettingsPage';
 import ForgotPasswordRedirect from '../authPart/ForgotPasswordRedirect/ForgotPasswordRedirect';
 import UpdatePasswordRedirect from '../authPart/UpdatePasswordRedirect/UpdatePasswordRedirect';
 
@@ -24,11 +22,8 @@ function RoutingTree() {
                 <Route path="dialogs" element={<ListOfDialogs />} />
                 <Route path="dialog/:id" element={<Chat />} />
             </Route>
-            <Route path="settings/" element={<SettingsLayout />}>
-                <Route path='profile' element={<ProfileSettings />} />
-                <Route path='dialog' element={<DialogSettings />} />
-            </Route>
 
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/error" element={<ReAuthError />} />
             <Route path="/*" element={<Navigate to="/main/dialogs" replace />} />
         </Routes>

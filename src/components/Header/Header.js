@@ -12,8 +12,8 @@ function Header() {
 
     return (
         <div className={styles.wrapper}>
-            <button className={styles.info} onClick={() => navigate('/settings/profile')}>
-                <p>{user.email}</p>
+            <button className={styles.info} onClick={() => navigate('/settings')}>
+                <p>{user.displayName || user.email}</p>
             </button>
 
             <button
